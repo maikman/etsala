@@ -1,0 +1,9 @@
+<section class="row">
+  <article class="column">
+    <h2><%= @details.name %></h2>
+    <img src="<%= @details.image_url %>" alt="<%= @details.name %>" style="float: left; margin: 20px"/>
+    <p><%= raw(@details.description) %></p>
+    <ul>
+    </ul>   
+  </article>
+</section>
