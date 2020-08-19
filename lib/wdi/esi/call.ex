@@ -3,13 +3,10 @@ defmodule WDI.ESI.Call do
     
     @endpoint Application.get_env(:etsala, :static_endpoints)[:ESI]
 
-    def handle_call(query, params \\ %{}, cache \\ false) do
-        [access_token: token] = :ets.lookup(:session, :access_token)
-        
+    def handle_call(query, params \\ %{}, cache \\ false) do        
         uri = @endpoint.url <> query
         query_params = %{
-            datasource: @endpoint.datasource,
-            token: token
+            datasource: @endpoint.datasource
         } |> Map.merge(params)
         |> URI.encode_query()
 
@@ -32,7 +29,6 @@ defmodule WDI.ESI.Call do
         |> HTTPoison.get!([], timeout: 20000)
         |> Map.get(:body)
         |> Jason.decode()
-        |> IO.inspect(label: "http_result")    
     end
 
     defp cache_result(res, full_url) do
