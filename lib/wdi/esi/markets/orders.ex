@@ -1,5 +1,4 @@
 defmodule WDI.ESI.Markets.Orders do
-    require Logger
   
     def get_orders(region_id, page \\ 1, result \\ []) do
       list = get_orders_page(region_id, page)

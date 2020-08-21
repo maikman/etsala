@@ -101,4 +101,16 @@ defmodule Etsala.Eve.Market.Order do
   def change_order(%Order{} = order) do
     Order.changeset(order, %{})
   end
+
+  def insert_or_update_order(attrs) do
+    get_order_by_order_id(attrs["order_id"])
+    |> case do
+      nil -> create_order(attrs)
+      order -> update_order(order, attrs)
+    end
+  end
+
+  def get_order_by_order_id(order_id) do
+    Repo.get_by(Order, order_id: order_id)
+  end
 end
