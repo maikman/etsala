@@ -7,7 +7,7 @@ defmodule Importer.TypeIds do
   end
 
   defp import_item(type_id) do
-    Process.sleep(25)
+    Process.sleep(5)
 
     WDI.ESI.Universe.Types.get_type_details(type_id)
     |> store_published_item()
@@ -17,7 +17,7 @@ defmodule Importer.TypeIds do
     type
     |> Map.get("published")
     |> case do
-      true -> Types.create_type_ids(type)
+      true -> Types.insert_or_update_type(type)
       _ -> nil
     end
   end

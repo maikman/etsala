@@ -89,12 +89,14 @@ defmodule EtsalaWeb.Plugs.SSO do
     end
 
     
+    defp calculate_expire_time(nil), do: nil
 
     defp calculate_expire_time(expires_in) do
       {:ok, now} = DateTime.now("Etc/UTC")
       
       DateTime.add(now, expires_in)
     end
+
 
     
 

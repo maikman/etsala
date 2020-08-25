@@ -103,6 +103,14 @@ defmodule Etsala.Eve.Universe.Types do
   end
 
   def get_type_by_type_id(type_id) do
-    Repo.get_by!(TypeIds, type_id: type_id)
+    Repo.get_by(TypeIds, type_id: type_id)
+  end
+
+  def insert_or_update_type(attrs) do
+    get_type_by_type_id(attrs["type_id"])
+    |> case do
+      nil -> create_type_ids(attrs)
+      order -> update_type_ids(order, attrs)
+    end
   end
 end

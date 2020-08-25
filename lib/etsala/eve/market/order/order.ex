@@ -23,7 +23,7 @@ defmodule Etsala.Eve.Market.Order.Order do
   def changeset(order, attrs) do
     order
     |> cast(attrs, [:duration, :is_buy_order, :issued, :location_id, :min_volume, :order_id, :price, :range, :system_id, :type_id, :volume_remain, :volume_total])
-    |> validate_required([:duration, :is_buy_order, :issued, :location_id, :min_volume, :order_id, :price, :range, :system_id, :type_id, :volume_remain, :volume_total])
+    |> validate_required([:duration, :is_buy_order, :issued, :location_id, :order_id, :price, :range, :type_id, :volume_remain, :volume_total])
     |> unique_constraint(:order_id)
   end
 end

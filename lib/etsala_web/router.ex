@@ -28,7 +28,7 @@ defmodule EtsalaWeb.Router do
 
     get "/market/own-orders", MarketController, :character_market_orders
     get "/market/structure/:id", MarketController, :structure_market_orders
-    # get "/market/compare/:structure_id/:location_id", MarketController, :structure_to_station_comparison
+    get "/market/compare/:structure_id/:location_id", MarketController, :structure_to_station_comparison
 
   end
 

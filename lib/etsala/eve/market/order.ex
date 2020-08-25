@@ -113,4 +113,10 @@ defmodule Etsala.Eve.Market.Order do
   def get_order_by_order_id(order_id) do
     Repo.get_by(Order, order_id: order_id)
   end
+
+  def get_order_by_location_id(id) do
+    Order
+    |> where([order], order.location_id == ^id)
+    |> Repo.all()
+  end
 end

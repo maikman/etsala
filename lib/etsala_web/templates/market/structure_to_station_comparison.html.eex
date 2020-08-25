@@ -2,10 +2,9 @@
 <h3><%= @structure.name %></h3>
   <section class="row">
     <article class="column">
-      <p>Buy/Sell Orders: <b><%= Enum.count(@orders, & &1.order_type == "Buy")%> / <%= Enum.count(@orders, & &1.order_type == "Sell")%></b><p>
     </article>
     <article class="column">
-      <%= link "Market Optimzer", to: Routes.market_path(@conn, :structure_to_station_comparison, @structure.id, 60003760), class: "button table-buttons" %>
+      <a class="button" href="/markets/compare/<%= @structure.id %>/60003760" style="float: right">Jita Compare</a>
     </article>
   </section>
 <table>

@@ -26,9 +26,20 @@ defmodule WDI.ESI.Call do
 
     defp get_result(full_url, false) do
       full_url
-        |> HTTPoison.get!([], timeout: 20000)
+        |> HTTPoison.get([], timeout: 20000)
+        |> get_result_from_response(full_url)
         |> Map.get(:body)
         |> Jason.decode()
+    end
+
+    defp get_result_from_response({:ok, result}, _full_url), do: result
+
+    defp get_result_from_response({:error, result}, full_url) do
+        IO.inspect(result, label: "ERROR")
+        Process.sleep(2000)
+        Logger.warn("timeout! Retry in 2 seconds")
+        get_result(full_url, false)
+        |> get_result_from_response(full_url)
     end
 
     defp cache_result(res, full_url) do
@@ -41,6 +52,7 @@ defmodule WDI.ESI.Call do
     end
 
     defp validate_result({:ok, %{"error" => "token is expired", "sso_status" => _}}), do: Logger.error("token is expired")
-    defp validate_result({:error, error}), do: Logger.error(error)
+    defp validate_result({:error, error = %Jason.DecodeError{}}), do: Logger.error(error.data)
+    defp validate_result({:error, _}), do: Logger.error("UNDEFINED ERROR")
     defp validate_result({:ok, result}), do: result
 end
