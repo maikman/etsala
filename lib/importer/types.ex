@@ -1,4 +1,4 @@
-defmodule Importer.TypeIds do
+defmodule Importer.Types do
   alias Etsala.Eve.Universe.Types
 
   def import do

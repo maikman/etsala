@@ -4,7 +4,7 @@ defmodule EtsalaWeb.TypeController do
   alias WDI.ESI.Images
 
   def types(conn, _params) do
-    types = Types.list_type_ids() |> Enum.sort_by(& &1.name, :asc)
+    types = Types.list_types() |> Enum.sort_by(& &1.name, :asc)
     render(conn, "types.html", types: types)
   end
 
