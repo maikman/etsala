@@ -1,4 +1,6 @@
 defmodule Importer.Types do
+  require Logger
+
   alias Etsala.Eve.Universe.Types
 
   def import do
@@ -6,11 +8,17 @@ defmodule Importer.Types do
     |> Enum.each(&import_item(&1))
   end
 
-  defp import_item(type_id) do
+  defp import_item(type_id) when type_id < 100_000 do
     Process.sleep(5)
 
     WDI.ESI.Universe.Types.get_type_details(type_id)
     |> store_published_item()
+  end
+
+  defp import_item(type_id) do
+    Logger.info("skip #{type_id}")
+
+    nil
   end
 
   defp store_published_item(type) when is_map(type) do
