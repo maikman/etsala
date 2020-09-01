@@ -45,7 +45,7 @@ defmodule EtsalaWeb.MarketController do
     )
   end
 
-  def missing_types_in_structure(structure_orders, station_orders) do
+  defp missing_types_in_structure(structure_orders, station_orders) do
     structure_types = get_structure_types(structure_orders)
 
     station_orders
@@ -53,14 +53,11 @@ defmodule EtsalaWeb.MarketController do
     |> Enum.uniq_by(& &1.type_id)
   end
 
-  def filter_station_order(station_order, structure_types) do
-    !Enum.member?(structure_types, station_order.type_id) &&
-      station_order.volume_total > 10 &&
-      station_order.is_buy_order == false &&
-      station_order.volume_remain < station_order.volume_total
+  defp filter_station_order(station_order, structure_types) do
+    !Enum.member?(structure_types, station_order.type_id) && station_order.is_buy_order == false
   end
 
-  def get_structure_types(orders) do
+  defp get_structure_types(orders) do
     orders
     |> Enum.map(& &1["type_id"])
     |> Enum.uniq()
