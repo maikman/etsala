@@ -1,10 +1,9 @@
-<h2>Station Market</h2>
+<h2>What to sell?</h2>
 <h3><%= @structure.name %></h3>
   <section class="row">
     <article class="column">
     </article>
     <article class="column">
-      <a class="button" href="/markets/compare/<%= @structure.id %>/60003760" style="float: right">Jita Compare</a>
     </article>
   </section>
 <table>
@@ -12,24 +11,23 @@
     <tr>
       <!--th></th-->
       <th>Type</th>
-      <th>Price</th>
-      <th>Quantity</th>
-      <th>Expires in</th>
-      <th>Order Type</th>
+      <th>Average Price</th>
+      <th>Average Volume</th>
+      <th>Average Order Count</th>
+      <th>Market Score</th>
 
     </tr>
   </thead>
   <tbody>
-    <%= for order <- @orders do %>
+    <%= for insight <- @insights do %>
     <tr>
-      <!--td><img src="<%= #order.image %>" alt="<%= #order.name %>" /></td-->
-      <td><%= link order.name, to: Routes.type_path(@conn, :type_detail, order.type_id) %></td>
-      <td><%= order.price %> ISK</td>
-      <td><%= order.quantity %></td>
-      <td><%= order.expires_in %> days</td>
-      <td><%= order.order_type %></td>
+      <!--td><img src="<%= #insight.image %>" alt="<%= #insight.name %>" /></td-->
+      <td><%= link insight.name, to: Routes.type_path(@conn, :type_detail, insight.type_id) %></td>
+      <td><%= insight.average_price %> ISK</td>
+      <td><%= insight.average_volume %></td>
+      <td><%= insight.average_order_count %></td>
+      <td><%= insight.market_score %> %</td>
     </tr>
     <% end %>
   </tbody>
 </table>
-   

@@ -4,13 +4,13 @@ defmodule EtsalaWeb.Plugs.Cache do
     """
     require Logger
     import Plug.Conn
-  
+
     @behaviour Plug
-  
+
     def init(opts) do
       opts
     end
-  
+
     def call(conn, _opts) do
       create_tables()
 
@@ -21,6 +21,7 @@ defmodule EtsalaWeb.Plugs.Cache do
     def create_tables() do
       :ets.new(:session, [:named_table])
       :ets.new(:esi_calls, [:named_table])
+      :ets.new(:type_names, [:named_table])
     end
 
     def init_session_table(conn) do
@@ -34,4 +35,3 @@ defmodule EtsalaWeb.Plugs.Cache do
       conn
     end
   end
-  

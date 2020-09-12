@@ -4,6 +4,7 @@ defmodule EtsalaWeb.Objects.Order do
   # alias WDI.ESI.Images
   alias Etsala.Eve.Universe.Types
   alias WDI.ESI.Universe.Structures
+  alias WDI.ESI.Universe.Stations
   alias EtsalaWeb.Objects.Structure
   alias Etsala.Eve.Market.Order.Order
 
@@ -22,9 +23,8 @@ defmodule EtsalaWeb.Objects.Order do
     %__MODULE__{
       type_id: esi_order.type_id,
       # image: Images.get_image(esi_order["type_id"], 64),
-      get_name(esi_order.type_id),
-      # name: "NAME",
-      station: Structures.get_structure_details(esi_order.location_id) |> Structure.new(),
+      name: get_name(esi_order.type_id),
+      station: get_station_or_structure(esi_order.location_id),
       price: esi_order.price |> Decimal.cast() |> Decimal.round(2),
       quantity: "#{esi_order.volume_remain}/#{esi_order.volume_total}",
       expires_in: calculate_expire_time(esi_order.issued, esi_order.duration),
@@ -55,10 +55,40 @@ defmodule EtsalaWeb.Objects.Order do
   defp get_order_type(true), do: "Buy"
 
   defp get_name(type_id) do
-    Types.get_type_by_type_id(type_id)
-    |> case do
-      nil -> "Type not found"
-      type -> type.name
-    end
+    {:ok, result} =
+      :ets.lookup(:type_names, type_id)
+      |> case do
+        [{_full_url, result}] -> {:ok, result}
+        [] -> get_name_from_db(type_id)
+        _ -> {:error, "Caching Error"}
+      end
+
+    result
+  end
+
+  defp get_name_from_db(type_id) do
+    cache_all_names()
+
+    name =
+      Types.get_type_by_type_id(type_id)
+      |> case do
+        nil -> "Type not found"
+        type -> type.name
+      end
+
+    {:ok, name}
+  end
+
+  defp cache_all_names() do
+    Types.list_types()
+    |> Enum.each(&:ets.insert(:type_names, {&1.type_id, &1.name}))
+  end
+
+  defp get_station_or_structure(location_id) when location_id >= 1_000_000_000_000 do
+    Structures.get_structure_details(location_id) |> Structure.new()
+  end
+
+  defp get_station_or_structure(location_id) do
+    Stations.get_station_details(location_id) |> Structure.new()
   end
 end

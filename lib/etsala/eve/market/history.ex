@@ -101,4 +101,30 @@ defmodule Etsala.Eve.Market.History do
   def change_history(%History{} = history) do
     History.changeset(history, %{})
   end
+
+  def insert_or_update_history(attrs) do
+    get_history_by_type_id_and_region_id(attrs.type_id, attrs.region_id)
+    |> case do
+      nil -> create_history(attrs)
+      order -> update_history(order, attrs)
+    end
+  end
+
+  def get_history_by_type_id_and_region_id(type_id, region_id) do
+    Repo.get_by(History, type_id: type_id, region_id: region_id)
+  end
+
+  def get_maximums() do
+    [mp, moc, mv] =
+      from(h in History,
+        select: [max(h.average_price), max(h.average_order_count), max(h.average_volume)]
+      )
+      |> Repo.one()
+
+    %{
+      max_price: mp,
+      max_order_count: moc,
+      max_volume: mv
+    }
+  end
 end

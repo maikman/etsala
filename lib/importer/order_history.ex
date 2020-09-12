@@ -14,35 +14,19 @@ defmodule Importer.OrderHistory do
     Logger.info("TYPE ID #{type_id} IN REGION #{region_id}")
 
     History.get_history(region_id, type_id)
-    |> create_30_days_average(region_id, type_id)
-    |> case do
-      nil -> nil
-      result -> save_order_history(result)
-    end
+    |> save_30_days_average(region_id, type_id)
   end
 
-  defp create_30_days_average([], _, _), do: nil
-
-  defp create_30_days_average(history, region_id, type_id) when is_list(history) do
-    last_30_days =
-      history
-      |> Enum.sort(&(&1["date"] >= &2["date"]))
-      |> Enum.take(30)
-
-    get_monthly_average(last_30_days)
+  defp save_30_days_average(history, region_id, type_id) when is_list(history) do
+    history
+    |> Enum.sort(&(&1["date"] >= &2["date"]))
+    |> Enum.take(30)
+    |> get_monthly_average()
     |> Map.merge(%{region_id: region_id, type_id: type_id})
-    |> MarketHistory.create_history()
+    |> MarketHistory.insert_or_update_history()
   end
 
-  defp create_30_days_average(result, _, _) do
-    IO.inspect(result)
-
-    nil
-  end
-
-  defp save_order_history(_result) do
-    nil
-  end
+  defp save_30_days_average(_, _, _), do: nil
 
   defp get_monthly_average(last_30_days) do
     Map.put(%{}, :average_price, get_monthly_average(last_30_days, "average"))

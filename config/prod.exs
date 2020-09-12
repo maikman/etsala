@@ -1,5 +1,14 @@
 use Mix.Config
 
+# Configure your database
+config :etsala, Etsala.Repo,
+  username: "85659375-0d57-4cd0-a93b-3fbe440b9bf6-user",
+  password: "pw-0a550895-a3fa-413f-9578-1a377afc69ce",
+  database: "85659375-0d57-4cd0-a93b-3fbe440b9bf6",
+  hostname: "postgres-free-tier-v2020.gigalixir.com",
+  show_sensitive_data_on_connection_error: true,
+  pool_size: 10
+
 # For production, don't forget to configure the url host
 # to something meaningful, Phoenix uses this information
 # when generating URLs.
