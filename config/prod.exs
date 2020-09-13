@@ -13,11 +13,11 @@ use Mix.Config
 config :etsala, Etsala.Repo,
   adapter: Ecto.Adapters.Postgres,
   url: {:system, "DATABASE_URL"},
-  database: "",
-  ssl: true,
+  database: "etsala-prod",
+  ssl: false,
   pool_size: 2
 
-# gigalixir config:set DATABASE_URL="ecto://postgres:a91zMTygIMAYjBph9AIQ@tsala-prod.cs2wysczipyv.eu-central-1.rds.amazonaws.com:5432/etsala-prod"
+# gigalixir config:set DATABASE_URL="ecto://postgres:a91zMTygIMAYjBph9AIQ@172.31.46.214:5432/etsala-prod"
 
 # For production, don't forget to configure the url host
 # to something meaningful, Phoenix uses this information
