@@ -1,6 +1,7 @@
 use Mix.Config
 
 # Configure your database
+# RDS
 config :etsala, Etsala.Repo,
   username: "postgres",
   password: "a91zMTygIMAYjBph9AIQ",
