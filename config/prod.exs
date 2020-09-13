@@ -14,7 +14,7 @@ config :etsala, Etsala.Repo,
   adapter: Ecto.Adapters.Postgres,
   url: {:system, "DATABASE_URL"},
   database: "etsala-prod",
-  ssl: false,
+  ssl: true,
   pool_size: 2
 
 # gigalixir config:set DATABASE_URL="ecto://postgres:a91zMTygIMAYjBph9AIQ@172.31.46.214:5432/etsala-prod"
