@@ -14,6 +14,8 @@ defmodule Importer.Orders do
       60_003_760 -> Order.insert_or_update_order(order)
       _ -> nil
     end
+
+    :ok
   end
 
   defp import_jita_order(_order), do: nil
