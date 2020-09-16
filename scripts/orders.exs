@@ -20,3 +20,5 @@ defmodule Importer.Orders do
 
   defp import_jita_order(_order), do: nil
 end
+
+Importer.Orders.import_jita_orders()
