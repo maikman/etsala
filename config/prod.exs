@@ -2,13 +2,13 @@ use Mix.Config
 
 # Configure your database
 # RDS
-config :etsala, Etsala.Repo,
-  username: "postgres",
-  password: "Pos2754984",
-  database: "etsala-prod",
-  hostname: "167.86.78.70",
-  show_sensitive_data_on_connection_error: true,
-  pool_size: 10
+# config :etsala, Etsala.Repo,
+#   username: "postgres",
+#   password: "Pos2754984",
+#   database: "etsala-prod",
+#   hostname: "167.86.78.70",
+#   show_sensitive_data_on_connection_error: true,
+#   pool_size: 10
 
 # config :etsala, Etsala.Repo,
 #   adapter: Ecto.Adapters.Postgres,
