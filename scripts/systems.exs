@@ -18,3 +18,5 @@ defmodule Importer.Systems do
 
   defp store_item(_type), do: nil
 end
+
+Importer.Systems.import()

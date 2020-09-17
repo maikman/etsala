@@ -32,3 +32,5 @@ defmodule Importer.Types do
 
   defp store_published_item(_type), do: nil
 end
+
+Importer.Types.import()

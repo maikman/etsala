@@ -44,3 +44,5 @@ defmodule Importer.OrderHistory do
     |> Decimal.to_integer()
   end
 end
+
+Importer.OrderHistory.import()

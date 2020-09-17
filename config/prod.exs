@@ -2,20 +2,20 @@ use Mix.Config
 
 # Configure your database
 # RDS
-# config :etsala, Etsala.Repo,
-#   username: "postgres",
-#   password: "a91zMTygIMAYjBph9AIQ",
-#   database: "etsala-prod",
-#   hostname: "etsala-prod.cs2wysczipyv.eu-central-1.rds.amazonaws.com",
-#   show_sensitive_data_on_connection_error: true,
-#   pool_size: 10
-
 config :etsala, Etsala.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  url: {:system, "DATABASE_URL"},
+  username: "postgres",
+  password: "Pos2754984",
   database: "etsala-prod",
-  ssl: true,
-  pool_size: 2
+  hostname: "167.86.78.70",
+  show_sensitive_data_on_connection_error: true,
+  pool_size: 10
+
+# config :etsala, Etsala.Repo,
+#   adapter: Ecto.Adapters.Postgres,
+#   url: {:system, "DATABASE_URL"},
+#   database: "etsala-prod",
+#   ssl: true,
+#   pool_size: 2
 
 # gigalixir config:set DATABASE_URL="ecto://postgres:a91zMTygIMAYjBph9AIQ@172.31.46.214:5432/etsala-prod"
 
