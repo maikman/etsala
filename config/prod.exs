@@ -34,8 +34,8 @@ config :etsala, EtsalaWeb.Endpoint,
   https: [
     port: 443,
     otp_app: :etsala,
-    keyfile: System.get_env("/etc/letsencrypt/live/etsala.space/privkey.pem"),
-    certfile: System.get_env("/etc/letsencrypt/live/etsala.space/fullchain.pem")
+    keyfile: System.get_env("SSL_KEY_FILE"),
+    certfile: System.get_env("SSL_CERT_FILE")
     # OPTIONAL Key for intermediate certificates
     # cacertfile: System.get_env("INTERMEDIATE_CERTFILE_PATH")
   ]
