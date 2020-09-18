@@ -30,7 +30,15 @@ use Mix.Config
 # before starting your production server.
 config :etsala, EtsalaWeb.Endpoint,
   url: [host: "example.com", port: 80],
-  cache_static_manifest: "priv/static/cache_manifest.json"
+  cache_static_manifest: "priv/static/cache_manifest.json",
+  https: [
+    port: 443,
+    otp_app: :etsala,
+    keyfile: System.get_env("/etc/letsencrypt/live/etsala.space/privkey.pem"),
+    certfile: System.get_env("/etc/letsencrypt/live/etsala.space/fullchain.pem")
+    # OPTIONAL Key for intermediate certificates
+    # cacertfile: System.get_env("INTERMEDIATE_CERTFILE_PATH")
+  ]
 
 # Do not print debug messages in production
 config :logger, level: :info
