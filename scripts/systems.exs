@@ -19,7 +19,7 @@ defmodule Importer.Systems do
 
     name = Map.get(type, "name")
     system_id = Map.get(type, "system_id")
-    Logger.info("create system #{name} (#{system_id})")
+    Logger.debug("create system #{name} (#{system_id})")
   end
 
   defp store_item(_type), do: nil

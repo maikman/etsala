@@ -11,7 +11,7 @@ defmodule Importer.OrderHistory do
   end
 
   defp create_order_history(region_id, type_id) do
-    Logger.info("TYPE ID #{type_id} IN REGION #{region_id}")
+    Logger.debug("TYPE ID #{type_id} IN REGION #{region_id}")
 
     History.get_history(region_id, type_id)
     |> save_30_days_average(region_id, type_id)
