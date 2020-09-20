@@ -4,7 +4,7 @@ defmodule Importer.Types do
   alias Etsala.Eve.Universe.Types
 
   def import do
-    output = &Logger.info("imported #{&1} types")
+    output = &Logger.info("processed #{&1} items")
 
     type_list =
       WDI.ESI.Universe.Types.get_type_id_list()
