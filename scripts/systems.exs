@@ -5,8 +5,9 @@ defmodule Importer.Systems do
   require Logger
 
   def import do
-    Systems.get_system_id_list()
-    |> Enum.each(&import_item(&1))
+    systems = Systems.get_system_id_list()
+    systems |> Enum.each(&import_item(&1))
+    systems |> Importer.Helper.output_count()
   end
 
   defp import_item(system_id) do

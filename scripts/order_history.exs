@@ -6,8 +6,10 @@ defmodule Importer.OrderHistory do
   alias Etsala.Eve.Market.History, as: MarketHistory
 
   def import(region_id \\ 10_000_002) do
-    Types.list_types()
-    |> Enum.each(&create_order_history(region_id, &1.type_id))
+    types_list = Types.list_types()
+    types_list |> Enum.each(&create_order_history(region_id, &1.type_id))
+
+    types_list |> Importer.Helper.output_count()
   end
 
   defp create_order_history(region_id, type_id) do

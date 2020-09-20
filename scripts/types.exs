@@ -4,15 +4,12 @@ defmodule Importer.Types do
   alias Etsala.Eve.Universe.Types
 
   def import do
-    output = &Logger.info("processed #{&1} items")
-
     type_list =
       WDI.ESI.Universe.Types.get_type_id_list()
       |> Enum.each(&import_item(&1))
 
     type_list
-    |> Enum.count()
-    |> output.()
+    |> Importer.Helper.output_count()
   end
 
   defp import_item(type_id) when type_id < 100_000 do
