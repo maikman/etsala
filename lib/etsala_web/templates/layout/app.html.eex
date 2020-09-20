@@ -26,7 +26,7 @@
         <a href="/" class="phx-logo">
           <img src="<%= Routes.static_path(@conn, "/images/etsala_logo.png") %>" alt="Etsala Legion Logo"/>
         </a>
-        <h1>ETSALA LEGION HQ</h1>
+        <h1>ETSALA LEGION</h1>
       </section>
     </header>
     <main role="main" class="container">
