@@ -30,4 +30,4 @@ timestamp() {
 
 
 cd ~/etsala
-$1
+MIX_ENV=prod $1
