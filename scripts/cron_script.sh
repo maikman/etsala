@@ -29,5 +29,5 @@ timestamp() {
 }
 
 
-cd ~/etsala
+cd /root/etsala
 MIX_ENV=prod $1
