@@ -28,6 +28,7 @@ timestamp() {
   date +"%Y-%m-%d:%H-%M-%S" # current time
 }
 
-
+export DATABASE_URL=ecto://postgres:Pos2754984@localhost/etsala-prod
+export MIX_ENV=prod
 cd /root/etsala
-MIX_ENV=prod $1
+$1
