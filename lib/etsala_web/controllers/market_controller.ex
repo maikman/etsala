@@ -26,12 +26,10 @@ defmodule EtsalaWeb.MarketController do
     render(conn, "structure_orders.html", structure: structure, orders: orders)
   end
 
-  def structure_to_station_comparison(conn, params) do
+  def structure_optimizer(conn, params) do
     structure_id = Map.get(params, "structure_id")
-    location_id = Map.get(params, "location_id")
 
     structure_orders = structure_id |> Structures.get_orders()
-    station_orders = location_id |> Etsala.Eve.Market.Order.get_order_by_location_id()
     # region_id = get_region_id(location_id) // TODO
     region_id = 10_000_002
 
@@ -39,30 +37,29 @@ defmodule EtsalaWeb.MarketController do
       structure_id |> WDI.ESI.Universe.Structures.get_structure_details() |> Structure.new()
 
     what_to_sell =
-      missing_types_in_structure(structure_orders, station_orders)
+      missing_types_in_structure(structure_orders)
       |> get_market_insight(region_id)
       |> Enum.sort(&(&1.market_score >= &2.market_score))
       |> Enum.map(&MarketInsight.new(&1))
 
     render(
       conn,
-      "structure_to_station_comparison.html",
+      "structure_optimizer.html",
       insights: what_to_sell,
       structure: structure
     )
   end
 
-  defp missing_types_in_structure(structure_orders, station_orders) do
+  defp missing_types_in_structure(structure_orders) do
     structure_types = get_structure_types(structure_orders)
 
-    station_orders
+    Etsala.Eve.Market.History.list_order_history()
     |> Enum.filter(&filter_station_order(&1, structure_types))
-    |> Enum.uniq_by(& &1.type_id)
     |> Enum.map(& &1.type_id)
   end
 
-  defp filter_station_order(station_order, structure_types) do
-    !Enum.member?(structure_types, station_order.type_id) && station_order.is_buy_order == false
+  defp filter_station_order(all_types, structure_types) do
+    !Enum.member?(structure_types, all_types.type_id)
   end
 
   defp get_structure_types(orders) do

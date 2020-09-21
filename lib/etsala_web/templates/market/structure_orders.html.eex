@@ -6,7 +6,7 @@
       <p>
       </article>
       <article class="column">
-        <%= link "What to sell?", to: Routes.market_path(@conn, :structure_to_station_comparison, @structure.id, 60003760), class: "button table-buttons" %>
+        <%= link "What to sell?", to: Routes.market_path(@conn, :structure_optimizer, @structure.id), class: "button table-buttons" %>
       </article>
     </section>
     <table>
