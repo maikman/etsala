@@ -29,6 +29,7 @@ timestamp() {
 }
 
 export DATABASE_URL=ecto://postgres:Pos2754984@localhost/etsala-prod
+export SECRET_KEY_BASE=ftUC5ZE9FYyJRMNBdohBJiA+n859Lo07f+sb7LPSa7fLhb5jKZHx1Qog/BA6+epN
 export MIX_ENV=prod
 cd /root/etsala
 $1
