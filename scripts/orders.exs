@@ -6,7 +6,7 @@ defmodule Importer.Orders do
     orders = Orders.get_orders(10_000_002)
     orders |> Enum.each(&import_jita_order(&1))
 
-    orders |> Importer.Helper.output_count()
+    orders |> Tools.Importer.output_count()
   end
 
   defp import_jita_order(order) when is_map(order) do

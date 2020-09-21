@@ -7,7 +7,7 @@ defmodule Importer.Systems do
   def import do
     systems = Systems.get_system_id_list()
     systems |> Enum.each(&import_item(&1))
-    systems |> Importer.Helper.output_count()
+    systems |> Tools.Importer.output_count()
   end
 
   defp import_item(system_id) do

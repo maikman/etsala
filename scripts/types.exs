@@ -9,7 +9,7 @@ defmodule Importer.Types do
       |> Enum.each(&import_item(&1))
 
     type_list
-    |> Importer.Helper.output_count()
+    |> Tools.Importer.output_count()
   end
 
   defp import_item(type_id) when type_id < 100_000 do

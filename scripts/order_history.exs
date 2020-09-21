@@ -9,7 +9,7 @@ defmodule Importer.OrderHistory do
     types_list = Types.list_types()
     types_list |> Enum.each(&create_order_history(region_id, &1.type_id))
 
-    types_list |> Importer.Helper.output_count()
+    types_list |> Tools.Importer.output_count()
   end
 
   defp create_order_history(region_id, type_id) do
