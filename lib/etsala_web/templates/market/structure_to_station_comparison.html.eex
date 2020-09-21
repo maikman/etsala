@@ -1,11 +1,11 @@
 <h2>What to sell?</h2>
 <h3><%= @structure.name %></h3>
-  <section class="row">
-    <article class="column">
-    </article>
-    <article class="column">
-    </article>
-  </section>
+<section class="row">
+  <article class="column">
+  </article>
+  <article class="column">
+  </article>
+</section>
 <table>
   <thead>
     <tr>
@@ -15,19 +15,18 @@
       <th>Average Volume</th>
       <th>Average Order Count</th>
       <th>Market Score</th>
-
     </tr>
   </thead>
   <tbody>
     <%= for insight <- @insights do %>
-    <tr>
-      <!--td><img src="<%= #insight.image %>" alt="<%= #insight.name %>" /></td-->
-      <td><%= link insight.name, to: Routes.type_path(@conn, :type_detail, insight.type_id) %></td>
-      <td><%= insight.average_price %> ISK</td>
-      <td><%= insight.average_volume %></td>
-      <td><%= insight.average_order_count %></td>
-      <td><%= insight.market_score %> %</td>
-    </tr>
+      <tr>
+        <!--td><img src="<%= #insight.image %>" alt="<%= #insight.name %>" /></td-->
+        <td><%= link insight.name, to: Routes.type_path(@conn, :type_detail, insight.type_id) %></td>
+        <td><%= insight.average_price %> ISK</td>
+        <td><%= insight.average_volume %></td>
+        <td><%= insight.average_order_count %></td>
+        <td><%= insight.market_score %> %</td>
+      </tr>
     <% end %>
   </tbody>
 </table>

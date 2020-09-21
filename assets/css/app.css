@@ -5,3 +5,7 @@
 .table-buttons {
   float: right;
 }
+
+td, th {
+  padding: 1rem 1.5rem;
+}

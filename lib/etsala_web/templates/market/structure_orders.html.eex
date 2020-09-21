@@ -1,36 +1,35 @@
 <h2>Station Market</h2>
 <h3><%= @structure.name %></h3>
-  <section class="row">
-    <article class="column">
-      <p>Buy/Sell Orders: <b><%= Enum.count(@orders, & &1.order_type == "Buy")%> / <%= Enum.count(@orders, & &1.order_type == "Sell")%></b><p>
-    </article>
-    <article class="column">
-      <%= link "Market Optimzer", to: Routes.market_path(@conn, :structure_to_station_comparison, @structure.id, 60003760), class: "button table-buttons" %>
-    </article>
-  </section>
-<table>
-  <thead>
-    <tr>
-      <!--th></th-->
-      <th>Type</th>
-      <th>Price</th>
-      <th>Quantity</th>
-      <th>Expires in</th>
-      <th>Order Type</th>
-
-    </tr>
-  </thead>
-  <tbody>
-    <%= for order <- @orders do %>
-    <tr>
-      <!--td><img src="<%= #order.image %>" alt="<%= #order.name %>" /></td-->
-      <td><%= link order.name, to: Routes.type_path(@conn, :type_detail, order.type_id) %></td>
-      <td><%= order.price %> ISK</td>
-      <td><%= order.quantity %></td>
-      <td><%= order.expires_in %> days</td>
-      <td><%= order.order_type %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-   
+<section class="row">
+  <article class="column">
+    <p>Buy/Sell Orders: <b><%= Enum.count(@orders, & &1.order_type == "Buy")%> / <%= Enum.count(@orders, & &1.order_type == "Sell")%></b>
+      <p>
+      </article>
+      <article class="column">
+        <%= link "What to sell?", to: Routes.market_path(@conn, :structure_to_station_comparison, @structure.id, 60003760), class: "button table-buttons" %>
+      </article>
+    </section>
+    <table>
+      <thead>
+        <tr>
+          <!--th></th-->
+          <th>Type</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Expires in</th>
+          <th>Order Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= for order <- @orders do %>
+          <tr>
+            <!--td><img src="<%= #order.image %>" alt="<%= #order.name %>" /></td-->
+            <td><%= link order.name, to: Routes.type_path(@conn, :type_detail, order.type_id) %></td>
+            <td><%= order.price %> ISK</td>
+            <td><%= order.quantity %></td>
+            <td><%= order.expires_in %> days</td>
+            <td><%= order.order_type %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>

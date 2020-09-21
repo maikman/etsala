@@ -1,9 +1,38 @@
+<h1><%= @details.name %></h1>
 <section class="row">
   <article class="column">
-    <h2><%= @details.name %></h2>
     <img src="<%= @details.image_url %>" alt="<%= @details.name %>" style="float: left; margin: 20px"/>
     <p><%= raw(@details.description) %></p>
     <ul>
-    </ul>   
+    </ul>
+  </article>
+</section>
+<section class="row">
+  <article class="column">
+    <h2>Market Details</h2>
+  </article>
+</section>
+<section class="row">
+  <article class="column">
+    <h2>My Orders</h2>
+    <%= if assigns.character_id != nil do %>
+      <table>
+        <thead>
+          <tr>
+            <!--th></th-->
+            <th>Type</th>
+            <th>Station</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Expires in</th>
+            <th>Order Type</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    <% else %>
+      <i>Please log in to see your orders of this item type!</i>
+    <% end %>
   </article>
 </section>
