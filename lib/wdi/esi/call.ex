@@ -2,12 +2,6 @@ defmodule WDI.ESI.Call do
   require Logger
 
   @endpoint Application.get_env(:etsala, :static_endpoints)[:ESI]
-  @bad_gateway_response "<html>
-  <head><title>502 Bad Gateway</title></head>
-  <body bgcolor=\"white\">
-  <center><h1>502 Bad Gateway</h1></center>
-  </body>
-  </html>"
 
   def handle_call(query, params \\ %{}, cache \\ false) do
     uri = @endpoint.url <> query
@@ -23,9 +17,15 @@ defmodule WDI.ESI.Call do
     |> get_result(cache)
     |> validate_result()
     |> case do
-      {:ok, result} -> result
-      {:retry, _} -> handle_call(query, params, cache)
-      _ -> nil
+      {:ok, result} ->
+        result
+
+      {:retry, _} ->
+        Logger.info("RETRY QUERY: #{uri}?#{query_params}")
+        handle_call(query, params, cache)
+
+      _ ->
+        nil
     end
   end
 
@@ -74,9 +74,9 @@ defmodule WDI.ESI.Call do
     do: Logger.error("token is expired")
 
   defp validate_result({:error, error = %Jason.DecodeError{}}) do
-    case error.data do
-      @bad_gateway_response -> {:retry, nil}
-      _ -> Logger.error(error.data)
+    cond do
+      error.data =~ "502 Bad Gateway" -> {:retry, nil}
+      true -> Logger.error(error.data)
     end
   end
 
