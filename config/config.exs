@@ -28,15 +28,15 @@ config :etsala, :static_endpoints,
   EVE_SSO: %{
     client_id: "384dc35a091242dd9034da862e43e949",
     secret_key: "r5QFA8zRQ0B7blDGLSDkTlIYH0xUDrgzOWQpT9jB",
-    redirect_uri: "http://localhost:4000/callback/",
+    redirect_uri: "https://etsala.space/callback/",
     scopes: [
-    "esi-search.search_structures.v1",
-    "esi-universe.read_structures.v1",
-    "esi-markets.structure_markets.v1",
-    "esi-corporations.read_structures.v1",
-    "esi-markets.read_character_orders.v1"
-  ]
-  }  
+      "esi-search.search_structures.v1",
+      "esi-universe.read_structures.v1",
+      "esi-markets.structure_markets.v1",
+      "esi-corporations.read_structures.v1",
+      "esi-markets.read_character_orders.v1"
+    ]
+  }
 
 # Configures Elixir's Logger
 config :logger, :console,
