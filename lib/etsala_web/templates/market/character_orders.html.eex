@@ -1,33 +1,37 @@
 <h2>My Orders</h2>
-  <section class="row">
-    <article class="column">
-        <p>Buy/Sell Orders: <b><%= Enum.count(@orders, & &1.order_type == "Buy")%> / <%= Enum.count(@orders, & &1.order_type == "Sell")%></b><p>
-    </article>
-  </section>
-<table>
-  <thead>
-    <tr>
-      <!--th></th-->
-      <th>Type</th>
-      <th>Station</th>
-      <th>Price</th>
-      <th>Quantity</th>
-      <th>Expires in</th>
-      <th>Order Type</th>
-    </tr>
-  </thead>
-  <tbody>
-    <%= for order <- @orders do %>
-    <tr>
-      <!--td><img src="<%= #order.image %>" alt="<%= #order.name %>" /></td-->
-      <td><%= link order.name, to: Routes.type_path(@conn, :type_detail, order.type_id) %></td>
-      <td><%= link order.station.name, to: Routes.market_path(@conn, :structure_market_orders, order.station.id) %></td>
-      <td><%= order.price %> ISK</td>
-      <td><%= order.quantity %></td>
-      <td><%= order.expires_in %> days</td>
-      <td><%= order.order_type %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-   
+<section class="row">
+  <article class="column">
+    <p>Buy/Sell Orders: <b><%= Enum.count(@orders, & &1.order_type == "Buy")%> / <%= Enum.count(@orders, & &1.order_type == "Sell")%></b>
+      <p>
+      </article>
+    </section>
+    <table>
+      <thead>
+        <tr>
+          <!--th></th-->
+          <th>Type</th>
+          <th>Station</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Expires in</th>
+          <th>Order Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= for order <- @orders do %>
+          <tr>
+            <!--td><img src="<%= #order.image %>" alt="<%= #order.name %>" /></td-->
+            <td><%= link order.name, to: Routes.type_path(@conn, :type_detail, order.type_id) %></td>
+            <%= if order.station.type == :structure do %>
+              <td><%= link order.station.name, to: Routes.market_path(@conn, :structure_market_orders, order.station.id) %></td>
+            <% else %>
+              <td><%= order.station.name %></td>
+            <% end %>
+            <td><%= order.price %> ISK</td>
+            <td><%= order.quantity %></td>
+            <td><%= order.expires_in %> days</td>
+            <td><%= order.order_type %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
