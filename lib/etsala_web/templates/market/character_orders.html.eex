@@ -27,7 +27,9 @@
             <% else %>
               <td><%= order.station.name %></td>
             <% end %>
-            <td><%= order.price %> ISK</td>
+            <td>
+              <div class="nowrap"><%= order.price %> ISK</div>
+            </td>
             <td><%= order.quantity %></td>
             <td><%= order.expires_in %> days</td>
             <td><%= order.order_type %></td>

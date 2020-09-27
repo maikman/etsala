@@ -11,19 +11,36 @@ defmodule EtsalaWeb.MarketController do
 
   def character_market_orders(conn, _params) do
     session = conn |> get_session()
-    character_id = session["character_id"]
-    orders = CharacterOrders.get_orders(character_id) |> Enum.map(&Order.new(&1))
+
+    orders =
+      CharacterOrders.get_orders(session["character_id"])
+      |> Enum.map(&Order.new(&1))
+      |> Enum.sort_by(&{&1.name, &1.price})
+
     render(conn, "character_orders.html", orders: orders)
   end
 
   def structure_market_orders(conn, params) do
     structure_id = Map.get(params, "id")
+    session = conn |> get_session()
 
     structure =
       structure_id |> WDI.ESI.Universe.Structures.get_structure_details() |> Structure.new()
 
-    orders = structure_id |> Structures.get_orders() |> Enum.map(&Order.new(&1))
-    render(conn, "structure_orders.html", structure: structure, orders: orders)
+    orders =
+      structure_id
+      |> Structures.get_orders()
+      |> Enum.map(&Order.new(&1))
+      |> Enum.sort_by(&{&1.name, &1.price})
+
+    character_order_ids =
+      CharacterOrders.get_orders(session["character_id"]) |> Enum.map(& &1["order_id"])
+
+    render(conn, "structure_orders.html",
+      structure: structure,
+      orders: orders,
+      character_order_ids: character_order_ids
+    )
   end
 
   def structure_optimizer(conn, params) do

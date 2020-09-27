@@ -15,6 +15,7 @@ defmodule Etsala.Eve.Market.Order.Order do
     field :type_id, :integer
     field :volume_remain, :integer
     field :volume_total, :integer
+    field :region_id, :integer
 
     timestamps()
   end
@@ -22,8 +23,34 @@ defmodule Etsala.Eve.Market.Order.Order do
   @doc false
   def changeset(order, attrs) do
     order
-    |> cast(attrs, [:duration, :is_buy_order, :issued, :location_id, :min_volume, :order_id, :price, :range, :system_id, :type_id, :volume_remain, :volume_total])
-    |> validate_required([:duration, :is_buy_order, :issued, :location_id, :order_id, :price, :range, :type_id, :volume_remain, :volume_total])
+    |> cast(attrs, [
+      :duration,
+      :is_buy_order,
+      :issued,
+      :location_id,
+      :min_volume,
+      :order_id,
+      :price,
+      :range,
+      :system_id,
+      :type_id,
+      :volume_remain,
+      :volume_total,
+      :region_id
+    ])
+    |> validate_required([
+      :duration,
+      :is_buy_order,
+      :issued,
+      :location_id,
+      :order_id,
+      :price,
+      :range,
+      :type_id,
+      :volume_remain,
+      :volume_total,
+      :region_id
+    ])
     |> unique_constraint(:order_id)
   end
 end

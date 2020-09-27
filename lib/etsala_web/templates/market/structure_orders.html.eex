@@ -22,14 +22,20 @@
       </thead>
       <tbody>
         <%= for order <- @orders do %>
-          <tr>
-            <!--td><img src="<%= #order.image %>" alt="<%= #order.name %>" /></td-->
-            <td><%= link order.name, to: Routes.type_path(@conn, :type_detail, order.type_id) %></td>
-            <td><%= order.price %> ISK</td>
-            <td><%= order.quantity %></td>
-            <td><%= order.expires_in %> days</td>
-            <td><%= order.order_type %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+          <%= if Enum.member?(@character_order_ids, order.order_id) do %>
+            <tr class="own-order">
+            <% else %>
+              <tr>
+              <% end %>
+              <!--td><img src="<%= #order.image %>" alt="<%= #order.name %>" /></td-->
+              <td><%= link order.name, to: Routes.type_path(@conn, :type_detail, order.type_id) %></td>
+              <td>
+                <div class="nowrap"><%= order.price %> ISK</div>
+              </td>
+              <td><%= order.quantity %></td>
+              <td><%= order.expires_in %> days</td>
+              <td><%= order.order_type %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>

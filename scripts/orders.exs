@@ -2,25 +2,32 @@ defmodule Importer.Orders do
   alias Etsala.Eve.Market.Order
   alias WDI.ESI.Markets.Orders
 
-  def import_jita_orders do
-    orders = Orders.get_orders(10_000_002)
-    orders |> Enum.each(&import_jita_order(&1))
+  def import_orders do
+    # regions = get_regions()
+    regions = [10_000_002]
 
-    orders |> Tools.Importer.output_count()
+    regions |> Enum.each(&import_orders(&1))
   end
 
-  defp import_jita_order(order) when is_map(order) do
-    order
-    |> Map.get("location_id")
-    |> case do
-      60_003_760 -> Order.insert_or_update_order(order)
-      _ -> nil
-    end
+  def import_orders(region_id) do
+    orders = Orders.get_orders(region_id)
+    orders |> Enum.each(&import_order(&1, region_id))
+
+    # delete_old_orders(orders, region_id)
+
+    orders |> Tools.Importer.output_count("Region ID: #{region_id}")
+  end
+
+  defp import_order(order, region_id) when is_map(order) do
+    order |> Map.put("region_id", region_id) |> Order.create_order()
 
     :ok
   end
 
-  defp import_jita_order(_order), do: nil
+  defp import_order(_order, _), do: nil
+
+  # defp delete_old_orders(orders, region_id) do
+  # end
 end
 
-Importer.Orders.import_jita_orders()
+Importer.Orders.import_orders()
