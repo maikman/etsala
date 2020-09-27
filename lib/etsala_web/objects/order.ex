@@ -16,7 +16,8 @@ defmodule EtsalaWeb.Objects.Order do
     :price,
     :quantity,
     :expires_in,
-    :order_type
+    :order_type,
+    :order_id
   ]
 
   def new(esi_order = %Order{}) do
@@ -28,7 +29,8 @@ defmodule EtsalaWeb.Objects.Order do
       price: esi_order.price |> Decimal.cast() |> Decimal.round(2),
       quantity: "#{esi_order.volume_remain}/#{esi_order.volume_total}",
       expires_in: calculate_expire_time(esi_order.issued, esi_order.duration),
-      order_type: get_order_type(esi_order.is_buy_order)
+      order_type: get_order_type(esi_order.is_buy_order),
+      order_id: esi_order.order_id
     }
   end
 
