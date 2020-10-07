@@ -7,6 +7,8 @@
 # General application configuration
 use Mix.Config
 
+config :etsala, env: Mix.env()
+
 config :etsala,
   ecto_repos: [Etsala.Repo]
 

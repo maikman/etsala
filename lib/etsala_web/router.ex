@@ -32,6 +32,8 @@ defmodule EtsalaWeb.Router do
     get "/market/compare/:structure_id",
         MarketController,
         :structure_optimizer
+
+    get "/recruitment", RecruitmentController, :index
   end
 
   # Other scopes may use custom stacks.
