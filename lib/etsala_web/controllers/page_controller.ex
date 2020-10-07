@@ -2,13 +2,11 @@ defmodule EtsalaWeb.PageController do
   use EtsalaWeb, :controller
   require Logger
 
-
   def index(conn, _params) do
     render(conn, "index.html")
   end
 
   def callback(conn, %{"code" => _code, "state" => _state}) do
-     
     redirect(conn, to: "/")
   end
 
