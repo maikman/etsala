@@ -75,7 +75,7 @@ defmodule EtsalaWeb.Plugs.SSO do
         }
       ) do
     conn
-    |> redirect(external: "http://localhost:4000/callback?code=#{code}&state=dev-done")
+    |> redirect(external: "http://localhost:4000/callback/?code=#{code}&state=dev-done")
   end
 
   def init_sso_auth(
