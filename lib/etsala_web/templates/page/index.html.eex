@@ -7,7 +7,7 @@
     <h2>Public</h2>
     <ul>
       <li>
-        <a href="/recruitment"><b>Join Now!</b></a>
+       <b><%= link "Join Now!", to: Routes.recruitment_path(@conn, :index) %></b>
       </li>
       <li>
         <a href="/types">Item List</a>
@@ -22,11 +22,14 @@
     <%= if assigns.character_id != nil do %>
       <ul>
         <li>
-          <a href="/market/own-orders">My Orders</a>
+          <%= link "My Orders", to: Routes.market_path(@conn, :character_market_orders) %>
+        </li>
+        <li>
+          <%= link "HQ Orders", to: Routes.market_path(@conn, :structure_market_orders, 1026221929523) %>
         </li>
       </ul>
     <% else %>
-      <div>Log in or <a href="/recruitment">join now</a> to enter the member area</div>
+      <div>Log in or <%= link "join now", to: Routes.recruitment_path(@conn, :index) %> to enter the member area</div>
     <% end %>
   </article>
 </section>

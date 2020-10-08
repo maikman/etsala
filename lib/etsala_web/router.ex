@@ -29,7 +29,7 @@ defmodule EtsalaWeb.Router do
     get "/market/own-orders", MarketController, :character_market_orders
     get "/market/structure/:id", MarketController, :structure_market_orders
 
-    get "/market/compare/:structure_id",
+    get "/market/optimize/:structure_id",
         MarketController,
         :structure_optimizer
 
