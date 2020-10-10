@@ -8,14 +8,20 @@ defmodule EtsalaWeb.TypeController do
     render(conn, "types.html", types: types)
   end
 
-  def type_detail(conn, %{"id" => type_id}) do
-    esi_item = WDI.ESI.Universe.Types.get_type_details(type_id)
+  def type_detail(conn, %{"id" => name}) do
+    type =
+      name
+      |> URI.decode()
+      |> String.replace("_", " ")
+      |> Types.get_type_by_name()
+
+    esi_item = WDI.ESI.Universe.Types.get_type_details(type.type_id)
 
     details =
       %{}
       |> Map.put(:name, esi_item["name"])
       |> Map.put(:description, esi_item["description"] |> format_description())
-      |> Map.put(:image_url, Images.get_image(type_id, 64))
+      |> Map.put(:image_url, Images.get_image(type.type_id, 64))
 
     render(conn, "type_detail.html", details: details)
   end

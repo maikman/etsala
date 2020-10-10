@@ -14,6 +14,7 @@ config :etsala,
 
 # Configures the endpoint
 config :etsala, EtsalaWeb.Endpoint,
+  live_view: [signing_salt: "LIdd8MEENlykY2x+krW5ee9M9wFBfgps"],
   url: [host: "localhost"],
   secret_key_base: "VG0mNP1fTfduh05Mwx2GYGCxgB/nRk0WR8Qm/a1XDM55TN7lxciFFjp2k5S4MBTy",
   render_errors: [view: EtsalaWeb.ErrorView, accepts: ~w(html json)],

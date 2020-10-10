@@ -2,9 +2,9 @@
   <article class="column">
     <h2>Types</h2>
     <ul>
-          <%= for type <- @types do %>
-            <li><%= link type.name, to: Routes.type_path(@conn, :type_detail, type.type_id) %></li>
-          <% end %>
-          </ul>
+      <%= for type <- @types do %>
+        <li><%= link type.name, to: Routes.type_path(@conn, :type_detail, URI.encode(String.replace(type.name, " ", "_"))) %></li>
+      <% end %>
+    </ul>
   </article>
 </section>

@@ -1,5 +1,6 @@
 defmodule EtsalaWeb.Objects.Order do
   import Ecto.Changeset
+  import Tools.Formatter
 
   # alias WDI.ESI.Images
   alias Etsala.Eve.Universe.Types
@@ -26,7 +27,8 @@ defmodule EtsalaWeb.Objects.Order do
       # image: Images.get_image(esi_order["type_id"], 64),
       name: get_name(esi_order.type_id),
       station: get_station_or_structure(esi_order.location_id),
-      price: esi_order.price |> Decimal.cast() |> Decimal.round(2),
+      # price: esi_order.price |> Decimal.cast() |> Decimal.round(2),
+      price: format_price(esi_order.price),
       quantity: "#{esi_order.volume_remain}/#{esi_order.volume_total}",
       expires_in: calculate_expire_time(esi_order.issued, esi_order.duration),
       order_type: get_order_type(esi_order.is_buy_order),

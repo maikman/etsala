@@ -106,11 +106,22 @@ defmodule Etsala.Eve.Universe.Types do
     Repo.get_by(Types, type_id: type_id)
   end
 
+  def get_type_by_name(name) do
+    Repo.get_by(Types, name: name)
+  end
+
   def insert_or_update_type(attrs) do
     get_type_by_type_id(attrs["type_id"])
     |> case do
       nil -> create_type(attrs)
       order -> update_type(order, attrs)
     end
+  end
+
+  def search_type(query) do
+    Repo.all(
+      Types
+      |> where([p], ilike(p.name, ^"%#{String.replace(query, "%", "\\%")}%"))
+    )
   end
 end

@@ -33,8 +33,8 @@ defmodule Etsala.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.4.11"},
-      {:phoenix_pubsub, "~> 1.1"},
+      {:phoenix, "~> 1.5.3"},
+      {:phoenix_pubsub, "~> 2.0"},
       {:phoenix_ecto, "~> 4.0"},
       {:ecto_sql, "~> 3.1"},
       {:httpoison, "~> 1.7.0"},
@@ -44,7 +44,9 @@ defmodule Etsala.MixProject do
       {:gettext, "~> 0.18.1"},
       {:jason, "~> 1.0"},
       {:json_web_token, "~> 0.2"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      {:phoenix_live_view, "~> 0.14.7"},
+      {:floki, ">= 0.27.0", only: :test}
     ]
   end
 

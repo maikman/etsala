@@ -1,7 +1,9 @@
 <h1><%= @details.name %></h1>
 <section class="row">
   <article class="column">
-    <img src="<%= @details.image_url %>" alt="<%= @details.name %>" style="float: left; margin: 20px"/>
+    <%= if @details.image_url != nil do %>
+      <img src="<%= @details.image_url %>" alt="<%= @details.name %>" style="float: left; margin: 0 20px 20px 0"/>
+    <% end %>
     <p><%= raw(@details.description) %></p>
     <ul>
     </ul>
