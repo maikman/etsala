@@ -28,7 +28,7 @@
               <tr>
               <% end %>
               <!--td><img src="<%= #order.image %>" alt="<%= #order.name %>" /></td-->
-              <td><%= link order.name, to: Routes.type_path(@conn, :type_detail, order.type_id) %></td>
+              <td><%= link order.name, to: Routes.type_path(@conn, :type_detail, Tools.Formatter.encode_name(order.name)) %></td>
               <td>
                 <div class="nowrap"><%= order.price %> ISK</div>
               </td>

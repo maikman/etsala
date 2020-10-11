@@ -11,8 +11,7 @@ defmodule EtsalaWeb.TypeController do
   def type_detail(conn, %{"id" => name}) do
     type =
       name
-      |> URI.decode()
-      |> String.replace("_", " ")
+      |> Tools.Formatter.decode_name()
       |> Types.get_type_by_name()
 
     esi_item = WDI.ESI.Universe.Types.get_type_details(type.type_id)

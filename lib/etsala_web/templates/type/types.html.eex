@@ -3,7 +3,7 @@
     <h2>Types</h2>
     <ul>
       <%= for type <- @types do %>
-        <li><%= link type.name, to: Routes.type_path(@conn, :type_detail, URI.encode(String.replace(type.name, " ", "_"))) %></li>
+        <li><%= link type.name, to: Routes.type_path(@conn, :type_detail, Tools.Formatter.encode_name(type.name)) %></li>
       <% end %>
     </ul>
   </article>
