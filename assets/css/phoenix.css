@@ -637,7 +637,7 @@ header nav li {
   margin: 0;
   padding: 0;
   display: block;
-  text-align: right;
+  text-align: center;
   white-space: nowrap;
 }
 header nav ul {

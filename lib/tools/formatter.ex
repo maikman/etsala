@@ -1,7 +1,7 @@
 defmodule Tools.Formatter do
   def format_price(price) do
-    cast = price |> Decimal.cast()
-    cast |> Decimal.round(2)
+    {cast, ""} = "#{price}" |> Float.parse()
+    cast |> Decimal.from_float() |> Decimal.round(2)
   end
 
   def encode_name(name), do: URI.encode(String.replace(name, " ", "_"))

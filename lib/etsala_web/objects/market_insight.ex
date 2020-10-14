@@ -1,5 +1,6 @@
 defmodule EtsalaWeb.Objects.MarketInsight do
   import Ecto.Changeset
+  import Tools.Formatter
 
   # alias WDI.ESI.Images
   alias Etsala.Eve.Universe.Types
@@ -21,7 +22,7 @@ defmodule EtsalaWeb.Objects.MarketInsight do
       type_id: order_history.type_id,
       # image: Images.get_image(esi_order["type_id"], 64),
       name: get_name(order_history.type_id),
-      average_price: order_history.average_price |> Decimal.cast() |> Decimal.round(2),
+      average_price: format_price(order_history.average_price),
       average_volume: order_history.average_volume,
       average_order_count: order_history.average_order_count,
       market_score: order_history.market_score |> Float.floor(2)

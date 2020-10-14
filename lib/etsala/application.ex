@@ -11,9 +11,10 @@ defmodule Etsala.Application do
       # Start the Ecto repository
       Etsala.Repo,
       # Start the endpoint when the application starts
-      EtsalaWeb.Endpoint
+      EtsalaWeb.Endpoint,
       # Starts a worker by calling: Etsala.Worker.start_link(arg)
       # {Etsala.Worker, arg},
+      {Phoenix.PubSub, [name: Etsala.PubSub, adapter: Phoenix.PubSub.PG2]}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

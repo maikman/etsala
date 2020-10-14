@@ -18,7 +18,7 @@ config :etsala, EtsalaWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "VG0mNP1fTfduh05Mwx2GYGCxgB/nRk0WR8Qm/a1XDM55TN7lxciFFjp2k5S4MBTy",
   render_errors: [view: EtsalaWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Etsala.PubSub, adapter: Phoenix.PubSub.PG2]
+  pubsub_server: Etsala.PubSub
 
 config :etsala, :static_endpoints,
   ESI: %{
