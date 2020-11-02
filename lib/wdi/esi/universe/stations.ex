@@ -4,9 +4,7 @@ defmodule WDI.ESI.Universe.Stations do
     |> WDI.ESI.Call.handle_call()
   end
 
-  def get_station_details(station_id) do
-    [access_token: token] = :ets.lookup(:session, :access_token)
-
+  def get_station_details(station_id, token \\ nil) do
     "universe/stations/#{station_id}"
     |> WDI.ESI.Call.handle_call(%{token: token}, true)
     |> Map.merge(%{"id" => station_id})

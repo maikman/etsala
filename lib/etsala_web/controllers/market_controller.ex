@@ -2,7 +2,8 @@ defmodule EtsalaWeb.MarketController do
   use EtsalaWeb, :controller
   alias WDI.ESI.Markets.CharacterOrders
   alias WDI.ESI.Markets.Structures
-  alias EtsalaWeb.Objects.Order
+  alias EtsalaWeb.Objects.LocationOrder
+  alias EtsalaWeb.Objects.CharacterOrder
   alias EtsalaWeb.Objects.MarketInsight
   alias EtsalaWeb.Objects.Structure
   alias Etsala.Eve.Market.History
@@ -10,11 +11,13 @@ defmodule EtsalaWeb.MarketController do
   import Plug.Conn
 
   def character_market_orders(conn, _params) do
-    session = conn |> get_session()
+    access_token = get_session(conn, :access_token)
+    character_id = get_session(conn, :character_id)
 
     orders =
-      CharacterOrders.get_orders(session["character_id"])
-      |> Enum.map(&Order.new(&1))
+      character_id
+      |> CharacterOrders.get_orders(access_token)
+      |> Enum.map(&CharacterOrder.new(&1, access_token))
       |> Enum.sort_by(&{&1.name, &1.price})
 
     render(conn, "character_orders.html", orders: orders)
@@ -22,19 +25,24 @@ defmodule EtsalaWeb.MarketController do
 
   def structure_market_orders(conn, params) do
     structure_id = Map.get(params, "id")
-    session = conn |> get_session()
+    access_token = get_session(conn, :access_token)
+    character_id = get_session(conn, :character_id)
 
     structure =
-      structure_id |> WDI.ESI.Universe.Structures.get_structure_details() |> Structure.new()
+      structure_id
+      |> WDI.ESI.Universe.Structures.get_structure_details(access_token)
+      |> Structure.new()
 
     orders =
       structure_id
-      |> Structures.get_orders()
-      |> Enum.map(&Order.new(&1))
+      |> Structures.get_orders(access_token)
+      |> Enum.map(&LocationOrder.new(&1))
       |> Enum.sort_by(&{&1.name, &1.price})
 
     character_order_ids =
-      CharacterOrders.get_orders(session["character_id"]) |> Enum.map(& &1["order_id"])
+      character_id
+      |> CharacterOrders.get_orders(access_token)
+      |> Enum.map(& &1["order_id"])
 
     render(conn, "structure_orders.html",
       structure: structure,
@@ -45,13 +53,16 @@ defmodule EtsalaWeb.MarketController do
 
   def structure_optimizer(conn, params) do
     structure_id = Map.get(params, "structure_id")
+    access_token = get_session(conn, :access_token)
 
-    structure_orders = structure_id |> Structures.get_orders()
+    structure_orders = structure_id |> Structures.get_orders(access_token)
     # region_id = get_region_id(location_id) // TODO
     region_id = 10_000_002
 
     structure =
-      structure_id |> WDI.ESI.Universe.Structures.get_structure_details() |> Structure.new()
+      structure_id
+      |> WDI.ESI.Universe.Structures.get_structure_details(access_token)
+      |> Structure.new()
 
     what_to_sell =
       missing_types_in_structure(structure_orders)

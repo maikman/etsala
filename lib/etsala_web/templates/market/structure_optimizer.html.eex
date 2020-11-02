@@ -21,7 +21,7 @@
     <%= for insight <- @insights do %>
       <tr>
         <!--td><img src="<%= #insight.image %>" alt="<%= #insight.name %>" /></td-->
-        <td><%= link insight.name, to: Routes.type_path(@conn, :type_detail, Tools.Formatter.encode_name(insight.name)) %></td>
+        <td><%= link insight.name, to: Routes.type_path(@conn, :type_details, Tools.Formatter.encode_name(insight.name)) %></td>
         <td>
           <div class="nowrap"><%= insight.average_price %> ISK</div>
         </td>

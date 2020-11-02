@@ -10,7 +10,7 @@ defmodule EtsalaWeb.TypeSearchLive do
              <%= if @loading, do: "readonly" %>/>
              <ul>
              <%= for match <- @matches do %>
-             <li><%= link(match, to: Routes.type_path(@socket, :type_detail, Tools.Formatter.encode_name(match))) %></li>
+             <li><%= link(match, to: Routes.type_path(@socket, :type_details, Tools.Formatter.encode_name(match))) %></li>
            <% end %>
            </ul>
     </form>

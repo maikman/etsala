@@ -5,6 +5,7 @@ defmodule EtsalaWeb.Objects.MarketInsight do
   # alias WDI.ESI.Images
   alias Etsala.Eve.Universe.Types
   alias Etsala.Eve.Market.History.History
+  alias Tools.Cache
 
   defstruct [
     :type_id,
@@ -35,7 +36,7 @@ defmodule EtsalaWeb.Objects.MarketInsight do
 
   defp get_name(type_id) do
     {:ok, result} =
-      :ets.lookup(:type_names, type_id)
+      Cache.get_one(type_id, :type_names)
       |> case do
         [{_full_url, result}] -> {:ok, result}
         [] -> get_name_from_db(type_id)
@@ -60,6 +61,6 @@ defmodule EtsalaWeb.Objects.MarketInsight do
 
   defp cache_all_names() do
     Types.list_types()
-    |> Enum.each(&:ets.insert(:type_names, {&1.type_id, &1.name}))
+    |> Enum.each(&Cache.insert({&1.type_id, &1.name}, :type_names))
   end
 end

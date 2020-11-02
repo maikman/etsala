@@ -1,5 +1,6 @@
 defmodule WDI.ESI.Call do
   require Logger
+  alias Tools.Cache
 
   @endpoint Application.get_env(:etsala, :static_endpoints)[:ESI]
 
@@ -30,7 +31,7 @@ defmodule WDI.ESI.Call do
   end
 
   defp get_result(full_url, true) do
-    :ets.lookup(:esi_calls, full_url)
+    Cache.get_one(full_url, :esi_calls)
     |> case do
       [{_full_url, result}] -> {:ok, result}
       [] -> get_result(full_url, false) |> cache_result(full_url)
@@ -63,7 +64,7 @@ defmodule WDI.ESI.Call do
 
   defp cache_result(res, full_url) do
     case res do
-      {:ok, result} -> :ets.insert(:esi_calls, {full_url, result})
+      {:ok, result} -> Cache.insert({full_url, result}, :esi_calls)
       _ -> nil
     end
 

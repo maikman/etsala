@@ -9,7 +9,7 @@ defmodule EtsalaWeb.Router do
     plug :put_secure_browser_headers
     plug :put_root_layout, {EtsalaWeb.LayoutView, :root}
     plug EtsalaWeb.Plugs.SSO
-    plug EtsalaWeb.Plugs.Cache
+    # plug EtsalaWeb.Plugs.Cache
     plug EtsalaWeb.Plugs.User
   end
 
@@ -25,7 +25,8 @@ defmodule EtsalaWeb.Router do
     get "/logout", PageController, :logout
 
     get "/eve-online/types", TypeController, :types
-    get "/eve-online/types/:id", TypeController, :type_detail
+    get "/eve-online/types/:id", TypeController, :type_details
+    # live "/eve-online/types/:id", TypeDetailsLive
     live "/eve-online/type-search", TypeSearchLive
 
     get "/market/own-orders", MarketController, :character_market_orders

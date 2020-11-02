@@ -1,0 +1,39 @@
+<section class="row">
+  <article class="column">
+    <h2>Market Details</h2>
+    <%= if Enum.count(@market_orders) > 0 do %>
+      <button phx-click="market_details_sell" class="button">Sell Orders</button>
+      <button phx-click="market_details_buy" class="button">Buy Orders</button>
+      <table>
+        <thead>
+          <tr>
+            <th>Station</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Expires in</th>
+            <th>Order Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= for order <- @market_orders do %>
+            <tr>
+              <%= if order.station.type == :structure do %>
+                <td><%= link order.station.name, to: Routes.market_path(EtsalaWeb.Endpoint, :structure_market_orders, order.station.id) %></td>
+              <% else %>
+                <td><%= order.station.name %></td>
+              <% end %>
+              <td>
+                <div class="nowrap"><%= order.price %> ISK</div>
+              </td>
+              <td><%= order.quantity %></td>
+              <td><%= order.expires_in %> days</td>
+              <td><%= order.order_type %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <i>No orders found</i>
+    <% end %>
+  </article>
+</section>

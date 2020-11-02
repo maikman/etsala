@@ -119,4 +119,24 @@ defmodule Etsala.Eve.Market.Order do
     |> where([order], order.location_id == ^id)
     |> Repo.all()
   end
+
+  def get_order_by_type_id(id) do
+    Order
+    |> where([order], order.type_id == ^id)
+    |> Repo.all()
+  end
+
+  def get_sell_order_by_type_id(id) do
+    Order
+    |> where([order], order.type_id == ^id)
+    |> where([order], order.is_buy_order == false)
+    |> Repo.all()
+  end
+
+  def get_buy_order_by_type_id(id) do
+    Order
+    |> where([order], order.type_id == ^id)
+    |> where([order], order.is_buy_order == true)
+    |> Repo.all()
+  end
 end

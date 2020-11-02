@@ -11,30 +11,11 @@
 </section>
 <section class="row">
   <article class="column">
-    <h2>Market Details</h2>
-  </article>
-</section>
-<section class="row">
-  <article class="column">
     <h2>My Orders</h2>
-    <%= if assigns.character_id != nil do %>
-      <table>
-        <thead>
-          <tr>
-            <!--th></th-->
-            <th>Type</th>
-            <th>Station</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Expires in</th>
-            <th>Order Type</th>
-          </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
+    <%= if @character_id != nil do %>
     <% else %>
       <i>Please log in to see your orders of this item type!</i>
     <% end %>
   </article>
 </section>
+<%= live_render(@conn, EtsalaWeb.TypeDetailsLive, session: %{"market_orders" => @market_orders, "details" => @details}) %>
