@@ -71,17 +71,17 @@ defmodule EtsalaWeb.Plugs.SSO do
   def init_sso_auth(
         conn = %Plug.Conn{
           query_params: %{"code" => code, "state" => "dev"},
-          request_path: "/callback/"
+          request_path: "/callback"
         }
       ) do
     conn
-    |> redirect(external: "http://localhost:4000/callback/?code=#{code}&state=dev-done")
+    |> redirect(external: "http://localhost:4000/callback?code=#{code}&state=dev-done")
   end
 
   def init_sso_auth(
         conn = %Plug.Conn{
           query_params: %{"code" => code, "state" => _state},
-          request_path: "/callback/"
+          request_path: "/callback"
         }
       ) do
     WDI.ESI.SSO.oauth_token_call(code)

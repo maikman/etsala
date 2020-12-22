@@ -32,7 +32,7 @@ config :etsala, :static_endpoints,
     client_id: "384dc35a091242dd9034da862e43e949",
     secret_key: "r5QFA8zRQ0B7blDGLSDkTlIYH0xUDrgzOWQpT9jB",
     redirect_uri: "https://etsala.space/callback",
-    # redirect_uri: "http://localhost:4000/callback/",
+    # redirect_uri: "http://localhost:4000/callback",
     scopes: [
       "esi-search.search_structures.v1",
       "esi-universe.read_structures.v1",
