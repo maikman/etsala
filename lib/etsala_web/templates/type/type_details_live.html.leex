@@ -1,9 +1,9 @@
 <section class="row">
   <article class="column">
     <h2>Market Details</h2>
+    <button phx-click="market_details_sell" class="button">Sell Orders</button>
+    <button phx-click="market_details_buy" class="button">Buy Orders</button>
     <%= if Enum.count(@market_orders) > 0 do %>
-      <button phx-click="market_details_sell" class="button">Sell Orders</button>
-      <button phx-click="market_details_buy" class="button">Buy Orders</button>
       <table>
         <thead>
           <tr>
