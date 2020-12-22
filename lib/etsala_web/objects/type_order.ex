@@ -8,7 +8,7 @@ defmodule EtsalaWeb.Objects.TypeOrder do
   alias WDI.ESI.Universe.Stations
   alias EtsalaWeb.Objects.Structure
   alias Etsala.Eve.Market.Order.Order
-  alias Tool.Cache
+  alias Tools.Cache
 
   defstruct [
     :type_id,
