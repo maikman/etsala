@@ -89,6 +89,14 @@ defmodule Etsala.Eve.Market.Order do
     Repo.delete(order)
   end
 
+  def delete_old_orders(region_id) do
+    qry =
+      "DELETE FROM public.orders
+    where (TO_TIMESTAMP(issued, 'YYYY-MM-DDTHH24:MI:SSZ') + duration * '1 day'::interval) < CURRENT_TIMESTAMP AND region_id = $1"
+
+    Ecto.Adapters.SQL.query!(Repo, qry, [region_id])
+  end
+
   @doc """
   Returns an `%Ecto.Changeset{}` for tracking order changes.
 
