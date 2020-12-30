@@ -15,9 +15,6 @@
       <li>
         <%= link "Type List", to: Routes.type_path(@conn, :types) %>
       </li>
-      <li>
-        <a href="/">System List</a> (coming soon)
-      </li>
     </ul>
   </article>
   <article class="column">

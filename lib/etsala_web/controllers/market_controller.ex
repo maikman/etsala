@@ -39,15 +39,14 @@ defmodule EtsalaWeb.MarketController do
       |> Enum.map(&LocationOrder.new(&1))
       |> Enum.sort_by(&{&1.name, &1.price})
 
-    character_order_ids =
+    character_orders =
       character_id
       |> CharacterOrders.get_orders(access_token)
-      |> Enum.map(& &1["order_id"])
 
     render(conn, "structure_orders.html",
       structure: structure,
       orders: orders,
-      character_order_ids: character_order_ids
+      character_order_ids: Enum.map(character_orders, & &1["order_id"])
     )
   end
 

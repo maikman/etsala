@@ -68,11 +68,6 @@ config :etsala, EtsalaWeb.Endpoint,
     ]
   ]
 
-config :logger, :console,
-  level: "LOG_LEVEL" |> System.get_env() |> Kernel.||("info") |> String.to_atom(),
-  format: "[$level] $message\n",
-  metadata: [:custom_log_message, :custom_log_name]
-
 # Set a higher stacktrace during development. Avoid configuring such
 # in production as building large stacktraces may be expensive.
 config :phoenix, :stacktrace_depth, 20

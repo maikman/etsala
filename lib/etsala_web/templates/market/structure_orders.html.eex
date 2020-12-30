@@ -2,7 +2,7 @@
 <h3><%= @structure.name %></h3>
 <section class="row">
   <article class="column">
-    Buy/Sell Orders: <b><%= Enum.count(@orders, & &1.order_type == "Buy")%> / <%= Enum.count(@orders, & &1.order_type == "Sell")%></b>
+    All Buy/Sell Orders: <b><%= Enum.count(@orders, & &1.order_type == "Buy")%> / <%= Enum.count(@orders, & &1.order_type == "Sell")%></b>
   </article>
   <article class="column">
     <%= link "What to sell?", to: Routes.market_path(@conn, :structure_optimizer, @structure.id), class: "button table-buttons" %>
