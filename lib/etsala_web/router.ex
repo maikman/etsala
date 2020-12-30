@@ -1,5 +1,8 @@
 defmodule EtsalaWeb.Router do
   use EtsalaWeb, :router
+  use Plug.ErrorHandler
+
+  alias Tools.LogBackend.RouterError
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -43,4 +46,8 @@ defmodule EtsalaWeb.Router do
   # scope "/api", EtsalaWeb do
   #   pipe_through :api
   # end
+
+  def handle_errors(conn, %{kind: _kind, reason: reason, stack: stack}) do
+    RouterError.handle_router_error(conn, %{reason: reason, stack: stack})
+  end
 end

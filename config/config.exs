@@ -42,10 +42,21 @@ config :etsala, :static_endpoints,
     ]
   }
 
+config :logger,
+  backends: [
+    :console,
+    {Tools.LogBackend, :log_backend}
+  ],
+  level: :debug,
+  sync_threshold: 220_000,
+  discard_threshold: 200_000
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
+
+config :logger, :log_backend, level: :info
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
