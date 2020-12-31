@@ -32,7 +32,7 @@
           <ul>
             <%= if assigns.character_id != nil do %>
               <li><%= assigns.character_name %></li>
-              <li><img src="<%= assigns.character_portrait %>" /></li>
+              <li><img alt="character portrait" src="<%= assigns.character_portrait %>" /></li>
               <li><a href="/logout">LOGOUT</a> </li>
             <% else %>
               <li><a href="<%= assigns.login_url %>">
