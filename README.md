@@ -11,8 +11,14 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
 
-## ToDo
+## ToDos
 
+### Bugs
+* description links
+* handle import errors
+* market score --> only sell orders if possible
+
+### Features
 * Help Texts
 * legend for own orders
 * i will offer it "marker" with count down

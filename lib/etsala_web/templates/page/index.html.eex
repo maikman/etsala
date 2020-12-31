@@ -27,9 +27,19 @@
         <li>
           <%= link "HQ Orders", to: Routes.market_path(@conn, :structure_market_orders, 1026221929523) %>
         </li>
+        <li>
+          <%= link "Improve our market", to: Routes.market_path(@conn, :structure_optimizer, 1026221929523) %>
+        </li>
       </ul>
     <% else %>
       <div>Log in or <%= link "join now", to: Routes.recruitment_path(@conn, :index) %> to enter the member area</div>
     <% end %>
   </article>
 </section>
+<%= if assigns.character_id != nil do %>
+  <section class="row">
+    <article class="column">
+      <span class="help-text">Our goal is it to make our market one of the best in eve. <b><%= link "Here", to: Routes.market_path(@conn, :structure_optimizer, 1026221929523) %></b> you can find out how you could help.</span>
+    </article>
+  </section>
+<% end %>

@@ -26,3 +26,16 @@ tr.own-order{
 td:first-child, th:first-child {
   padding-left: 0.8rem;
 }
+
+.help-text {
+  background-color: rgba(153,204,204,0.5);
+  padding: 10px;
+  border-radius: 3px;
+  display: block;
+}
+
+.help-text::before {
+  content: "ⓘ ";
+  color: #993333;
+  font-weight: bold;
+}
