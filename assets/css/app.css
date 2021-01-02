@@ -23,6 +23,11 @@ tr.own-order{
   background-color: rgba(124,178,119,0.5);
 }
 
+span.own-order{
+  background-color: rgba(124,178,119,0.5);
+  padding: 1em;
+}
+
 td:first-child, th:first-child {
   padding-left: 0.8rem;
 }
@@ -38,4 +43,13 @@ td:first-child, th:first-child {
   content: "ⓘ ";
   color: #993333;
   font-weight: bold;
+}
+
+.whats-new {
+  margin-top: 3em
+}
+
+.whats-new li {
+  margin: 0px;
+  line-height: 1.1em
 }

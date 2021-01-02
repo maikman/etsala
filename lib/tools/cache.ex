@@ -2,7 +2,7 @@ defmodule Tools.Cache do
   require Logger
 
   def insert({key, value}, table) do
-    Logger.debug("insert (#{key}) into #{table}")
+    # Logger.debug("insert (#{key}) into #{table}")
 
     :ets.whereis(table)
     |> is_reference()
@@ -13,16 +13,13 @@ defmodule Tools.Cache do
   defp insert(false, {key, value}, table), do: create_table_and_insert(table, {key, value})
 
   def get_one(key, table) do
-    Logger.debug("get_one (#{key}) from #{table}")
+    # Logger.debug("get_one (#{key}) from #{table}")
 
     :ets.whereis(table)
     |> case do
       :undefined -> create_table_and_lookup(table)
       _ -> :ets.lookup(table, key)
     end
-  end
-
-  def get_all(table) do
   end
 
   defp create_table_and_insert(table, {key, value}) do

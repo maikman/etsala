@@ -42,11 +42,13 @@ defmodule EtsalaWeb.MarketController do
     character_orders =
       character_id
       |> CharacterOrders.get_orders(access_token)
+      |> Enum.filter(&(&1["location_id"] == String.to_integer(structure_id)))
 
     render(conn, "structure_orders.html",
       structure: structure,
       orders: orders,
-      character_order_ids: Enum.map(character_orders, & &1["order_id"])
+      character_order_ids: Enum.map(character_orders, & &1["order_id"]),
+      character_order_summary: CharacterOrder.get_order_summary(character_orders)
     )
   end
 

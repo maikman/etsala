@@ -55,6 +55,13 @@ defmodule EtsalaWeb.Objects.CharacterOrder do
     days
   end
 
+  def get_order_summary(orders \\ []) do
+    buy = Enum.count(orders, &(Map.get(&1, "is_buy_order") == true))
+    sell = Enum.count(orders) - buy
+
+    %{buy: buy, sell: sell}
+  end
+
   defp get_order_type(nil), do: "Sell"
   defp get_order_type(false), do: "Sell"
   defp get_order_type(true), do: "Buy"
