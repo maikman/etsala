@@ -56,7 +56,11 @@ defmodule EtsalaWeb.MarketController do
     structure_id = Map.get(params, "structure_id")
     access_token = get_session(conn, :access_token)
 
-    structure_orders = structure_id |> Structures.get_orders(access_token)
+    structure_orders =
+      structure_id
+      |> Structures.get_orders(access_token)
+      |> Enum.filter(&(Map.get(&1, "is_buy_order") == false))
+
     # region_id = get_region_id(location_id) // TODO
     region_id = 10_000_002
 
@@ -102,7 +106,7 @@ defmodule EtsalaWeb.MarketController do
     order_count_score = h.average_order_count / mv.max_order_count
     volume_score = h.average_volume / mv.max_volume
 
-    score = (price_score * 0.1 + order_count_score * 0.3 + volume_score * 0.6) * 100
+    score = (price_score * 0.08 + order_count_score * 0.61 + volume_score * 0.31) * 100
     Map.put(h, :market_score, score)
   end
 
