@@ -26,13 +26,14 @@ defmodule Importer.Orders do
     :ok
   end
 
+  defp import_order(_order, _), do: nil
+
   defp delete_old_orders(region_id) do
     result = Order.delete_old_orders(region_id)
 
     Logger.info("deleted #{result.num_rows} old orders.")
   end
 
-  defp import_order(_order, _), do: nil
 end
 
 Importer.Orders.import_orders()
