@@ -13,8 +13,10 @@
   <article class="column">
     <h2>My Orders</h2>
     <%= if @character_id != nil do %>
+      <i>Coming soon</i>
     <% else %>
-      <i>Please log in to see your orders of this item type!</i>
+      <i>Coming soon</i>
+      <!--i>Please log in to see your orders of this item type!</i-->
     <% end %>
   </article>
 </section>
