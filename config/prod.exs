@@ -1,9 +1,7 @@
 use Mix.Config
 
 # Configure your database
-config :etsala, Etsala.Repo,
-  pool_timeout: 120_000,
-  timeout: 120_000
+config :etsala, Etsala.Repo, timeout: 120_000
 
 # config :etsala, Etsala.Repo,
 #   adapter: Ecto.Adapters.Postgres,
