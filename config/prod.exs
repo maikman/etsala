@@ -37,7 +37,7 @@ config :etsala, EtsalaWeb.Endpoint,
 config :etsala, :static_endpoints,
   GoogleAnalytics: %{
     url: "https://www.google-analytics.com/collect",
-    property_id: "G-4J967HKHZQ",
+    property_id: "UA-186700769-1",
     username: nil,
     password: nil
   }
