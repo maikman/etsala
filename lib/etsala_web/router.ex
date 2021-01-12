@@ -12,8 +12,8 @@ defmodule EtsalaWeb.Router do
     plug :put_secure_browser_headers
     plug :put_root_layout, {EtsalaWeb.LayoutView, :root}
     plug EtsalaWeb.Plugs.SSO
-    # plug EtsalaWeb.Plugs.Cache
     plug EtsalaWeb.Plugs.User
+    plug EtsalaWeb.Plugs.Tracking
   end
 
   pipeline :api do

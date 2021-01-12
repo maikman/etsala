@@ -40,6 +40,12 @@ config :etsala, :static_endpoints,
       "esi-corporations.read_structures.v1",
       "esi-markets.read_character_orders.v1"
     ]
+  },
+  GoogleAnalytics: %{
+    url: "https://www.google-analytics.com/collect",
+    property_id: "UA-186700769-1",
+    username: nil,
+    password: nil
   }
 
 config :logger,

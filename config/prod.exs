@@ -41,6 +41,14 @@ config :etsala, EtsalaWeb.Endpoint,
     # cacertfile: System.get_env("INTERMEDIATE_CERTFILE_PATH")
   ]
 
+config :etsala, :static_endpoints,
+  GoogleAnalytics: %{
+    url: "https://www.google-analytics.com/collect",
+    property_id: "G-4J967HKHZQ",
+    username: nil,
+    password: nil
+  }
+
 # Do not print debug messages in production
 config :logger, level: :info
 
