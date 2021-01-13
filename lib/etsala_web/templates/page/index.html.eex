@@ -18,12 +18,23 @@
     </ul>
   </article>
   <article class="column">
-    <h2>Members Only</h2>
-    <%= if assigns.character_id != nil do %>
-      <ul>
+    <h2>Personal</h2>
+    <ul>
+      <%= if assigns.character_id != nil do %>
         <li>
           <%= link "My Orders", to: Routes.market_path(@conn, :character_market_orders) %>
         </li>
+      <% else %>
+        <li>
+          <a href="<%= assigns.login_url %>">Log in</a>
+        </li>
+      <% end %>
+    </ul>
+  </article>
+  <article class="column">
+    <h2>Alliance</h2>
+    <ul>
+      <%= if assigns.is_member do %>
         <li>
           <%= link "HQ Orders", to: Routes.market_path(@conn, :structure_market_orders, 1026221929523) %>
         </li>
@@ -32,28 +43,30 @@
         </li>
       </ul>
     <% else %>
-      <div>Log in or <%= link "join now", to: Routes.recruitment_path(@conn, :index) %> to enter the member area</div>
+      <div><a href="<%= assigns.login_url %>">Log in</a> or <%= link "join now", to: Routes.recruitment_path(@conn, :index) %> to enter the member area</div>
     <% end %>
   </article>
 </section>
-<%= if assigns.character_id != nil do %>
-  <section class="row">
-    <article class="column">
-      <span class="help-text">Our goal is it to make our market one of the best in eve. <b><%= link "Here", to: Routes.market_path(@conn, :structure_optimizer, 1026221929523) %></b> you can find out how you could help.</span>
-    </article>
-  </section>
-  <section class="row whats-new">
-    <article class="column">
-      <h3>What's new?</h3>
-      <span><b>2020-12-31</b></span>
-      <ul>
-        <li>added help texts</li>
-      </ul>
-      <span><b>2021-01-02</b></span>
-      <ul>
-        <li>what's new section</li>
-        <li>own order summary in station orders overview</li>
-      </ul>
-    </article>
-  </section>
-<% end %>
+<section class="row">
+  <article class="column">
+    <span class="help-text">Our goal is it to make our market one of the best in eve. <b><%= link "Here", to: Routes.market_path(@conn, :structure_optimizer, 1026221929523) %></b> you can find out how you could help.</span>
+  </article>
+</section>
+<section class="row whats-new">
+  <article class="column">
+    <h3>What's new?</h3>
+    <span><b>2020-12-31</b></span>
+    <ul>
+      <li>added help texts</li>
+    </ul>
+    <span><b>2021-01-02</b></span>
+    <ul>
+      <li>what's new section</li>
+      <li>own order summary in station orders overview</li>
+    </ul>
+    <span><b>2021-01-13</b></span>
+    <ul>
+      <li>new personal and alliance area</li>
+    </ul>
+  </article>
+</section>
