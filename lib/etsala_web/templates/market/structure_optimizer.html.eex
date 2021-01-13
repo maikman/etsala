@@ -2,7 +2,7 @@
 <h3><%= @structure.name %></h3>
 <section class="row">
   <article class="column">
-    <span class="help-text">Every item on this list is <b><i>not</i></b> available at our HQ. Try to buy or build it and offer it on our market.</span>
+    <span class="help-text">Every item on this list is <b><i>not</i></b> available at this station. Try to buy or build it and offer it on our market.</span>
   </article>
 </section>
 <table>
