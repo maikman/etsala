@@ -4,12 +4,17 @@ defmodule WDI.ESI.Universe.Types do
   def get_type_id_list(page \\ 1, result \\ []) do
     list = get_type_id_list_page(page)
 
-    Logger.debug("Fetching type page #{page}")
+    Logger.debug("Fetching type page #{page} with #{Enum.count(list)} types")
 
-    case Enum.empty?(list) do
-      false -> get_type_id_list(page + 1, list ++ result)
-      true -> result
-    end
+    get_result(page + 1, list, result)
+  end
+
+  defp get_result(_page, %{"error" => _error}, result) do
+    result
+  end
+
+  defp get_result(page, list, result) do
+    get_type_id_list(page, list ++ result)
   end
 
   def get_type_id_list_page(page) do
