@@ -36,7 +36,7 @@ defmodule EtsalaWeb.Plugs.Tracking do
       dp: conn |> Map.get(:request_path, nil),
       dh: conn |> Map.get(:host, nil),
       cid: conn |> get_session(:tracking_id),
-      user_id: conn |> get_session(:character_name),
+      user_id: conn |> get_session(:character_name) || "unknown",
       ua: conn |> get_user_agent_from_conn(),
       t: "pageview",
       v: 1

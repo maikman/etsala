@@ -7,6 +7,10 @@ html {
   color: #333;
 }
 
+.header-text {
+  font-size: 3.5rem;
+}
+
 .table-buttons {
   float: right;
 }
@@ -52,4 +56,13 @@ td:first-child, th:first-child {
 .whats-new li {
   margin: 0px;
   line-height: 1.1em
+}
+
+
+
+.recruitment-corp-list .corp-img {
+  float: right;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px lightgray;
 }

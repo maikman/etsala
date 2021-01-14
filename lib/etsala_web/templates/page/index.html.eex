@@ -1,6 +1,8 @@
 <section class="phx-hero">
   <h1>Welcome to the Etsala Legion HQ</h1>
-  <p>A toolbox for all members of the Etsala Legion, an Eve Online alliance.</p>
+  <p><b>Etsala Legion</b> is a very active, mid-sized alliance of a few hundred operating in the Forge Area in both high and low sec. 
+    We were founded a couple years ago as industrial, but have since developed a military, and the two support each other very closely. 
+    So it doesn't matter if you are industrial or combat focused, we have <%= link "a spot", to: Routes.recruitment_path(@conn, :index) %> and a direction for you. We are EU heavy and US medium zoned, with a smattering of players from Australia, the Middle East, and Asia.</p>
 </section>
 <section class="row">
   <article class="column">
@@ -47,26 +49,28 @@
     <% end %>
   </article>
 </section>
-<section class="row">
-  <article class="column">
-    <span class="help-text">Our goal is it to make our market one of the best in eve. <b><%= link "Here", to: Routes.market_path(@conn, :structure_optimizer, 1026221929523) %></b> you can find out how you could help.</span>
-  </article>
-</section>
+<%= if assigns.is_member do %>
+  <section class="row">
+    <article class="column">
+      <span class="help-text">Our goal is it to make our market one of the best in eve. <b><%= link "Here", to: Routes.market_path(@conn, :structure_optimizer, 1026221929523) %></b> you can find out how you could help.</span>
+    </article>
+  </section>
+<% end %>
 <section class="row whats-new">
   <article class="column">
     <h3>What's new?</h3>
-    <span><b>2020-12-31</b></span>
+    <span><b>2021-01-13</b></span>
     <ul>
-      <li>added help texts</li>
+      <li>new personal and alliance area</li>
     </ul>
     <span><b>2021-01-02</b></span>
     <ul>
       <li>what's new section</li>
       <li>own order summary in station orders overview</li>
     </ul>
-    <span><b>2021-01-13</b></span>
+    <span><b>2020-12-31</b></span>
     <ul>
-      <li>new personal and alliance area</li>
+      <li>added help texts</li>
     </ul>
   </article>
 </section>
