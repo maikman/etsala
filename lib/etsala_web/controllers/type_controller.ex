@@ -27,19 +27,33 @@ defmodule EtsalaWeb.TypeController do
       %{}
       |> Map.put(:type_id, type.type_id)
       |> Map.put(:name, type.name)
-      |> Map.put(:description, type.description |> format_description())
+      |> Map.put(:description, type.description |> format_description(conn))
       |> Map.put(:image_url, Images.get_image(type.type_id, 64))
 
     render(conn, "type_details.html", details: details, market_orders: market_orders)
   end
 
-  def format_description(nil), do: ""
+  def format_description(nil, _), do: ""
 
-  def format_description(description) do
+  def format_description(description, conn) do
     description
     |> String.replace("\r\n", "<br>")
+    |> replace_type_links(conn)
     # TODO: add faction and other logic
     |> String.replace("showinfo:30//", "/faction/")
-    |> String.replace("showinfo:", "/types/")
+  end
+
+  defp replace_type_links(desc, conn) do
+    Regex.replace(~r/showinfo:\d+/, desc, fn x ->
+      name =
+        x
+        |> String.split(":")
+        |> List.last()
+        |> Types.get_type_by_type_id()
+        |> Map.get(:name)
+        |> Tools.Formatter.encode_name()
+
+      Routes.type_path(conn, :type_details, name)
+    end)
   end
 end
