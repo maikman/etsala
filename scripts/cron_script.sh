@@ -18,6 +18,18 @@ function import_types {
   echo "$(timestamp) import finished"
 }
 
+function import_groups {
+  echo "$(timestamp) start import groups"
+  /usr/bin/mix run /root/etsala/scripts/groups.exs
+  echo "$(timestamp) import finished"
+}
+
+function import_categories {
+  echo "$(timestamp) start import categories"
+  /usr/bin/mix run /root/etsala/scripts/categories.exs
+  echo "$(timestamp) import finished"
+}
+
 function import_systems {
   echo "$(timestamp) start import systems"
   /usr/bin/mix run /root/etsala/scripts/systems.exs
