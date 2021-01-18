@@ -9,7 +9,7 @@
     </ul>
   </article>
 </section>
-<section class="row">
+<!--section class="row">
   <article class="column">
     <h2>My Orders</h2>
     <%= if @character_id != nil do %>
@@ -17,7 +17,7 @@
     <% else %>
       <i>Coming soon</i>
       <!--i>Please log in to see your orders of this item type!</i-->
-    <% end %>
-  </article>
-</section>
-<%= live_render(@conn, EtsalaWeb.TypeDetailsLive, session: %{"market_orders" => @market_orders, "details" => @details}) %>
+<% end %>
+</article>
+</section-->
+<%= live_render(@conn, EtsalaWeb.TypeDetailsLive, session: %{"details" => @details}) %>
