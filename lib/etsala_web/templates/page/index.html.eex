@@ -59,6 +59,10 @@
 <section class="row whats-new">
   <article class="column">
     <h3>What's new?</h3>
+    <span><b>2021-01-18</b></span>
+    <ul>
+      <li>asyncronous loading of market data</li>
+    </ul>
     <span><b>2021-01-13</b></span>
     <ul>
       <li>new personal and alliance area</li>
