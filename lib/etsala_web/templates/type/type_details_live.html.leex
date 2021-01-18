@@ -33,7 +33,11 @@
         </tbody>
       </table>
     <% else %>
-      <p><i>No orders found</i></p>
+      <%= if @loading do %>
+        <p><i>Loading market data ...</i></p>
+      <% else %>
+        <p><i>No orders found</i></p>
+      <% end %>
     <% end %>
   </article>
 </section>

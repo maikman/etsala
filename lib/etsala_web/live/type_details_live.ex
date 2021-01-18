@@ -20,6 +20,7 @@ defmodule EtsalaWeb.TypeDetailsLive do
      assign(socket,
        details: type,
        market_orders: [],
+       loading: true,
        access_token: access_token
      )}
   end
@@ -34,7 +35,8 @@ defmodule EtsalaWeb.TypeDetailsLive do
 
     {:noreply,
      assign(socket,
-       market_orders: market_orders
+       market_orders: market_orders,
+       loading: false
      )}
   end
 
