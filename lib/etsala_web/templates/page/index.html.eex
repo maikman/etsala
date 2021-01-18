@@ -14,9 +14,9 @@
       <li>
         <%= link "Type Search", to: Routes.live_path(@conn, EtsalaWeb.TypeSearchLive) %>
       </li>
-      <li>
+      <!--li>
         <%= link "Type List", to: Routes.type_path(@conn, :types) %>
-      </li>
+      </li-->
     </ul>
   </article>
   <article class="column">

@@ -27,7 +27,6 @@ defmodule EtsalaWeb.TypeDetailsLive do
 
   @impl true
   def handle_info({:load_sell_data, access_token, type}, socket) do
-    # This thing fetches data from some external service or db, let's say
     market_orders =
       Order.get_sell_order_by_type_id(type.type_id)
       |> Enum.map(&EtsalaWeb.Objects.TypeOrder.new(&1, access_token))
