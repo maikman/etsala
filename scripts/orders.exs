@@ -12,9 +12,10 @@ defmodule Importer.Orders do
   end
 
   def import_orders(region_id) do
+    orders = Orders.get_orders(region_id)
+
     delete_old_orders(region_id)
 
-    orders = Orders.get_orders(region_id)
     orders |> Enum.each(&import_order(&1, region_id))
 
     orders |> Tools.Importer.output_count("Region ID: #{region_id}")
@@ -29,9 +30,9 @@ defmodule Importer.Orders do
   defp import_order(_order, _), do: nil
 
   defp delete_old_orders(region_id) do
-    result = Order.delete_old_orders(region_id)
+    {result, _} = Order.delete_orders_by_region_id(region_id)
 
-    Logger.info("deleted #{result.num_rows} old orders.")
+    Logger.info("deleted #{result} old orders.")
   end
 
 end

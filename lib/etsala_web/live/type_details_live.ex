@@ -44,7 +44,7 @@ defmodule EtsalaWeb.TypeDetailsLive do
     market_orders =
       Order.get_sell_order_by_type_id(socket.assigns.details.type_id)
       |> Enum.map(&EtsalaWeb.Objects.TypeOrder.new(&1, socket.assigns.access_token))
-      |> Enum.sort_by(&{&1.name, &1.price})
+      |> Enum.sort(&(&1.price <= &2.price))
 
     {:noreply, assign(socket, market_orders: market_orders)}
   end
@@ -54,7 +54,7 @@ defmodule EtsalaWeb.TypeDetailsLive do
     market_orders =
       Order.get_buy_order_by_type_id(socket.assigns.details.type_id)
       |> Enum.map(&EtsalaWeb.Objects.TypeOrder.new(&1, socket.assigns.access_token))
-      |> Enum.sort_by(&{&1.name, &1.price})
+      |> Enum.sort(&(&1.price >= &2.price))
 
     {:noreply, assign(socket, market_orders: market_orders)}
   end
