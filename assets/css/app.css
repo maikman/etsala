@@ -29,7 +29,7 @@ tr.own-order{
 
 span.own-order{
   background-color: rgba(124,178,119,0.5);
-  padding: 1em;
+  padding: 0.5em;
 }
 
 td:first-child, th:first-child {

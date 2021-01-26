@@ -25,6 +25,14 @@ defmodule EtsalaWeb.TypeController do
     render(conn, "type_details.html", details: details)
   end
 
+  def type_details_old(conn, %{"id" => id}) do
+    type = id |> Types.get_type_by_type_id()
+
+    conn
+    |> put_status(301)
+    |> redirect(to: Routes.type_path(conn, :type_details, Tools.Formatter.encode_name(type.name)))
+  end
+
   def format_description(nil, _), do: ""
 
   def format_description(description, conn) do

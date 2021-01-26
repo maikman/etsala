@@ -29,6 +29,7 @@ defmodule EtsalaWeb.Router do
 
     get "/eve-online/types", TypeController, :types
     get "/eve-online/types/:id", TypeController, :type_details
+    get "/types/:id", TypeController, :type_details_old
     # live "/eve-online/types/:id", TypeDetailsLive
     live "/eve-online/type-search", TypeSearchLive
 

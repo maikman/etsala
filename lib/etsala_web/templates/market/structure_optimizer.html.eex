@@ -4,6 +4,9 @@
   <article class="column">
     <span class="help-text">Every item on this list is <b><i>not</i></b> available at this station. Try to buy or build it and offer it on this market.</span>
   </article>
+  <article class="column">
+    <%= link "Show Structure Orders", to: Routes.market_path(@conn, :structure_market_orders, @structure.id), class: "button table-buttons" %>
+  </article>
 </section>
 <table>
   <thead>
