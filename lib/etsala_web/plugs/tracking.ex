@@ -32,6 +32,8 @@ defmodule EtsalaWeb.Plugs.Tracking do
   defp add_tracking_id_to_session(_, conn), do: conn
 
   defp track_page_view(conn) do
+    IO.inspect(conn)
+
     %{
       dp: conn |> Map.get(:request_path, nil),
       dh: conn |> Map.get(:host, nil),
@@ -39,6 +41,7 @@ defmodule EtsalaWeb.Plugs.Tracking do
       uid: conn |> get_session(:character_name) || "unknown",
       user_id: conn |> get_session(:character_name) || "unknown",
       ua: conn |> get_user_agent_from_conn(),
+      dr: conn |> get_referrer_from_conn(),
       t: "pageview",
       v: 1
     }
@@ -50,6 +53,12 @@ defmodule EtsalaWeb.Plugs.Tracking do
   defp get_user_agent_from_conn(conn) do
     conn
     |> Plug.Conn.get_req_header("user-agent")
+    |> List.first()
+  end
+
+  defp get_referrer_from_conn(conn) do
+    conn
+    |> Conn.get_req_header("referer")
     |> List.first()
   end
 end
