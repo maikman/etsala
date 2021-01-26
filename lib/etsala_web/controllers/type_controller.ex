@@ -45,13 +45,22 @@ defmodule EtsalaWeb.TypeController do
 
   defp replace_type_links(desc, conn) do
     Regex.replace(~r/showinfo:\d+/, desc, fn x ->
-      name =
+      IO.inspect(x)
+
+      type =
         x
         |> String.split(":")
         |> List.last()
         |> Types.get_type_by_type_id()
-        |> Map.get(:name)
-        |> Tools.Formatter.encode_name()
+
+      name =
+        if type do
+          type
+          |> Map.get(:name)
+          |> Tools.Formatter.encode_name()
+        else
+          "#"
+        end
 
       Routes.type_path(conn, :type_details, name)
     end)
