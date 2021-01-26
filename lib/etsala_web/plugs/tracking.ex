@@ -41,7 +41,7 @@ defmodule EtsalaWeb.Plugs.Tracking do
       uid: conn |> get_session(:character_name) || "unknown",
       user_id: conn |> get_session(:character_name) || "unknown",
       ua: conn |> get_user_agent_from_conn(),
-      dr: conn |> get_referrer_from_conn(),
+      # dr: conn |> get_referrer_from_conn(),
       t: "pageview",
       v: 1
     }
