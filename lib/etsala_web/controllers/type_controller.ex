@@ -15,6 +15,16 @@ defmodule EtsalaWeb.TypeController do
       |> Tools.Formatter.decode_name()
       |> Types.get_type_by_name()
 
+    conn |> render_type(type)
+  end
+
+  defp render_type(conn, nil) do
+    conn
+    |> put_status(404)
+    |> render("type_not_found.html")
+  end
+
+  defp render_type(conn, type) do
     details =
       %{}
       |> Map.put(:type_id, type.type_id)
