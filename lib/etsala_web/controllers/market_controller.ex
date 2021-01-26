@@ -106,7 +106,7 @@ defmodule EtsalaWeb.MarketController do
     order_count_score = h.average_order_count / mv.max_order_count
     volume_score = h.average_volume / mv.max_volume
 
-    score = (price_score * 0.1 + order_count_score * 0.8 + volume_score * 0.1) * 100
+    score = (price_score * 0.1 + order_count_score * 0.4 + volume_score * 0.5) * 100
     Map.put(h, :market_score, score)
   end
 
