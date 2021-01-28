@@ -40,6 +40,7 @@ defmodule EtsalaWeb.Plugs.Tracking do
       user_id: conn |> get_session(:character_name) || "unknown",
       ua: conn |> get_user_agent_from_conn(),
       dr: conn |> get_referrer_from_conn(),
+      uip: conn |> Map.get(:remote_ip) |> get_user_ip(),
       t: "pageview",
       v: 1
     }
@@ -59,4 +60,8 @@ defmodule EtsalaWeb.Plugs.Tracking do
     |> get_req_header("referer")
     |> List.first()
   end
+
+  defp get_user_ip({ip}), do: ip
+
+  defp get_user_ip(_), do: nil
 end
