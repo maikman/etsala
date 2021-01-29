@@ -61,7 +61,7 @@ defmodule EtsalaWeb.Plugs.Tracking do
     |> List.first()
   end
 
-  defp get_user_ip({ip}), do: ip
+  defp get_user_ip({a, b, c, d}), do: [a, b, c, d] |> Enum.join(".")
 
   defp get_user_ip(_), do: nil
 end
