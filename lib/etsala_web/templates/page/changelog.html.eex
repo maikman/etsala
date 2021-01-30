@@ -1,0 +1,29 @@
+<h1>Changelog</h1>
+<section class="row changelog">
+  <article class="column">
+    <span>2021-01-30</span>
+    <ul>
+      <li>dark page design and layout changes</li>
+      <li>new web font</li>
+      <li>changelog and about page</li>
+    </ul>
+    <span>2021-01-18</span>
+    <ul>
+      <li>asyncronous loading of market data</li>
+    </ul>
+    <span>2021-01-13</span>
+    <ul>
+      <li>new personal and alliance area</li>
+      <li>corp list at recruitment page</li>
+    </ul>
+    <span>2021-01-02</span>
+    <ul>
+      <li>what's new section</li>
+      <li>own order summary in station orders overview</li>
+    </ul>
+    <span>2020-12-31</span>
+    <ul>
+      <li>added help texts</li>
+    </ul>
+  </article>
+</section>

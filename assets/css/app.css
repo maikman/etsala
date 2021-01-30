@@ -7,8 +7,61 @@ html {
   color: #333;
 }
 
+body {
+  margin: 0;
+  position: relative;
+  min-height: 100vh;
+  padding-bottom: 10rem;
+}
+
+span, p, li, h1, h2, h3, h4, table {
+  color: #333;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+span, p, li, table {
+  font-size: 1.8rem;
+
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  margin-left: 1.5rem
+}
+
+.phx-hero {
+  text-align: center;
+  border-bottom: 1px solid #e3e3e3;
+  background: #eee;
+  border-radius: 6px;
+  padding: 1em;
+  margin-bottom: 3rem;
+  font-weight: 200;
+  font-size: 120%;
+}
+
+.container {
+  max-width: 150rem;
+}
+
 .header-text {
-  font-size: 3.5rem;
+  font-size: 4.7rem;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 10rem;
+  text-align: center;
+  padding-top: 3.5rem;
+}
+
+footer li {
+  display: inline;
 }
 
 .table-buttons {
@@ -41,6 +94,9 @@ td:first-child, th:first-child {
   padding: 10px;
   border-radius: 3px;
   display: block;
+  font-size: 2rem;
+  font-weight: bold;
+
 }
 
 .help-text::before {
@@ -49,20 +105,30 @@ td:first-child, th:first-child {
   font-weight: bold;
 }
 
-.whats-new {
+.changelog {
   margin-top: 3em
 }
 
-.whats-new li {
-  margin: 0px;
-  line-height: 1.1em
+.changelog li {
+  line-height: 1.1em;
 }
-
-
 
 .recruitment-corp-list .corp-img {
   float: right;
   margin: 10px;
   border-radius: 10px;
   box-shadow: 5px 5px 15px lightgray;
+}
+
+.filter {
+  text-align: right;
+}
+
+.filter select {
+  display: inline;
+}
+
+.filter label {
+  margin-right: 1rem;
+  display: inline;
 }

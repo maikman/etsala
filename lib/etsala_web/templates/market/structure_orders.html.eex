@@ -2,10 +2,10 @@
 <h3><%= @structure.name %></h3>
 <section class="row">
   <article class="column">
-    All Buy/Sell Orders: <b><%= Enum.count(@orders, & &1.order_type == "Buy")%> / <%= Enum.count(@orders, & &1.order_type == "Sell")%></b>
+    <span>All Buy/Sell Orders: <b><%= Enum.count(@orders, & &1.order_type == "Buy")%> / <%= Enum.count(@orders, & &1.order_type == "Sell")%></b></span>
   </article>
   <article class="column">
-    My Buy/Sell Orders: <span class="own-order"><b><%= @character_order_summary.buy %> / <%= @character_order_summary.sell %></b></span>
+    <span>My Buy/Sell Orders:</span> <span class="own-order"><b><%= @character_order_summary.buy %> / <%= @character_order_summary.sell %></b></span>
   </article>
   <article class="column">
     <%= link "What to sell?", to: Routes.market_path(@conn, :structure_optimizer, @structure.id), class: "button table-buttons" %>

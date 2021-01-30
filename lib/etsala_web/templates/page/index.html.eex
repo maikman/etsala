@@ -28,7 +28,7 @@
         </li>
       <% else %>
         <li>
-          <a href="<%= assigns.login_url %>">Log in</a>
+          <a href="<%= assigns.login_url %>">Log in</a> to see your own orders
         </li>
       <% end %>
     </ul>
@@ -43,39 +43,16 @@
         <li>
           <%= link "Improve our market", to: Routes.market_path(@conn, :structure_optimizer, 1026221929523) %>
         </li>
-      </ul>
-    <% else %>
-      <div><a href="<%= assigns.login_url %>">Log in</a> or <%= link "join now", to: Routes.recruitment_path(@conn, :index) %> to enter the member area</div>
-    <% end %>
+      <% else %>
+        <li><a href="<%= assigns.login_url %>">Log in</a> or <%= link "join now", to: Routes.recruitment_path(@conn, :index) %> to enter the member area</li>
+      <% end %>
+    </ul>
   </article>
 </section>
 <%= if assigns.is_member do %>
   <section class="row">
     <article class="column">
-      <span class="help-text">Our goal is it to make our market one of the best in eve. <b><%= link "Here", to: Routes.market_path(@conn, :structure_optimizer, 1026221929523) %></b> you can find out how you could help.</span>
+      <span class="help-text">Our goal is it to make our market one of the best in eve. <b><%= link "Here", to: Routes.market_path(@conn, :structure_optimizer, 1026221929523) %></b> you can find out how to help.</span>
     </article>
   </section>
 <% end %>
-<section class="row whats-new">
-  <article class="column">
-    <h3>What's new?</h3>
-    <span><b>2021-01-18</b></span>
-    <ul>
-      <li>asyncronous loading of market data</li>
-    </ul>
-    <span><b>2021-01-13</b></span>
-    <ul>
-      <li>new personal and alliance area</li>
-      <li>corp list at recruitment page</li>
-    </ul>
-    <span><b>2021-01-02</b></span>
-    <ul>
-      <li>what's new section</li>
-      <li>own order summary in station orders overview</li>
-    </ul>
-    <span><b>2020-12-31</b></span>
-    <ul>
-      <li>added help texts</li>
-    </ul>
-  </article>
-</section>

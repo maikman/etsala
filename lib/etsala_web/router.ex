@@ -24,6 +24,8 @@ defmodule EtsalaWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/about", PageController, :about
+    get "/changelog", PageController, :changelog
     get "/callback", PageController, :callback
     get "/logout", PageController, :logout
 

@@ -6,7 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Etsala - a toolbox for Eve Online</title>
-    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;600&display=swap" rel="stylesheet">    <!--link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/-->
+    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/dark.css") %>"/>
     <link rel="apple-touch-icon" sizes="57x57" href="<%= Routes.static_path(@conn, "/images/icons/apple-icon-57x57.png") %>">
     <link rel="apple-touch-icon" sizes="60x60" href="<%= Routes.static_path(@conn, "/images/icons/apple-icon-60x60.png") %>">
     <link rel="apple-touch-icon" sizes="72x72" href="<%= Routes.static_path(@conn, "/images/icons/apple-icon-72x72.png") %>">
@@ -52,6 +54,12 @@
     <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
     <%= @inner_content %>
   </main>
+  <footer>
+    <ul>
+      <li><a href="/about">About</a></li>
+      <li><a href="/changelog">Changelog</a></li>
+    </ul>
+  </footer>
   <%= csrf_meta_tag() %>
   <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
 </body>

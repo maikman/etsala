@@ -1,11 +1,15 @@
-<h2>What to sell?</h2>
-<h3><%= @structure.name %></h3>
 <section class="row">
   <article class="column">
-    <span class="help-text">Every item on this list is <b><i>not</i></b> available at this station. Try to buy or build it and offer it on this market.</span>
+    <h2>What to sell?</h2>
+    <h3><%= @structure.name %></h3>
   </article>
   <article class="column">
     <%= link "Show Structure Orders", to: Routes.market_path(@conn, :structure_market_orders, @structure.id), class: "button table-buttons" %>
+  </article>
+</section>
+<section class="row">
+  <article class="column">
+    <span class="help-text">Every item on this list is <b><i>not</i></b> available at this station. Try to buy or build it and offer it on this market.</span>
   </article>
 </section>
 <table>
