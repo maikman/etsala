@@ -30,7 +30,7 @@ defmodule EtsalaWeb.TypeController do
       |> Map.put(:type_id, type.type_id)
       |> Map.put(:name, type.name)
       |> Map.put(:description, type.description |> format_description(conn))
-      |> Map.put(:image_url, Images.get_image(type.type_id, 64))
+      |> Map.put(:image_url, Images.get_image(type.type_id, 128))
 
     render(conn, "type_details.html", details: details)
   end

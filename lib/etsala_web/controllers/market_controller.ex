@@ -73,6 +73,7 @@ defmodule EtsalaWeb.MarketController do
       missing_types_in_structure(structure_orders)
       |> get_market_insight(region_id)
       |> Enum.sort(&(&1.market_score >= &2.market_score))
+      |> Enum.filter(&(&1.market_score > 1))
       |> Enum.map(&MarketInsight.new(&1))
 
     render(

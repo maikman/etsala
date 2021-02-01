@@ -16,20 +16,31 @@ body {
 
 span, p, li, h1, h2, h3, h4, table {
   color: #333;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Oswald', sans-serif;
 }
 
 span, p, li, table {
-  font-size: 1.8rem;
+  font-size: 2.2rem;
+}
 
+h1 {
+  font-size: 5.5rem;
+}
+
+h2 {
+  font-size: 4.5rem;
+}
+
+h3 {
+  font-size: 3rem;
 }
 
 ul {
-  list-style-type: none;
+  list-style-type: square;
 }
 
 li {
-  margin-left: 1.5rem
+  margin-left: 1rem
 }
 
 .phx-hero {
@@ -43,12 +54,19 @@ li {
   font-size: 120%;
 }
 
+.etsala-logo {
+  width: 7vmax;
+}
+
 .container {
   max-width: 150rem;
 }
 
 .header-text {
-  font-size: 4.7rem;
+  font-family: 'Abril Fatface';
+  font-weight: bold;
+  font-size: 5vmax;
+  letter-spacing: 0.3rem;
 }
 
 footer {
@@ -87,6 +105,10 @@ span.own-order{
 
 td:first-child, th:first-child {
   padding-left: 0.8rem;
+}
+
+.type_infos {
+  margin-bottom: 2rem;
 }
 
 .help-text {

@@ -1,8 +1,7 @@
 <section class="row">
   <article class="column recruitment-corp-list">
     <h1>Recruitment</h1>
-    <h2>Recruiting Corporations:</h2>
-    <h3>Geo-Tech Industries</h3>
+    <h2>Geo-Tech Industries</h2>
     <img class="corp-img" src="<%= assigns.logos.geo_tech %>" alt="Geo-Tech Industries" />
     <ul>
       <li>Original founding corp and largest in the alliance</li>
@@ -10,7 +9,7 @@
       <li>30+ moon drills in high and low sec</li>
       <li>Two of our members placed top 3% in trade in the 2019 CCP year end report. They can help you tune your craft.</li>
     </ul>
-    <h3>Domesticated Capsuleers</h3>
+    <h2>Domesticated Capsuleers</h2>
     <img class="corp-img" src="<%= assigns.logos.domesticated_capsulers %>" alt="Domesticated Capsuleers" />
     <ul>
       <li>US Time Zone</li>
@@ -19,7 +18,7 @@
       <li>Discord comms expected to build cohesion</li>
       <li>Tight-knit, seasoned PVP'ers</li>
     </ul>
-    <h3>Aedezia</h3>
+    <h2>Aedezia</h2>
     <img class="corp-img" src="<%= assigns.logos.aedezia %>" alt="Aedezia" />
     <ul>
       <li>Small group looking to expand!</li>
@@ -30,7 +29,7 @@
       <li>We have a very dark humor!</li>
       <li>Massive Weebs also very inclusive!</li>
     </ul>
-    <h3>The Alliance Navy</h3>
+    <h2>The Alliance Navy</h2>
     <img class="corp-img" src="<%= assigns.logos.tan %>" alt="The Alliance Navy" />
     <ul>
       <li>Tight-knit and resilient group of players</li>
@@ -40,9 +39,9 @@
       <li>BRITISH!</li>
     </ul>
     <p>If you aren't sure which corp to apply to, join our peaceful holding corp Etsala Citizens while you decide and train into our doctrine. A lot of our members keep their alts in it or live there while training in order to avoid wars.</p>
-    <h3><i>Interested in joining? Have questions?</i></h3>
+    <h2><i>Interested in joining? Have questions?</i></h2>
     <p>Join our in-game channel Etsala Recruitment or send our recruiter a mail. You can also find us in <a href=" https://discord.gg/skmUKRq">discord</a>.</p>
-    <h3>Contact Info:</h3>
+    <h2>Contact Info:</h2>
     <ul>
       <li><a href="https://evewho.com/character/938559843">Tyler Norted</a> - Recruitment, Diplomacy</li>
       <li><a href="https://evewho.com/character/289045517">Nikodiemus</a> - Recruitment</li>

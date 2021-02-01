@@ -1,5 +1,5 @@
 <h1><%= @details.name %></h1>
-<section class="row">
+<section class="row type_infos">
   <article class="column">
     <%= if @details.image_url != nil do %>
       <img src="<%= @details.image_url %>" alt="<%= @details.name %>" style="float: left; margin: 0 20px 20px 0"/>
