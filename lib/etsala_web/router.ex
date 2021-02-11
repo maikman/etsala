@@ -43,6 +43,10 @@ defmodule EtsalaWeb.Router do
         :structure_optimizer
 
     get "/recruitment", RecruitmentController, :index
+
+    get "/alliance", CorporationController, :index
+    get "/corporation", CorporationController, :index
+    get "/corporation/:id", CorporationController, :corp_detail
   end
 
   # Other scopes may use custom stacks.

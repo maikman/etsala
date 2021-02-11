@@ -53,6 +53,11 @@ span.own-order{
   background-color: #462528;
 }
 
+
+.corp_logo_list img:hover {
+  box-shadow: -3px -3px 15px black;
+}
+
 .help-text::before {
   color: white;
 }

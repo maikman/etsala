@@ -14,9 +14,9 @@ body {
   padding-bottom: 10rem;
 }
 
-span, p, li, h1, h2, h3, h4, table {
-  color: #333;
+span, a, p, li, h1, h2, h3, h4, table, button, label, select {
   font-family: 'Oswald', sans-serif;
+  color: #333;
 }
 
 span, p, li, table {
@@ -28,7 +28,7 @@ h1 {
 }
 
 h2 {
-  font-size: 4.5rem;
+  font-size: 5rem;
 }
 
 h3 {
@@ -62,10 +62,14 @@ li {
   max-width: 150rem;
 }
 
+header {
+  margin-top: 1em;
+}
+
 .header-text {
   font-family: 'Abril Fatface';
   font-weight: bold;
-  font-size: 5vmax;
+  font-size: 4vmax;
   letter-spacing: 0.3rem;
 }
 
@@ -82,6 +86,15 @@ footer li {
   display: inline;
 }
 
+.menu {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.menu ul {
+  list-style: none;
+}
+
 .table-buttons {
   float: right;
 }
@@ -90,15 +103,15 @@ td, th {
   padding: 1rem 1.5rem;
 }
 
-th>.nowrap, td>.nowrap{
+th>.nowrap, td>.nowrap {
   white-space: nowrap;
 }
 
-tr.own-order{
+tr.own-order {
   background-color: rgba(124,178,119,0.5);
 }
 
-span.own-order{
+span.own-order {
   background-color: rgba(124,178,119,0.5);
   padding: 0.5em;
 }
@@ -118,13 +131,28 @@ td:first-child, th:first-child {
   display: block;
   font-size: 2rem;
   font-weight: bold;
-
 }
 
 .help-text::before {
   content: "ⓘ ";
   color: #993333;
   font-weight: bold;
+}
+
+.corp_logo_list {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.corp_logo_list div {
+  float: left;
+  min-width: 16rem;
+  padding-top: 1rem;
+}
+
+.corp_logo_list img:hover {
+  border-radius: 10px;
+  box-shadow: 0 0 15px lightgray;
 }
 
 .changelog {
@@ -142,6 +170,10 @@ td:first-child, th:first-child {
   box-shadow: 5px 5px 15px lightgray;
 }
 
+.corp-name {
+  font-size: 1.6rem;
+}
+
 .filter {
   text-align: right;
 }
@@ -153,4 +185,23 @@ td:first-child, th:first-child {
 .filter label {
   margin-right: 1rem;
   display: inline;
+}
+
+.alliance_row {
+  display: flex;
+  justify-content: center;
+}
+
+.alliance_container {
+  width: 45vmax;
+  text-align: justify;
+}
+
+.alliance_container h1 {
+  text-align: center;
+  font-size: 4em;
+}
+
+.alliance_container p, .alliance_container li {
+  font-size: 2em;
 }

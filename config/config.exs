@@ -48,6 +48,8 @@ config :etsala, :static_endpoints,
     password: nil
   }
 
+config :etsala, :etsala_legion, alliance_id: 99_009_177
+
 config :logger,
   backends: [
     :console,

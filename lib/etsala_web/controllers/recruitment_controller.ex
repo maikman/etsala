@@ -15,7 +15,9 @@ defmodule EtsalaWeb.RecruitmentController do
       geo_tech: Corporation.get_logo(98_462_263, size),
       domesticated_capsulers: Corporation.get_logo(98_653_392, size),
       aedezia: Corporation.get_logo(98_134_515, size),
-      tan: Corporation.get_logo(98_511_671, size)
+      tan: Corporation.get_logo(98_511_671, size),
+      mammon: Corporation.get_logo(98_668_441, size),
+      sumpfschrompfen: Corporation.get_logo(98_652_554, size)
     }
   end
 end

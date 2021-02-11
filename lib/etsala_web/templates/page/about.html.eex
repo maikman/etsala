@@ -2,12 +2,12 @@
 <section class="row">
   <article class="column">
     <p>
-      <img style="float: left; padding: 0 20px" src="<%= @profile_pic %>" alt="Lenni Escobar" />
+      <img style="float: left; padding: 20px" src="<%= @profile_pic %>" alt="Lenni Escobar" />
       <a href="/">etsala.space</a> is developed by me, <a target="_blank" href="https://evewho.com/character/95207568">Lenni Escobar</a>. 
       The site is constantly being developed and gets new features and performance improvements 
       every now and then. Just check back from time to time to discover new things. If you have any ideas, 
       suggestions or criticism, feel free to send me an ingame mail. Of course I'm also happy about a few ISK, lol.
+      <p>fly safe! o7</p>
     </p>
-    <p>fly safe! o7</p>
   </article>
 </section>
