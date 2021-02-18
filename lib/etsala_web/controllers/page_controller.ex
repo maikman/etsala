@@ -3,19 +3,10 @@ defmodule EtsalaWeb.PageController do
   require Logger
 
   alias WDI.ESI.Character
-  # alias WDI.ESI.Alliance
-  # alias EtsalaWeb.Objects.Corporation
-
-  # @alliance_id Application.get_env(:etsala, :etsala_legion)[:alliance_id]
 
   def index(conn, _params) do
-    # corps =
-    #   Alliance.get_corporations(@alliance_id)
-    #   |> Enum.map(&Corporation.get_corp(&1))
-    #   |> Enum.sort(&(&1.member_count >= &2.member_count))
-
     conn
-    # |> assign(:corps, corps)
+    |> assign(:corps, nil)
     |> render("index.html")
   end
 

@@ -52,21 +52,7 @@
     </ul>
   </article>
 </section>
-<%= if false do %>
-<section class="row">
-  <article class="column corp_logo_list">
-    <h2>Corporations</h2>
-    <%= for corp <- @corps do %>
-      <a href="#">
-        <div>
-          <img src="<%= corp.logo %>" alt="<%= corp.name %>" />
-          <p class="corp-name"><%= String.slice(corp.name, 0..25) %></p>
-        </div>
-      </a>
-    <% end %>
-  </article>
-</section>
-<% end %>
+<%= live_render(@conn, EtsalaWeb.CorpListLive) %>
 <%= if assigns.is_member do %>
   <section class="row">
     <article class="column">

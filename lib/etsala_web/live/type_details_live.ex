@@ -1,6 +1,5 @@
 defmodule EtsalaWeb.TypeDetailsLive do
   use Phoenix.LiveView
-  import Phoenix.HTML.Link
   alias EtsalaWeb.TypeView
   alias Etsala.Eve.Market.Order
 
