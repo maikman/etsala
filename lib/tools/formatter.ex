@@ -6,4 +6,9 @@ defmodule Tools.Formatter do
 
   def encode_name(name), do: URI.encode(String.replace(name, " ", "_"))
   def decode_name(name), do: URI.decode(String.replace(name, "_", " "))
+
+  def to_date(date_time) do
+    {:ok, foo, _} = DateTime.from_iso8601(date_time)
+    foo |> DateTime.to_date() |> Date.to_string()
+  end
 end

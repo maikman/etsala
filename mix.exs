@@ -45,6 +45,7 @@ defmodule Etsala.MixProject do
       {:jason, "~> 1.0"},
       {:json_web_token, "~> 0.2"},
       {:plug_cowboy, "~> 2.0"},
+      {:phoenix_html_sanitizer, "~> 1.0.0"},
       {:phoenix_live_view, "~> 0.14.7"},
       {:floki, ">= 0.27.0", only: :test}
     ]

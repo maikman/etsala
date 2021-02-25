@@ -25,10 +25,11 @@ span, p, li, table {
 
 h1 {
   font-size: 5.5rem;
+  margin: 3rem 0;
 }
 
 h2 {
-  font-size: 5rem;
+  font-size: 4rem;
 }
 
 h3 {
@@ -146,7 +147,7 @@ td:first-child, th:first-child {
 
 .corp_logo_list div {
   float: left;
-  min-width: 16rem;
+  min-width: 15.5rem;
   padding-top: 1rem;
 }
 

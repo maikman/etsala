@@ -16,10 +16,11 @@ defmodule EtsalaWeb.Objects.Corporation do
     :ticker,
     :url,
     :war_eligible,
-    :logo
+    :logo,
+    :path
   ]
 
-  def new(esi_corp, corp_id) do
+  def new(esi_corp, corp_id, logo_size) do
     %__MODULE__{
       alliance_id: esi_corp["alliance_id"],
       corporation_id: corp_id,
@@ -35,12 +36,21 @@ defmodule EtsalaWeb.Objects.Corporation do
       ticker: esi_corp["ticker"],
       url: esi_corp["url"],
       war_eligible: esi_corp["war_eligible"],
-      logo: Corporation.get_logo(corp_id, 64)
+      logo: Corporation.get_logo(corp_id, logo_size),
+      path: get_path(corp_id, esi_corp["name"])
     }
   end
 
-  def get_corp(corp_id) do
+  def get_corp(corp_id, logo_size \\ 64) do
     Corporation.get_information(corp_id)
-    |> new(corp_id)
+    |> new(corp_id, logo_size)
+  end
+
+  def get_path(corp_id, name) do
+    EtsalaWeb.Router.Helpers.corporation_path(
+      EtsalaWeb.Endpoint,
+      :corp_detail,
+      "#{Tools.Formatter.encode_name(name)}-#{corp_id}"
+    )
   end
 end

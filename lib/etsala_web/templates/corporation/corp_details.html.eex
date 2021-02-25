@@ -1,0 +1,42 @@
+<h1><%= @corp.name %></h1>
+<section class="row">
+  <article class="column">
+    <img style="float: left; margin: 0 2rem 2rem 0" src="<%= @corp.logo %>" alt="<%= @corp.name %>" />
+    <%= custom_description = render_existing EtsalaWeb.CorporationView, "#{Tools.Formatter.encode_name(@corp.name)}.html", conn: @conn %>
+    <%= if custom_description == nil do %>
+      <p><%= sanitize @corp.description %></p>
+    <% end %>
+  </article>
+</section>
+<section class="row">
+  <article class="column">
+    <table>
+      <tbody>
+        <tr>
+          <td>CEO</td>
+          <td><%= WDI.ESI.Character.get_name(@corp.ceo_id) %></td>
+        </tr>
+        <tr>
+          <td>Creator</td>
+          <td><%= WDI.ESI.Character.get_name(@corp.creator_id) %></td>
+        </tr>
+        <tr>
+          <td>Members</td>
+          <td><%= @corp.member_count %></td>
+        </tr>
+        <tr>
+          <td>Founded</td>
+          <td><%= @corp.date_founded |> Tools.Formatter.to_date() %></td>
+        </tr>
+        <tr>
+          <td>Ticker</td>
+          <td><%= @corp.ticker %></td>
+        </tr>
+        <tr>
+          <td>Tax Rate</td>
+          <td><%= @corp.tax_rate * 100 %>%</td>
+        </tr>
+      </tbody>
+    </table>
+  </article>
+</section>

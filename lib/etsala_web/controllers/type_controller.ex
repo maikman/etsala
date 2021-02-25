@@ -55,8 +55,6 @@ defmodule EtsalaWeb.TypeController do
 
   defp replace_type_links(desc, conn) do
     Regex.replace(~r/showinfo:\d+/, desc, fn x ->
-      IO.inspect(x)
-
       type =
         x
         |> String.split(":")

@@ -1,60 +1,60 @@
 <section class="row">
   <article class="column recruitment-corp-list">
-    <h1>Recruitment</h1>
-    <h2>Geo-Tech Industries</h2>
-    <img class="corp-img" src="<%= assigns.logos.geo_tech %>" alt="Geo-Tech Industries" />
-    <ul>
-      <li>Original founding corp and largest in the alliance</li>
-      <li>Mixed bag of interests, largest fleets in the alliance</li>
-      <li>30+ moon drills in high and low sec</li>
-      <li>Two of our members placed top 3% in trade in the 2019 CCP year end report. They can help you tune your craft.</li>
-    </ul>
-    <h2>Domesticated Capsuleers</h2>
-    <img class="corp-img" src="<%= assigns.logos.domesticated_capsulers %>" alt="Domesticated Capsuleers" />
-    <ul>
-      <li>US Time Zone</li>
-      <li>Oddball PVP fleets: Low-sec roams, Needlejack filaments</li>
-      <li>PVE side: Mission fleets, Trig invasions and Abyssal</li>
-      <li>Discord comms expected to build cohesion</li>
-      <li>Tight-knit, seasoned PVP'ers</li>
-    </ul>
-    <h2>Aedezia</h2>
-    <img class="corp-img" src="<%= assigns.logos.aedezia %>" alt="Aedezia" />
-    <ul>
-      <li>Small group looking to expand!</li>
-      <li>Jack of all trades, we do whatever sounds fun that week!</li>
-      <li>We have a research Raitaru and a ship manufacturing Raitaru and a couple juicy moons!</li>
-      <li>Industry is a side income, we exist to PVP and PVE!</li>
-      <li>We live out of a wormhole!</li>
-      <li>We have a very dark humor!</li>
-      <li>Massive Weebs also very inclusive!</li>
-    </ul>
-    <h2>The Alliance Navy</h2>
-    <img class="corp-img" src="<%= assigns.logos.tan %>" alt="The Alliance Navy" />
-    <ul>
-      <li>Tight-knit and resilient group of players</li>
-      <li>Complete moon dominance over our system</li>
-      <li>Capital storage and production with low-sec staging</li>
-      <li>Dedicated industrial alt corp</li>
-      <li>BRITISH!</li>
-    </ul>
-    <h2>Mammon Federation / Sumpfschrompfen</h2>
-    <img class="corp-img" src="<%= assigns.logos.mammon %>" alt="Mammon Federation" />
-    <img class="corp-img" src="<%= assigns.logos.sumpfschrompfen %>" alt="Sumpfschrompfen" />
-    <ul>
-      <li>German corporation covering many parts of the game</li>
-      <li>Beginner friendly</li>
-      <li>Mammon Federation is the corporation for miners, explorers and PvEers</li>
-      <li>Sumpfschrompfen is our PvP and war corporation in the alliance</li>
-    </ul>
-    <br>
-    <p>If you aren't sure which corp to apply to, join our peaceful holding corp Etsala Citizens while you decide and train into our doctrine. A lot of our members keep their alts in it or live there while training in order to avoid wars.</p>
-    <h2><i>Interested in joining? Have questions?</i></h2>
-    <p>Join our in-game channel Etsala Recruitment or send our recruiter a mail. You can also find us in <a href=" https://discord.gg/skmUKRq">discord</a>.</p>
-    <h2>Contact Info:</h2>
-    <ul>
-      <li><a href="https://evewho.com/character/938559843">Tyler Norted</a> - Recruitment, Diplomacy</li>
-      <li><a href="https://evewho.com/character/289045517">Nikodiemus</a> - Recruitment</li>
-      <li>Public Channel - <b>Etsala Recruitment</b></li>
-    </ul>
-  </section>
+    <h1>Recruiting Corporations</h1>
+    <h2><a href="<%= assigns.corps[:geo_tech].path %>"><%= assigns.corps[:geo_tech].name %></a></h2>
+    <img class="corp-img" src="<%= assigns.corps[:geo_tech].logo %>" alt="Geo-Tech Industries" />
+      <ul>
+        <li>Original founding corp and largest in the alliance</li>
+        <li>Mixed bag of interests, largest fleets in the alliance</li>
+        <li>30+ moon drills in high and low sec</li>
+        <li>Two of our members placed top 3% in trade in the 2019 CCP year end report. They can help you tune your craft.</li>
+      </ul>
+      <h2><a href="<%= assigns.corps[:domesticated_capsulers].path %>"><%= assigns.corps[:domesticated_capsulers].name %></a></h2>
+      <img class="corp-img" src="<%= assigns.corps[:domesticated_capsulers].logo %>" alt="Domesticated Capsuleers" />
+        <ul>
+          <li>US Time Zone</li>
+          <li>Oddball PVP fleets: Low-sec roams, Needlejack filaments</li>
+          <li>PVE side: Mission fleets, Trig invasions and Abyssal</li>
+          <li>Discord comms expected to build cohesion</li>
+          <li>Tight-knit, seasoned PVP'ers</li>
+        </ul>
+        <h2><a href="<%= assigns.corps[:aedezia].path %>"><%= assigns.corps[:aedezia].name %></a></h2>
+        <img class="corp-img" src="<%= assigns.corps[:aedezia].logo %>" alt="Aedezia" />
+          <ul>
+            <li>Small group looking to expand!</li>
+            <li>Jack of all trades, we do whatever sounds fun that week!</li>
+            <li>We have a research Raitaru and a ship manufacturing Raitaru and a couple juicy moons!</li>
+            <li>Industry is a side income, we exist to PVP and PVE!</li>
+            <li>We live out of a wormhole!</li>
+            <li>We have a very dark humor!</li>
+            <li>Massive Weebs also very inclusive!</li>
+          </ul>
+          <h2><a href="<%= assigns.corps[:tan].path %>"><%= assigns.corps[:tan].name %></a></h2>
+        <img class="corp-img" src="<%= assigns.corps[:tan].logo %>" alt="The Alliance Navy" />
+            <ul>
+              <li>Tight-knit and resilient group of players</li>
+              <li>Complete moon dominance over our system</li>
+              <li>Capital storage and production with low-sec staging</li>
+              <li>Dedicated industrial alt corp</li>
+              <li>BRITISH!</li>
+            </ul>
+            <h2><a href="<%= assigns.corps[:mammon].path %>"><%= assigns.corps[:mammon].name %></a> / <a href="<%= assigns.corps[:sumpfschrompfen].path %>"><%= assigns.corps[:sumpfschrompfen].name %></a></h2>
+              <img class="corp-img" src="<%= assigns.corps[:sumpfschrompfen].logo %>" alt="Sumpfschrompfen" />
+              <img class="corp-img" src="<%= assigns.corps[:mammon].logo %>" alt="Mammon Federation" />
+              <ul>
+                <li>German corporation covering many parts of the game</li>
+                <li>Beginner friendly</li>
+                <li>Mammon Federation is the corporation for miners, explorers and PvEers</li>
+                <li>Sumpfschrompfen is our PvP and war corporation in the alliance</li>
+              </ul>
+              <br>
+              <p>If you aren't sure which corp to apply to, join our peaceful holding corp Etsala Citizens while you decide and train into our doctrine. A lot of our members keep their alts in it or live there while training in order to avoid wars.</p>
+              <h2><i>Interested in joining? Have questions?</i></h2>
+              <p>Join our in-game channel Etsala Recruitment or send our recruiter a mail. You can also find us in <a href=" https://discord.gg/skmUKRq">discord</a>.</p>
+              <h2>Contact Info:</h2>
+              <ul>
+                <li><a href="https://evewho.com/character/938559843">Tyler Norted</a> - Recruitment, Diplomacy</li>
+                <li><a href="https://evewho.com/character/289045517">Nikodiemus</a> - Recruitment</li>
+                <li>Public Channel - <b>Etsala Recruitment</b></li>
+              </ul>
+            </section>
