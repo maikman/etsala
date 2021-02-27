@@ -1,14 +1,21 @@
 <h2>Station Market</h2>
-<h3><%= @structure.name %></h3>
+<h3 style="float: left"><%= @structure.name %></h3>
+<div style="float: left; margin-left: 2rem"><%= link "What to sell?", to: Routes.market_path(@conn, :structure_optimizer, @structure.id), class: "button table-buttons" %></div>
 <section class="row">
   <article class="column">
     <span>All Buy/Sell Orders: <b><%= Enum.count(@orders, & &1.order_type == "Buy")%> / <%= Enum.count(@orders, & &1.order_type == "Sell")%></b></span>
   </article>
   <article class="column">
-    <span>My Buy/Sell Orders:</span> <span class="own-order"><b><%= @character_order_summary.buy %> / <%= @character_order_summary.sell %></b></span>
+    <span class="own-order">My Buy/Sell Orders: <b><%= @character_order_summary.buy %> / <%= @character_order_summary.sell %></b></span>
   </article>
   <article class="column">
-    <%= link "What to sell?", to: Routes.market_path(@conn, :structure_optimizer, @structure.id), class: "button table-buttons" %>
+    <div class="filter">
+      <label for="filter">Filter:</label>
+      <select id="filter">
+        <option>The Forge</option>
+        <option disabled>more to come soon</option>
+      </select>
+    </div>
   </article>
 </section>
 <table>

@@ -7,6 +7,7 @@ defmodule EtsalaWeb.MarketController do
   alias EtsalaWeb.Objects.MarketInsight
   alias EtsalaWeb.Objects.Structure
   alias Etsala.Eve.Market.History
+  alias Etsala.Eve.Universe.Categories
 
   import Plug.Conn
 
@@ -48,7 +49,8 @@ defmodule EtsalaWeb.MarketController do
       structure: structure,
       orders: orders,
       character_order_ids: Enum.map(character_orders, & &1["order_id"]),
-      character_order_summary: CharacterOrder.get_order_summary(character_orders)
+      character_order_summary: CharacterOrder.get_order_summary(character_orders),
+      categories: Categories.list_categories()
     )
   end
 
