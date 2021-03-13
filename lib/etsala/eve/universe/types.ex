@@ -7,6 +7,7 @@ defmodule Etsala.Eve.Universe.Types do
   alias Etsala.Repo
 
   alias Etsala.Eve.Universe.Types.Types
+  alias Tools.Cache
 
   @doc """
   Returns the list of type.
@@ -123,5 +124,35 @@ defmodule Etsala.Eve.Universe.Types do
       Types
       |> where([p], ilike(p.name, ^"%#{String.replace(query, "%", "\\%")}%"))
     )
+  end
+
+  def get_type_from_cache(type_id) do
+    {:ok, result} =
+      Cache.get_one(type_id, :types)
+      |> case do
+        [{_full_url, type}] -> {:ok, type}
+        [] -> get_type_from_db(type_id)
+        _ -> {:error, "Caching Error"}
+      end
+
+    result
+  end
+
+  defp get_type_from_db(type_id) do
+    cache_all_types()
+
+    name =
+      get_type_by_type_id(type_id)
+      |> case do
+        nil -> %{}
+        type -> type |> Map.from_struct()
+      end
+
+    {:ok, name}
+  end
+
+  defp cache_all_types() do
+    list_types()
+    |> Enum.each(&Cache.insert({&1.type_id, &1 |> Map.from_struct()}, :types))
   end
 end

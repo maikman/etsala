@@ -1,0 +1,63 @@
+<section class="row">
+  <article class="column">
+    <span class="all-order">Buy/Sell Orders: <b><%= Enum.count(@orders, & &1.order_type == "Buy")%> / <%= Enum.count(@orders, & &1.order_type == "Sell")%></b></span>
+  </article>
+  <article class="column">
+    <span class="own-order">My Buy/Sell Orders: <b><%= @character_order_summary.buy %> / <%= @character_order_summary.sell %></b></span>
+  </article>
+  <article class="column">
+    <form phx-change="category_select">
+      <div class="filter">
+        <label for="filter">Category:</label>
+        <select name="category" id="filter">
+          <option value="all">all</option>
+          <%= for category <- @categories do %>
+            <option value="<%= category.category_id %>" <%= if category.category_id == @filter do %> selected <% end %>>
+              <%= category.name %>
+            </option>
+          <% end %>
+        </select>
+      </div>
+    </form>
+  </article>
+</section>
+<button phx-click="market_details_sell" class="button <%= if @selected_order_type == "Sell" do %>active<% end %>">Sell Orders</button>
+<button phx-click="market_details_buy" class="button  <%= if @selected_order_type == "Buy" do %>active<% end %>">Buy Orders</button>
+<br>
+<%= if @loading do %>
+  <span>loading ...<span>
+    <% else %>
+      <table>
+        <thead>
+          <tr>
+            <!--th></th-->
+            <th>Type</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Expires in</th>
+            <th>Order Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= for order <- @orders do %>
+          <%= if order.order_type == @selected_order_type do %>
+            <%= if Enum.member?(@character_order_ids, order.order_id) do %>
+              <tr class="own-order">
+              <% else %>
+                <tr>
+                <% end %>
+                <!--td><img src="<%= #order.image %>" alt="<%= #order.name %>" />
+          </td-->
+          <td><%= link order.name, to: Routes.type_path(EtsalaWeb.Endpoint, :type_details, Tools.Formatter.encode_name(order.name)) %></td>
+          <td>
+            <div class="nowrap"><%= order.price %> ISK</div>
+          </td>
+          <td><%= order.quantity %></td>
+          <td><%= order.expires_in %> days</td>
+          <td><%= order.order_type %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

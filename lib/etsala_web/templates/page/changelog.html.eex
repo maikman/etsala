@@ -1,6 +1,13 @@
 <h1>Changelog</h1>
 <section class="row changelog">
   <article class="column">
+    <span>2021-03-13</span>
+    <ul>
+      <li>category filter</li>
+      <li>seperated buy/sell order on market page</li>
+      <li>asyncronous market optimizer loading</li>
+      <li>asyncronous structure market loading</li>
+    </ul>
     <span>2021-02-25</span>
     <ul>
       <li>dynamic corp list</li>

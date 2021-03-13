@@ -82,5 +82,6 @@ defmodule WDI.ESI.Call do
   end
 
   defp validate_result({:error, _}), do: Logger.error("UNDEFINED ERROR")
+  defp validate_result(nil), do: Logger.error("NETWORK ERROR")
   defp validate_result({:ok, result}), do: {:ok, result}
 end

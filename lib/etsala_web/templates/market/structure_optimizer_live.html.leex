@@ -1,0 +1,51 @@
+  
+<section class="row">
+  <article class="column">
+    <span>Count: <%= Enum.count(@insights) %></span>
+  </article>
+  <article class="column">
+    <form phx-change="category_select">
+      <div class="filter">
+        <label for="filter">Category:</label>
+        <select name="category" id="filter">
+          <option value="all">all</option>
+          <%= for category <- @categories do %>
+            <option value="<%= category.category_id %>" <%= if category.category_id == @filter do %> selected <% end %>>
+              <%= category.name %>
+            </option>
+          <% end %>
+        </select>
+      </div>
+    </form>
+  </article>
+</section>
+  <%= if @loading do %>
+  <span>please wait, calculating score ...<span>
+    <% else %>
+      <table>
+        <thead>
+          <tr>
+            <!--th></th-->
+            <th>Type</th>
+            <th>Average Price</th>
+            <th>Average Volume</th>
+            <th>Average Order Count</th>
+            <th>Market Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= for insight <- @insights do %>
+            <tr>
+              <!--td><img src="<%= #insight.image %>" alt="<%= #insight.name %>" /></td-->
+          <td><%= link insight.name, to: Routes.type_path(EtsalaWeb.Endpoint, :type_details, Tools.Formatter.encode_name(insight.name)) %></td>
+          <td>
+            <div class="nowrap"><%= insight.average_price %> ISK</div>
+          </td>
+          <td><%= insight.average_volume %></td>
+          <td><%= insight.average_order_count %></td>
+          <td><%= insight.market_score %>%</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

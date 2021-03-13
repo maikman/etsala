@@ -55,11 +55,6 @@ defmodule EtsalaWeb.Objects.TypeOrder do
   defp get_order_type(false), do: "Sell"
   defp get_order_type(true), do: "Buy"
 
-  defp cache_all_names() do
-    Types.list_types()
-    |> Enum.each(&Cache.insert({&1.type_id, &1.name}, :type_names))
-  end
-
   defp get_station_or_structure(location_id, access_token)
        when location_id >= 1_000_000_000_000 do
     Structures.get_structure_details(location_id, access_token) |> Structure.new()

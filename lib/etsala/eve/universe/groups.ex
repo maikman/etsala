@@ -110,6 +110,13 @@ defmodule Etsala.Eve.Universe.Groups do
     Repo.get_by(Groups, name: name)
   end
 
+  def list_groups_by_category(category_id) do
+    Repo.all(
+      Groups
+      |> where([p], p.category_id == ^category_id)
+    )
+  end
+
   def insert_or_update_group(attrs) do
     get_group_by_group_id(attrs["group_id"])
     |> case do

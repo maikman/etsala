@@ -8,7 +8,6 @@ defmodule EtsalaWeb.Objects.CharacterOrder do
   alias WDI.ESI.Universe.Stations
   alias EtsalaWeb.Objects.Structure
   alias Etsala.Eve.Market.Order.Order
-  alias Tools.Cache
 
   defstruct [
     :type_id,
@@ -23,10 +22,12 @@ defmodule EtsalaWeb.Objects.CharacterOrder do
   ]
 
   def new(esi_order = %Order{}, access_token) do
+    type = Types.get_type_from_cache(esi_order.type_id)
+
     %__MODULE__{
       type_id: esi_order.type_id,
       # image: Images.get_image(esi_order["type_id"], 64),
-      name: get_name(esi_order.type_id),
+      name: type.name,
       station: get_station_or_structure(esi_order.location_id, access_token),
       # price: esi_order.price |> Decimal.cast() |> Decimal.round(2),
       price: format_price(esi_order.price),
@@ -65,36 +66,6 @@ defmodule EtsalaWeb.Objects.CharacterOrder do
   defp get_order_type(nil), do: "Sell"
   defp get_order_type(false), do: "Sell"
   defp get_order_type(true), do: "Buy"
-
-  defp get_name(type_id) do
-    {:ok, result} =
-      Cache.get_one(type_id, :type_names)
-      |> case do
-        [{_full_url, result}] -> {:ok, result}
-        [] -> get_name_from_db(type_id)
-        _ -> {:error, "Caching Error"}
-      end
-
-    result
-  end
-
-  defp get_name_from_db(type_id) do
-    cache_all_names()
-
-    name =
-      Types.get_type_by_type_id(type_id)
-      |> case do
-        nil -> "Type not found"
-        type -> type.name
-      end
-
-    {:ok, name}
-  end
-
-  defp cache_all_names() do
-    Types.list_types()
-    |> Enum.each(&Cache.insert({&1.type_id, &1.name}, :type_names))
-  end
 
   defp get_station_or_structure(location_id, access_token)
        when location_id >= 1_000_000_000_000 do

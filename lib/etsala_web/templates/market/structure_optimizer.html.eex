@@ -1,40 +1,15 @@
 <section class="row">
   <article class="column">
-    <h2>What to sell?</h2>
-    <h3><%= @structure.name %></h3>
-  </article>
-  <article class="column">
-    <%= link "Show Structure Orders", to: Routes.market_path(@conn, :structure_market_orders, @structure.id), class: "button table-buttons" %>
+    <span class="help-text">Every item on this list is <b><i>not</i></b> available at this station. Try to buy or build it and offer it on this market.</span>
   </article>
 </section>
 <section class="row">
   <article class="column">
-    <span class="help-text">Every item on this list is <b><i>not</i></b> available at this station. Try to buy or build it and offer it on this market.</span>
+    <h2>What to sell?</h2>
+    <h3><%= @structure.name %></h3>
+  </article>
+  <article class="column">
+    <%= link "Show Structure Market", to: Routes.market_path(@conn, :structure_market_orders, @structure.id), class: "button table-buttons" %>
   </article>
 </section>
-<table>
-  <thead>
-    <tr>
-      <!--th></th-->
-      <th>Type</th>
-      <th>Average Price</th>
-      <th>Average Volume</th>
-      <th>Average Order Count</th>
-      <th>Market Score</th>
-    </tr>
-  </thead>
-  <tbody>
-    <%= for insight <- @insights do %>
-      <tr>
-        <!--td><img src="<%= #insight.image %>" alt="<%= #insight.name %>" /></td-->
-        <td><%= link insight.name, to: Routes.type_path(@conn, :type_details, Tools.Formatter.encode_name(insight.name)) %></td>
-        <td>
-          <div class="nowrap"><%= insight.average_price %> ISK</div>
-        </td>
-        <td><%= insight.average_volume %></td>
-        <td><%= insight.average_order_count %></td>
-        <td><%= insight.market_score %>%</td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= live_render(@conn, EtsalaWeb.StructureOptimizerLive, session: %{"structure" => @structure}) %>
