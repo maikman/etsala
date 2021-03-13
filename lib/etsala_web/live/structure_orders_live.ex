@@ -48,7 +48,9 @@ defmodule EtsalaWeb.StructureOrdersLive do
       structure_id
       |> Structures.get_orders(access_token)
       |> Enum.map(&LocationOrder.new(&1))
+      |> Enum.filter(&(&1.type_id != nil))
       |> Enum.sort_by(&{&1.name, &1.price})
+      |> IO.inspect()
 
     {:noreply,
      assign(socket,
