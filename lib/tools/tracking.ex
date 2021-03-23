@@ -13,7 +13,6 @@ defmodule Tools.Tracking do
       ea: action,
       el: label
     }
-    |> IO.inspect()
     |> Client.send_event()
   end
 

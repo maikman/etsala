@@ -29,6 +29,7 @@ defmodule EtsalaWeb.StructureOptimizerLive do
     {:ok,
      assign(socket,
        structure: structure,
+       session: session,
        categories: Categories.list_categories(),
        filter: nil,
        insights: [],
