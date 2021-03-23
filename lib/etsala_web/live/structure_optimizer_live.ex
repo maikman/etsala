@@ -13,6 +13,7 @@ defmodule EtsalaWeb.StructureOptimizerLive do
   alias EtsalaWeb.Objects.MarketInsight
   alias Etsala.Eve.Market.History
   alias Etsala.Eve.Universe.Categories
+  alias Tools.Tracking
 
   @impl true
   def render(assigns) do
@@ -63,6 +64,8 @@ defmodule EtsalaWeb.StructureOptimizerLive do
 
   @impl true
   def handle_event("category_select", %{"category" => "all"}, socket) do
+    track_filter_event("all", socket.assigns.session)
+
     {:noreply,
      assign(socket,
        insights: socket.assigns.all_insights,
@@ -72,6 +75,8 @@ defmodule EtsalaWeb.StructureOptimizerLive do
 
   @impl true
   def handle_event("category_select", %{"category" => category_id}, socket) do
+    track_filter_event(category_id, socket.assigns.session)
+
     group_ids =
       category_id
       |> Groups.list_groups_by_category()
@@ -132,5 +137,14 @@ defmodule EtsalaWeb.StructureOptimizerLive do
       h ->
         get_market_insight(h, max_values)
     end
+  end
+
+  defp track_filter_event("all", session) do
+    Tracking.track_event(session, "filter", "all", "structure_orders")
+  end
+
+  defp track_filter_event(category_id, session) do
+    category = category_id |> Categories.get_category_by_category_id() |> Map.get(:name)
+    Tracking.track_event(session, "filter", category, "structure_orders")
   end
 end

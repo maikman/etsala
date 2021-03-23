@@ -63,6 +63,8 @@ defmodule EtsalaWeb.StructureOrdersLive do
 
   @impl true
   def handle_event("category_select", %{"category" => "all"}, socket) do
+    track_filter_event("all", socket.assigns.session)
+
     character_order_summary =
       socket.assigns.character_orders |> get_character_order_summary(socket.assigns.all_orders)
 
