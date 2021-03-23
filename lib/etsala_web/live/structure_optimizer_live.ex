@@ -140,11 +140,11 @@ defmodule EtsalaWeb.StructureOptimizerLive do
   end
 
   defp track_filter_event("all", session) do
-    Tracking.track_event(session, "filter", "all", "structure_orders")
+    Tracking.track_event(session, "filter", "all", "structure_optimizer")
   end
 
   defp track_filter_event(category_id, session) do
     category = category_id |> Categories.get_category_by_category_id() |> Map.get(:name)
-    Tracking.track_event(session, "filter", category, "structure_orders")
+    Tracking.track_event(session, "filter", category, "structure_optimizer")
   end
 end
