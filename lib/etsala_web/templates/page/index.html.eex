@@ -38,18 +38,38 @@
   </article>
   <article class="column">
     <h2>Alliance</h2>
-    <ul>
+    <section class="row">
       <%= if assigns.is_member do %>
-        <li>
-          <%= link "HQ Orders", to: Routes.market_path(@conn, :structure_market_orders, 1026221929523) %>
-        </li>
-        <li>
-          <%= link "Improve our market", to: Routes.market_path(@conn, :structure_optimizer, 1026221929523) %>
-        </li>
+        <article class="column">
+          <h3>Markets</h3>
+          <ul>
+            <li>
+              <%= link "Kiainti", to: Routes.market_path(@conn, :structure_market_orders, 1026221929523) %>
+            </li>
+            <li>
+              <%= link "Mastakomon", to: Routes.market_path(@conn, :structure_market_orders, 1024321334725) %>
+            </li>
+          </ul>
+        </article>
+        <rticle class="column">
+          <h3>Tools (coming soon)</h3>
+          <ul>
+            <li>
+              Moon Mining Helper
+            </li>
+            <li>
+              Doctrines
+            </li>
+          </ul>
+        </article>
       <% else %>
-        <li><a href="<%= assigns.login_url %>">Log in</a> or <%= link "join now", to: Routes.recruitment_path(@conn, :index) %> to enter the members' area</li>
+        <article class="column">
+          <ul>
+            <li><a href="<%= assigns.login_url %>">Log in</a> or <%= link "join now", to: Routes.recruitment_path(@conn, :index) %> to enter the members' area</li>
+          </ul>
+        </article>
       <% end %>
-    </ul>
+    </section>
   </article>
 </section>
 <%= live_render(@conn, EtsalaWeb.CorpListLive) %>

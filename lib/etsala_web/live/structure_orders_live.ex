@@ -8,6 +8,7 @@ defmodule EtsalaWeb.StructureOrdersLive do
   alias EtsalaWeb.Objects.LocationOrder
   alias Etsala.Eve.Universe.Categories
   alias Etsala.Eve.Universe.Groups
+  alias Tools.Tracking
 
   @impl true
   def render(assigns) do
@@ -30,6 +31,7 @@ defmodule EtsalaWeb.StructureOrdersLive do
      assign(socket,
        structure: structure,
        filter: nil,
+       session: session,
        selected_order_type: "Sell",
        orders: [],
        all_orders: [],
@@ -50,7 +52,6 @@ defmodule EtsalaWeb.StructureOrdersLive do
       |> Enum.map(&LocationOrder.new(&1))
       |> Enum.filter(&(&1.type_id != nil))
       |> Enum.sort_by(&{&1.name, &1.price})
-      |> IO.inspect()
 
     {:noreply,
      assign(socket,
@@ -75,6 +76,8 @@ defmodule EtsalaWeb.StructureOrdersLive do
 
   @impl true
   def handle_event("category_select", %{"category" => category_id}, socket) do
+    track_filter_event(category_id, socket.assigns.session)
+
     group_ids =
       category_id
       |> Groups.list_groups_by_category()
@@ -112,5 +115,14 @@ defmodule EtsalaWeb.StructureOrdersLive do
       |> Enum.find_value(fn order -> order.order_id == c_order_id end)
     end)
     |> CharacterOrder.get_order_summary()
+  end
+
+  defp track_filter_event("all", session) do
+    Tracking.track_event(session, "filter", "all", "structure_orders")
+  end
+
+  defp track_filter_event(category_id, session) do
+    category = category_id |> Categories.get_category_by_category_id() |> Map.get(:name)
+    Tracking.track_event(session, "filter", category, "structure_orders")
   end
 end
