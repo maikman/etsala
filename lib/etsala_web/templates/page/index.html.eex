@@ -49,6 +49,9 @@
             <li>
               <%= link "Mastakomon", to: Routes.market_path(@conn, :structure_market_orders, 1024321334725) %>
             </li>
+            <li>
+              <%= link "Hageken", to: Routes.market_path(@conn, :structure_market_orders, 1035736123243) %>
+            </li>
           </ul>
         </article>
         <rticle class="column">
