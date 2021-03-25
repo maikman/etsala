@@ -6,8 +6,12 @@ html {
   background-attachment: fixed;
 }
 
-span, p, li, h1, h2, h3, h4, table, input, label, select {
+span, p, li, h1, h2, h3, h4, table, input, label, select, option {
   color: white;
+}
+
+select, option {
+  background-color: #151515;
 }
 
 .button {
