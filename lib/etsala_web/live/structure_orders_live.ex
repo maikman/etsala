@@ -102,11 +102,15 @@ defmodule EtsalaWeb.StructureOrdersLive do
 
   @impl true
   def handle_event("market_details_sell", _, socket) do
+    socket.assigns.session |> Tracking.track_event("buy/sell", "sell", "structure_orders")
+
     {:noreply, assign(socket, selected_order_type: "Sell")}
   end
 
   @impl true
   def handle_event("market_details_buy", _, socket) do
+    socket.assigns.session |> Tracking.track_event("buy/sell", "buy", "structure_orders")
+
     {:noreply, assign(socket, selected_order_type: "Buy")}
   end
 

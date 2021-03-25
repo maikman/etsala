@@ -2,6 +2,7 @@ defmodule EtsalaWeb.TypeDetailsLive do
   use Phoenix.LiveView
   alias EtsalaWeb.TypeView
   alias Etsala.Eve.Market.Order
+  alias Tools.Tracking
 
   @impl true
   def render(assigns) do
@@ -17,6 +18,7 @@ defmodule EtsalaWeb.TypeDetailsLive do
 
     {:ok,
      assign(socket,
+       session: session,
        details: type,
        market_orders: [],
        loading: true,
@@ -40,6 +42,8 @@ defmodule EtsalaWeb.TypeDetailsLive do
 
   @impl true
   def handle_event("market_details_sell", _params, socket) do
+    socket.assigns.session |> Tracking.track_event("buy/sell", "sell", "type_details")
+
     market_orders =
       Order.get_sell_order_by_type_id(socket.assigns.details.type_id)
       |> Enum.map(&EtsalaWeb.Objects.TypeOrder.new(&1, socket.assigns.access_token))
@@ -50,6 +54,8 @@ defmodule EtsalaWeb.TypeDetailsLive do
 
   @impl true
   def handle_event("market_details_buy", _params, socket) do
+    socket.assigns.session |> Tracking.track_event("buy/sell", "buy", "type_details")
+
     market_orders =
       Order.get_buy_order_by_type_id(socket.assigns.details.type_id)
       |> Enum.map(&EtsalaWeb.Objects.TypeOrder.new(&1, socket.assigns.access_token))
