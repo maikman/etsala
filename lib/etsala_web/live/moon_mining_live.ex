@@ -29,7 +29,6 @@ defmodule EtsalaWeb.MoonMiningLive do
       |> Enum.map(&add_average_prices(&1))
       |> Enum.map(&add_image(&1))
       |> Enum.sort(&(&1.price <= &2.price))
-      |> IO.inspect()
 
     ore_list =
       @ore_data.types
