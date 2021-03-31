@@ -1,0 +1,47 @@
+<section class="row">
+  <article class="column">
+    <div class="material-prices">
+      <span style="margin-bottom: 0.5rem;">current buy prices:</span>
+      <%= for mat <- @materials do %>
+        <div class="reprocessed-materials">
+          <img src="<%= mat.image %>" alt="<%= mat.name %>" />
+          <span><%= link mat.name, to: Routes.type_path(EtsalaWeb.Endpoint, :type_details, Tools.Formatter.encode_name(mat.name)) %></span>
+          <span><%= mat.price %> ISK</span>
+        </div>
+      <% end %>
+    </article>
+  </section>
+  <section class="row">
+    <article class="column">
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Type</th>
+            <th>Reprocessed materials per 100 units</th>
+            <th>Combined Buy Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= for ore <- @ore_list do %>
+            <tr>
+              <td><img src="<%= ore.image %>" alt="<%= ore.name %>" /></td>
+              <td><%= link ore.name, to: Routes.type_path(EtsalaWeb.Endpoint, :type_details, Tools.Formatter.encode_name(ore.name)) %></td>
+              <td class="reprocessed-materials">
+                <%= for mat <- ore.industry do %>
+                  <div>
+                    <img src="<%= mat.image %>" alt="<%= mat.name %>" />
+                    <span><%= mat.units %> </span>
+                    <span><%= link mat.name, to: Routes.type_path(EtsalaWeb.Endpoint, :type_details, Tools.Formatter.encode_name(mat.name)) %></span>
+                  <% end %>
+                </div>
+              </td>
+              <td>
+                <div class="nowrap"><span class="price-tag"><%= ore.revenue %></span> ISK</div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </article>
+  </section>

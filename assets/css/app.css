@@ -70,7 +70,7 @@ header {
 .header-text {
   font-family: 'Abril Fatface';
   font-weight: bold;
-  font-size: 4vmax;
+  font-size: 3.5vmax;
   letter-spacing: 0.3rem;
 }
 
@@ -202,3 +202,36 @@ option, optgroup {
 .alliance_container p, .alliance_container li {
   font-size: 2em;
 }
+
+.material-prices{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  align-content: center;
+  margin: 2rem 0 4rem 0;
+}
+
+.material-prices .reprocessed-materials {
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.price-tag {
+  letter-spacing: 0.2rem;
+}
+
+.reprocessed-materials span {
+font-size: 1.8rem;
+vertical-align: middle;
+}
+
+.reprocessed-materials img {
+  height: 32px;
+  vertical-align: middle;
+}
+
+
+
+

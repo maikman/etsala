@@ -47,6 +47,8 @@ defmodule EtsalaWeb.Router do
     get "/alliance", CorporationController, :index
     get "/corporation", CorporationController, :index
     get "/corporation/:id", CorporationController, :corp_detail
+
+    get "/moon-mining", OreController, :moon_mining
   end
 
   # Other scopes may use custom stacks.

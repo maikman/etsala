@@ -145,4 +145,22 @@ defmodule Etsala.Eve.Market.Order do
     |> where([order], order.is_buy_order == true)
     |> Repo.all()
   end
+
+  def get_jita_buy_order_price_average(type_id) do
+    orders =
+      Order
+      |> select([:price, :volume_remain])
+      |> where([o], o.type_id == ^type_id)
+      |> where([o], o.is_buy_order == true)
+      |> where([o], o.region_id == 10_000_002)
+      |> order_by(desc: :price)
+      |> limit(5)
+      |> Repo.all()
+
+    price_score = orders |> Enum.map(fn o -> o.price * o.volume_remain end) |> Enum.sum()
+    total_volume = orders |> Enum.map(&Map.get(&1, :volume_remain)) |> Enum.sum()
+
+    {avg_price, _} = "#{price_score / total_volume}" |> Integer.parse()
+    avg_price
+  end
 end

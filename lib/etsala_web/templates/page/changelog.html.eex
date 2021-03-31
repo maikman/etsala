@@ -1,6 +1,10 @@
 <h1>Changelog</h1>
 <section class="row changelog">
   <article class="column">
+    <span>2021-03-31</span>
+    <ul>
+      <li>moon mining helper</li>
+    </ul>
     <span>2021-03-13</span>
     <ul>
       <li>category filter</li>

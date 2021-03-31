@@ -1,0 +1,14 @@
+<section class="row">
+  <article class="column">
+    <span class="help-text">If you've ever wondered what to mine first in our moon belts, here's the answer. All the ores are sorted by the selling prices of the reporcessed materials.</span>
+  </article>
+</section>
+<section class="row">
+  <article class="column">
+    <h2>Moon Ores</h2>
+  </article>
+  <article class="column">
+    <%= button "Ubiquitous", to: "#", class: "button table-buttons" %>
+  </article>
+</section>
+<%= live_render(@conn, EtsalaWeb.MoonMiningLive) %>
