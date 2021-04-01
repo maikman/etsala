@@ -1,6 +1,6 @@
 <section class="row">
   <article class="column">
-    <h2>Types</h2>
+    <h2>Items</h2>
     <ul>
       <%= for type <- @types do %>
         <li><%= link type.name, to: Routes.type_path(@conn, :type_details, Tools.Formatter.encode_name(type.name)) %></li>

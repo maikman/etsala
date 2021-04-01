@@ -6,7 +6,7 @@
 </section>
 <section class="row menu">
   <article class="column">
-    <h2>Public</h2>
+    <h2>About Us</h2>
     <ul>
       <li>
         <b><%= link "The Alliance", to: Routes.corporation_path(@conn, :index) %></b>
@@ -14,30 +14,21 @@
       <li>
         <b><%= link "Recruitment", to: Routes.recruitment_path(@conn, :index) %></b>
       </li>
-      <li>
-        <%= link "Type Search", to: Routes.live_path(@conn, EtsalaWeb.TypeSearchLive) %>
-      </li>
-      <li>
-        <%= link "Type List", to: Routes.type_path(@conn, :types) %>
-      </li>
     </ul>
   </article>
   <article class="column">
-    <h2>Personal</h2>
+    <h2>Tools</h2>
     <ul>
-      <%= if assigns.character_id != nil do %>
-        <li>
-          <%= link "My Orders", to: Routes.market_path(@conn, :character_market_orders) %>
-        </li>
-      <% else %>
-        <li>
-          <a href="<%= assigns.login_url %>">Log in</a> to see your own orders
-        </li>
-      <% end %>
+      <li>
+        <%= link "Moon Mining Helper", to: Routes.ore_path(@conn, :moon_mining) %>
+      </li>
+      <li>
+        <%= link "Item Search", to: Routes.live_path(@conn, EtsalaWeb.TypeSearchLive) %>
+      </li>
     </ul>
   </article>
   <article class="column">
-    <h2>Alliance</h2>
+    <h2>Legionaries Only</h2>
     <section class="row">
       <%= if assigns.is_member do %>
         <article class="column">
@@ -58,7 +49,7 @@
           <h3>Tools</h3>
           <ul>
             <li>
-              <%= link "Moon Mining Helper", to: Routes.ore_path(@conn, :moon_mining) %>
+              <%= link "My Orders", to: Routes.market_path(@conn, :character_market_orders) %>
             </li>
             <li>
               Doctrines (coming soon)

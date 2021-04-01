@@ -60,6 +60,7 @@
     <ul>
       <li><a href="/about">About</a></li>
       <li><a href="/changelog">Changelog</a></li>
+      <li><%= link "Item List", to: Routes.type_path(@conn, :types) %></li>
     </ul>
   </footer>
   <%= csrf_meta_tag() %>
