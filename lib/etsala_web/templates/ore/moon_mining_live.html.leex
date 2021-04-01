@@ -2,6 +2,9 @@
   <article class="column">
     <div class="material-prices">
       <span style="margin-bottom: 0.5rem;">current buy prices:</span>
+      <%= if @materials |> Enum.empty?() do %>
+        <span>loading ... </span>
+      <% end %>
       <%= for mat <- @materials do %>
         <div class="reprocessed-materials">
           <img src="<%= mat.image %>" alt="<%= mat.name %>" />
@@ -23,6 +26,11 @@
           </tr>
         </thead>
         <tbody>
+          <%= if @ore_list |> Enum.empty?() do %>
+            <tr>
+              <td>loading ...</td>
+            </tr>
+          <% end %>
           <%= for ore <- @ore_list do %>
             <tr>
               <td><img src="<%= ore.image %>" alt="<%= ore.name %>" /></td>
