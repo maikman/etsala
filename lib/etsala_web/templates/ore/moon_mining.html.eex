@@ -8,7 +8,7 @@
     <h2>Moon Ores</h2>
   </article>
   <article class="column">
-    <%= button "Ubiquitous", to: "#", class: "button table-buttons" %>
+    <%= link "Ubiquitous", to: "/moon-mining", class: "button table-buttons" %>
   </article>
 </section>
 <%= live_render(@conn, EtsalaWeb.MoonMiningLive) %>
