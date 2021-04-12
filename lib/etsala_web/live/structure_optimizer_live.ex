@@ -65,8 +65,6 @@ defmodule EtsalaWeb.StructureOptimizerLive do
 
   @impl true
   def handle_event("category_select", %{"category" => "all"}, socket) do
-    track_filter_event("all", socket.assigns.session)
-
     {:noreply,
      assign(socket,
        insights: socket.assigns.all_insights,
