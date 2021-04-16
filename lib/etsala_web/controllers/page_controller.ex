@@ -13,11 +13,14 @@ defmodule EtsalaWeb.PageController do
   def about(conn, _params) do
     conn
     |> assign(:profile_pic, Character.get_portrait(95_207_568, 128))
+    |> assign(:page_title, "About")
     |> render("about.html")
   end
 
   def changelog(conn, _params) do
-    render(conn, "changelog.html")
+    conn
+    |> assign(:page_title, "Changelog")
+    |> render("changelog.html")
   end
 
   def callback(conn, %{"code" => _code, "state" => _state}) do

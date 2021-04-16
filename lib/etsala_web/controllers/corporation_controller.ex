@@ -4,8 +4,10 @@ defmodule EtsalaWeb.CorporationController do
 
   alias EtsalaWeb.Objects.Corporation
 
+  # alliance page
   def index(conn, _params) do
     conn
+    |> assign(:page_title, "The Alliance")
     |> render("index.html")
   end
 
@@ -18,6 +20,7 @@ defmodule EtsalaWeb.CorporationController do
 
     conn
     |> assign(:corp, corp)
+    |> assign(:page_title, corp.name)
     |> render("corp_details.html")
   end
 end

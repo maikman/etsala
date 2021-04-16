@@ -6,7 +6,11 @@ defmodule EtsalaWeb.TypeController do
 
   def types(conn, _params) do
     types = Types.list_types() |> Enum.sort(&(&1.name <= &2.name))
-    render(conn, "types.html", types: types)
+
+    conn
+    |> assign(:types, types)
+    |> assign(:page_title, "Items")
+    |> render("types.html")
   end
 
   def type_details(conn, %{"id" => name}) do
@@ -32,7 +36,10 @@ defmodule EtsalaWeb.TypeController do
       |> Map.put(:description, type.description |> format_description(conn))
       |> Map.put(:image_url, Images.get_image(type.type_id, 128))
 
-    render(conn, "type_details.html", details: details)
+    conn
+    |> assign(:details, details)
+    |> assign(:page_title, type.name)
+    |> render("type_details.html")
   end
 
   def type_details_old(conn, %{"id" => id}) do

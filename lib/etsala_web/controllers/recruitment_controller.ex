@@ -14,7 +14,10 @@ defmodule EtsalaWeb.RecruitmentController do
   ]
 
   def index(conn, _params) do
-    render(conn, "index.html", corps: get_recruiting_corps())
+    conn
+    |> assign(:corps, get_recruiting_corps())
+    |> assign(:page_title, "Recruitment")
+    |> render("index.html")
   end
 
   defp get_recruiting_corps() do

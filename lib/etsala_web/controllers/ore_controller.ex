@@ -4,6 +4,7 @@ defmodule EtsalaWeb.OreController do
 
   def moon_mining(conn, _params) do
     conn
+    |> assign(:page_title, "Moon Mining Helper")
     |> render("moon_mining.html")
   end
 end

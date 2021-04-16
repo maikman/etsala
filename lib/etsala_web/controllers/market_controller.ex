@@ -16,7 +16,10 @@ defmodule EtsalaWeb.MarketController do
       |> Enum.map(&CharacterOrder.new(&1, access_token))
       |> Enum.sort_by(&{&1.name, &1.price})
 
-    render(conn, "character_orders.html", orders: orders)
+    conn
+    |> assign(:orders, orders)
+    |> assign(:page_title, "My Orders")
+    |> render("character_orders.html")
   end
 
   def structure_market_orders(conn, params) do
@@ -28,7 +31,10 @@ defmodule EtsalaWeb.MarketController do
       |> WDI.ESI.Universe.Structures.get_structure_details(access_token)
       |> Structure.new()
 
-    render(conn, "structure_orders.html", structure: structure)
+    conn
+    |> assign(:structure, structure)
+    |> assign(:page_title, structure.name)
+    |> render("structure_orders.html")
   end
 
   def structure_optimizer(conn, params) do
@@ -40,10 +46,9 @@ defmodule EtsalaWeb.MarketController do
       |> WDI.ESI.Universe.Structures.get_structure_details(access_token)
       |> Structure.new()
 
-    render(
-      conn,
-      "structure_optimizer.html",
-      structure: structure
-    )
+    conn
+    |> assign(:structure, structure)
+    |> assign(:page_title, "#{structure.name} Market Optimizer")
+    |> render("structure_optimizer.html")
   end
 end
