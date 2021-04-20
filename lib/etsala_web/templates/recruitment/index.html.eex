@@ -21,13 +21,13 @@
         <h2><a href="<%= assigns.corps[:aedezia].path %>"><%= assigns.corps[:aedezia].name %></a></h2>
         <img class="corp-img" src="<%= assigns.corps[:aedezia].logo %>" alt="Aedezia" />
           <ul>
-            <li>Small group looking to expand!</li>
-            <li>Jack of all trades, we do whatever sounds fun that week!</li>
-            <li>We have a research Raitaru and a ship manufacturing Raitaru and a couple juicy moons!</li>
-            <li>Industry is a side income, we exist to PVP and PVE!</li>
-            <li>We live out of a wormhole!</li>
-            <li>We have a very dark humor!</li>
-            <li>Massive Weebs also very inclusive!</li>
+            <li>Jack of all trades, PVP! and Lots of indy available</li>
+            <li>Dark humor, Weebs, Super inclusive (no nazi’s)</li>
+            <li>Wormhole division (Gloryhole or Satan’s cornhole your choice)</li>
+            <li>Highsec space (its ok to be a care bear we still love you and you are valuable)</li>
+            <li>We will never dip our toes in one thing</li>
+            <li>Corpse Collectors, just put them in the bin with the rest</li>
+            <li>Don’t like being a bottom? Always room to move up!(or talk to your partner)</li>
           </ul>
           <h2><a href="<%= assigns.corps[:tan].path %>"><%= assigns.corps[:tan].name %></a></h2>
         <img class="corp-img" src="<%= assigns.corps[:tan].logo %>" alt="The Alliance Navy" />
