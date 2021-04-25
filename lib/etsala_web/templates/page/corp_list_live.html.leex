@@ -1,13 +1,17 @@
 <section class="row">
   <article class="column corp_logo_list">
     <h2>Corporations</h2>
-    <%= for corp <- @corps do %>
-      <a href="/corporation/<%= Tools.Formatter.encode_name(corp.name) %>-<%= corp.corporation_id %>">
+    <%= if @corps do %>
+      <%= for corp <- @corps do %>
+        <a href="/corporation/<%= Tools.Formatter.encode_name(corp.name) %>-<%= corp.corporation_id %>">
         <div>
           <img src="<%= corp.logo %>" alt="<%= corp.name %>" />
-      <p class="corp-name"><%= String.slice(corp.name, 0..25) %></p>
-    </div>
-  </a>
+        <p class="corp-name"><%= String.slice(corp.name, 0..25) %></p>
+      </div>
+    </a>
+  <% end %>
+<% else %>
+  <span>loading ...</span>
 <% end %>
 </article>
 </section>

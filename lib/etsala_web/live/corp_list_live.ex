@@ -17,7 +17,7 @@ defmodule EtsalaWeb.CorpListLive do
 
     {:ok,
      assign(socket,
-       corps: []
+       corps: nil
      )}
   end
 

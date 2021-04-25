@@ -218,18 +218,24 @@ option, optgroup {
   white-space: nowrap;
 }
 
+.moon-mining td, th {
+  padding: 0 1.5rem
+}
+
 .price-tag {
   letter-spacing: 0.2rem;
 }
 
 .reprocessed-materials span {
 font-size: 1.8rem;
-vertical-align: middle;
+float: left;
+margin-right: 1rem;
 }
 
 .reprocessed-materials img {
   height: 32px;
-  vertical-align: middle;
+  float: left;
+
 }
 
 

@@ -16,7 +16,7 @@
   </section>
   <section class="row">
     <article class="column">
-      <table>
+      <table class="moon-mining">
         <thead>
           <tr>
             <th></th>
@@ -38,18 +38,19 @@
               <td class="reprocessed-materials">
                 <%= for mat <- ore.industry do %>
                   <div>
-                    <img src="<%= mat.image %>" alt="<%= mat.name %>" />
-                    <span><%= mat.units %> </span>
-                    <span><%= link mat.name, to: Routes.type_path(EtsalaWeb.Endpoint, :type_details, Tools.Formatter.encode_name(mat.name)) %></span>
-                  <% end %>
-                </div>
-              </td>
-              <td>
-                <div class="nowrap"><span class="price-tag"><%= ore.revenue %></span> ISK</div>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </article>
-  </section>
+                    <a href="<%= Routes.type_path(EtsalaWeb.Endpoint, :type_details, Tools.Formatter.encode_name(mat.name)) %>">
+                    <img src="<%= mat.image %>" title="<%= mat.name %>" alt="<%= mat.name %>" />
+                  </a>
+                  <span><%= mat.units %> </span>
+                <% end %>
+              </div>
+            </td>
+            <td>
+              <div class="nowrap"><span class="price-tag"><%= ore.revenue %></span> ISK</div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </article>
+</section>
