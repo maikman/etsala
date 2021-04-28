@@ -8,4 +8,7 @@ defmodule EtsalaWeb.LayoutView do
       "Etsala Legion"
     end
   end
+
+  def get_page_description(%{assigns: %{page_description: desc}}) when desc != "", do: desc
+  def get_page_description(_), do: nil
 end

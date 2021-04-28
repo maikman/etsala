@@ -17,6 +17,10 @@ defmodule EtsalaWeb.RecruitmentController do
     conn
     |> assign(:corps, get_recruiting_corps())
     |> assign(:page_title, "Recruitment")
+    |> assign(
+      :page_description,
+      "Be a part of the Etsala Legion, an Eve Online alliance. Take a look at our recruiting corporations."
+    )
     |> render("index.html")
   end
 

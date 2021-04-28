@@ -8,6 +8,11 @@ defmodule EtsalaWeb.CorporationController do
   def index(conn, _params) do
     conn
     |> assign(:page_title, "The Alliance")
+    |> assign(
+      :page_description,
+      "We are not one theme, but many. We are miners, we are warriors, we are builders and we are explorers.
+      We protect each other and we harness the power of many to enable more out of New Eden."
+    )
     |> render("index.html")
   end
 

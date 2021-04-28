@@ -10,6 +10,7 @@ defmodule EtsalaWeb.TypeController do
     conn
     |> assign(:types, types)
     |> assign(:page_title, "Items")
+    |> assign(:page_description, "A list of all active items in Eve Online.")
     |> render("types.html")
   end
 
@@ -36,9 +37,12 @@ defmodule EtsalaWeb.TypeController do
       |> Map.put(:description, type.description |> format_description(conn))
       |> Map.put(:image_url, Images.get_image(type.type_id, 128))
 
+    IO.inspect(type.description |> PhoenixHtmlSanitizer.Helpers.strip_tags())
+
     conn
     |> assign(:details, details)
     |> assign(:page_title, type.name)
+    |> assign(:page_description, type.description |> prepare_html_description())
     |> render("type_details.html")
   end
 
@@ -79,5 +83,9 @@ defmodule EtsalaWeb.TypeController do
 
       Routes.type_path(conn, :type_details, name)
     end)
+  end
+
+  defp prepare_html_description(desc) do
+    desc |> String.split("\r\n") |> List.first() |> PhoenixHtmlSanitizer.Helpers.strip_tags()
   end
 end

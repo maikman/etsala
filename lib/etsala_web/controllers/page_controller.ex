@@ -7,6 +7,11 @@ defmodule EtsalaWeb.PageController do
   def index(conn, _params) do
     conn
     |> assign(:corps, nil)
+    |> assign(:page_title, "Welcome Capsuleer!")
+    |> assign(
+      :page_description,
+      "Etsala Legion is a very active, mid-sized Eve Online alliance of a few hundred operating in the Forge Area in both high and low sec."
+    )
     |> render("index.html")
   end
 
