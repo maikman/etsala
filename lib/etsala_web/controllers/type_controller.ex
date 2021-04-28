@@ -85,7 +85,10 @@ defmodule EtsalaWeb.TypeController do
     end)
   end
 
+  defp prepare_html_description(nil), do: nil
+
   defp prepare_html_description(desc) do
+    IO.inspect(desc, label: "FOO")
     desc |> String.split("\r\n") |> List.first() |> PhoenixHtmlSanitizer.Helpers.strip_tags()
   end
 end
