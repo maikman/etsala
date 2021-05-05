@@ -4,7 +4,6 @@ defmodule EtsalaWeb.StructureOrdersLive do
   alias WDI.ESI.Markets.CharacterOrders
   alias WDI.ESI.Markets.Structures
   alias EtsalaWeb.Objects.CharacterOrder
-  alias EtsalaWeb.Objects.Structure
   alias EtsalaWeb.Objects.LocationOrder
   alias Etsala.Eve.Universe.Categories
   alias Etsala.Eve.Universe.Groups

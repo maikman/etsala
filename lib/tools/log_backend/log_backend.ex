@@ -6,7 +6,6 @@ defmodule Tools.LogBackend do
   alias Tools.LogBackend.MessageMapper
   alias Tools.HttpRequestLog
   alias Tools.HttpRequestLogDetails
-  @topic inspect(__MODULE__)
 
   def init({__MODULE__, name}) do
     {:ok, configure(name, [])}

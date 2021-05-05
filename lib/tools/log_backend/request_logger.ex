@@ -3,8 +3,6 @@ defmodule Tools.LogBackend.RequestLogger do
   module for http request logging
   """
 
-  alias Tools.LogBackend.UserTracking
-
   @log_attr_4xx [
     :status_code,
     :request_path,

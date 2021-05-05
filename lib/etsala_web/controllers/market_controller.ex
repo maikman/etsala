@@ -6,6 +6,16 @@ defmodule EtsalaWeb.MarketController do
 
   import Plug.Conn
 
+  def character_market_orders(%{assigns: %{character_id: nil}} = conn, _) do
+    conn
+    |> redirect(external: conn.assigns.login_url)
+  end
+
+  def character_market_orders(%{assigns: %{is_member: false}} = conn, _params) do
+    conn
+    |> redirect(to: Routes.page_path(conn, :index))
+  end
+
   def character_market_orders(conn, _params) do
     access_token = get_session(conn, :access_token)
     character_id = get_session(conn, :character_id)
@@ -22,7 +32,17 @@ defmodule EtsalaWeb.MarketController do
     |> render("character_orders.html")
   end
 
-  def structure_market_orders(conn, params) do
+  def structure_market_orders(%{assigns: %{character_id: nil}} = conn, _) do
+    conn
+    |> redirect(external: conn.assigns.login_url)
+  end
+
+  def structure_market_orders(%{assigns: %{is_member: false}} = conn, _params) do
+    conn
+    |> redirect(to: Routes.page_path(conn, :index))
+  end
+
+  def structure_market_orders(%{assigns: %{is_member: true}} = conn, params) do
     structure_id = Map.get(params, "id")
     access_token = get_session(conn, :access_token)
 
@@ -37,7 +57,17 @@ defmodule EtsalaWeb.MarketController do
     |> render("structure_orders.html")
   end
 
-  def structure_optimizer(conn, params) do
+  def structure_optimizer(%{assigns: %{character_id: nil}} = conn, _) do
+    conn
+    |> redirect(external: conn.assigns.login_url)
+  end
+
+  def structure_optimizer(%{assigns: %{is_member: false}} = conn, _params) do
+    conn
+    |> redirect(to: Routes.page_path(conn, :index))
+  end
+
+  def structure_optimizer(%{assigns: %{is_member: true}} = conn, params) do
     structure_id = Map.get(params, "structure_id")
     access_token = get_session(conn, :access_token)
 

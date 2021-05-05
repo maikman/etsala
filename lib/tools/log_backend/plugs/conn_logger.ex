@@ -35,8 +35,6 @@ defmodule Tools.LogBackend.Plug.ConnLogger do
     |> List.first()
   end
 
-  defp obfuscate_passwords(params), do: params
-
   defp add_to_metadata(params) do
     for {k, v} <- params do
       Logger.metadata("#{k}": v)

@@ -2,13 +2,10 @@ defmodule EtsalaWeb.Objects.TypeOrder do
   import Ecto.Changeset
   import Tools.Formatter
 
-  # alias WDI.ESI.Images
-  alias Etsala.Eve.Universe.Types
   alias WDI.ESI.Universe.Structures
   alias WDI.ESI.Universe.Stations
   alias EtsalaWeb.Objects.Structure
   alias Etsala.Eve.Market.Order.Order
-  alias Tools.Cache
 
   defstruct [
     :type_id,

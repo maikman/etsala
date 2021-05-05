@@ -38,7 +38,8 @@ config :etsala, :static_endpoints,
       "esi-universe.read_structures.v1",
       "esi-markets.structure_markets.v1",
       "esi-corporations.read_structures.v1",
-      "esi-markets.read_character_orders.v1"
+      "esi-markets.read_character_orders.v1",
+      "esi-calendar.read_calendar_events.v1"
     ]
   },
   GoogleAnalytics: %{

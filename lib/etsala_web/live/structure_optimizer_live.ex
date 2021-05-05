@@ -1,15 +1,11 @@
 defmodule EtsalaWeb.StructureOptimizerLive do
   use Phoenix.LiveView
   alias EtsalaWeb.MarketView
-  alias WDI.ESI.Markets.CharacterOrders
   alias WDI.ESI.Markets.Structures
-  alias EtsalaWeb.Objects.CharacterOrder
-  alias EtsalaWeb.Objects.Structure
   alias EtsalaWeb.Objects.LocationOrder
   alias Etsala.Eve.Universe.Categories
   alias Etsala.Eve.Universe.Groups
   alias WDI.ESI.Markets.Structures
-  alias EtsalaWeb.Objects.LocationOrder
   alias EtsalaWeb.Objects.MarketInsight
   alias Etsala.Eve.Market.History
   alias Etsala.Eve.Universe.Categories
