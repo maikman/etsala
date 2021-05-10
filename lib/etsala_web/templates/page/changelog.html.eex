@@ -1,6 +1,10 @@
 <h1>Changelog</h1>
 <section class="row changelog">
   <article class="column">
+    <span>2021-05-10</span>
+    <ul>
+      <li>alliance moon mining calendar</li>
+    </ul>
     <span>2021-04-25</span>
     <ul>
       <li>more compact view for the moon ore table</li>

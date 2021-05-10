@@ -36,12 +36,16 @@ defmodule EtsalaWeb.CalendarLive do
     moon_timer = load_mining_events()
 
     {:noreply,
-     assign(socket,
+     assign(add_flash(count, socket),
        synced: true,
        count: count,
        moon_timer: moon_timer
      )}
   end
+
+  defp add_flash(0, socket), do: socket
+  defp add_flash(1, socket), do: socket |> put_flash(:info, "new event added")
+  defp add_flash(count, socket), do: socket |> put_flash(:info, "#{count} new events added")
 
   defp load_mining_events() do
     Calendar.list_active_moon_drills() |> Enum.map(&build_event(&1))

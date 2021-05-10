@@ -51,9 +51,9 @@
             <li>
               <%= link "My Orders", to: Routes.market_path(@conn, :character_market_orders) %>
             </li>
-            <!--li>
+            <li>
               <%= link "Calendar", to: Routes.calendar_path(@conn, :index) %>
-            </li-->
+            </li>
           </ul>
         </article>
       <% else %>
