@@ -37,8 +37,6 @@ defmodule EtsalaWeb.TypeController do
       |> Map.put(:description, type.description |> format_description(conn))
       |> Map.put(:image_url, Images.get_image(type.type_id, 128))
 
-    IO.inspect(type.description |> PhoenixHtmlSanitizer.Helpers.strip_tags())
-
     conn
     |> assign(:details, details)
     |> assign(:page_title, type.name)
@@ -88,7 +86,6 @@ defmodule EtsalaWeb.TypeController do
   defp prepare_html_description(nil), do: nil
 
   defp prepare_html_description(desc) do
-    IO.inspect(desc, label: "FOO")
     desc |> String.split("\r\n") |> List.first() |> PhoenixHtmlSanitizer.Helpers.strip_tags()
   end
 end

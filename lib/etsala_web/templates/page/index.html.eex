@@ -51,9 +51,9 @@
             <li>
               <%= link "My Orders", to: Routes.market_path(@conn, :character_market_orders) %>
             </li>
-            <li>
-              Doctrines (coming soon)
-            </li>
+            <!--li>
+              <%= link "Calendar", to: Routes.calendar_path(@conn, :index) %>
+            </li-->
           </ul>
         </article>
       <% else %>

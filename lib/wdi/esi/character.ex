@@ -20,4 +20,9 @@ defmodule WDI.ESI.Character do
     "characters/#{character_id}/corporationhistory"
     |> WDI.ESI.Call.handle_call(%{}, true)
   end
+
+  def get_calendar(character_id, access_token) do
+    "characters/#{character_id}/calendar"
+    |> WDI.ESI.Call.handle_call(%{token: access_token}, true)
+  end
 end

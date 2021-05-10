@@ -2,3 +2,23 @@
   <article class="column">
   </article>
 </section>
+<table>
+  <thead>
+    <tr>
+      <th>Event Date</th>
+      <th>Location</th>
+      <th>Structure</th>
+      <th style="text-align: center">Corporation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= for timer <- @moon_timer do %>
+      <tr>
+        <td><%= timer.event_date %></td>
+        <td><%= timer.location %></td>
+        <td><%= timer.structure %></td>
+        <td style="text-align: center"><a href="<%= timer.corp_link %>"><img style="height: 32px" src="<%= timer.corp_logo %>" alt="<%= timer.corp_name %>" title="<%= timer.corp_name %>" /></a></td>
+    </tr>
+  <% end %>
+</tbody>
+</table>

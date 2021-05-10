@@ -101,4 +101,12 @@ defmodule Etsala.Eve.Calendar do
   def change_calendar(%Calendar{} = calendar, attrs \\ %{}) do
     Calendar.changeset(calendar, attrs)
   end
+
+  def list_active_moon_drills do
+    Calendar
+    |> where([c], c.type == "moon_timer")
+    |> where([c], c.event_date > datetime_add(^NaiveDateTime.utc_now(), -2, "day"))
+    |> order_by([c], c.event_date)
+    |> Repo.all()
+  end
 end

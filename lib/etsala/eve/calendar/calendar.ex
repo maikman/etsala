@@ -9,6 +9,7 @@ defmodule Etsala.Eve.Calendar.Calendar do
     field :importance, :boolean, default: false
     field :title, :string
     field :type, :string
+    field :event_source, :string
 
     timestamps()
   end
@@ -16,7 +17,16 @@ defmodule Etsala.Eve.Calendar.Calendar do
   @doc false
   def changeset(calendar, attrs) do
     calendar
-    |> cast(attrs, [:event_date, :event_id, :event_response, :importance, :title, :type])
-    |> validate_required([:event_date, :event_id, :event_response, :importance, :title, :type])
+    |> cast(attrs, [
+      :event_date,
+      :event_id,
+      :event_response,
+      :importance,
+      :title,
+      :type,
+      :event_source
+    ])
+    |> validate_required([:event_date, :event_id, :title, :type, :event_source])
+    |> unique_constraint(:event_id)
   end
 end
