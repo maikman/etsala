@@ -120,7 +120,8 @@ defmodule EtsalaWeb.CalendarLive do
   end
 
   defp get_status(event_date) do
-    diff = Timex.diff(event_date, DateTime.now!("Etc/UTC"), :hours)
+    {:ok, datetime} = DateTime.now("Etc/UTC")
+    diff = Timex.diff(event_date, datetime, :hours)
     cond do
       diff > -3 && diff < 0 -> "auto-fracture"
       diff < 0 -> "popped"
@@ -129,7 +130,9 @@ defmodule EtsalaWeb.CalendarLive do
   end
 
   defp get_current_eve_time() do
-    DateTime.now!("Etc/UTC")
+    {:ok, datetime} = DateTime.now("Etc/UTC")
+
+    datetime
     |> Timex.format!("%m-%d - %H:%M", :strftime)
   end
 end
