@@ -28,8 +28,12 @@ defmodule EtsalaWeb.PageController do
     |> render("changelog.html")
   end
 
-  def callback(conn, %{"code" => _code, "state" => _state}) do
+  def callback(conn, %{"code" => _code, "state" => "dev-done"}) do
     redirect(conn, to: "/")
+  end
+
+  def callback(conn, %{"code" => _code, "state" => state}) do
+    redirect(conn, to: state)
   end
 
   def callback(conn, _) do

@@ -1,6 +1,11 @@
 <h1>Changelog</h1>
 <section class="row changelog">
   <article class="column">
+  <span>2021-05-13</span>
+    <ul>
+      <li>new calendar features</li>
+      <li>better redirects after login</li>
+    </ul>
     <span>2021-05-10</span>
     <ul>
       <li>alliance moon mining calendar</li>

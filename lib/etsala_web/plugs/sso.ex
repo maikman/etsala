@@ -23,15 +23,17 @@ defmodule EtsalaWeb.Plugs.SSO do
   def prepare_eve_login(conn) do
     login_url = "https://login.eveonline.com/v2/oauth/authorize/?"
     scopes = "&scope=#{@sso.scopes |> Enum.join("%20")}"
+    state = get_state(conn)
 
     query =
       %{
         response_type: "code",
         redirect_uri: @sso.redirect_uri,
         client_id: @sso.client_id,
-        state: Application.get_env(:etsala, :env)
+        state: state
       }
       |> URI.encode_query()
+
 
     conn
     |> assign(:login_url, login_url <> query <> scopes)
@@ -75,7 +77,7 @@ defmodule EtsalaWeb.Plugs.SSO do
         }
       ) do
     conn
-    |> redirect(external: "http://localhost:4000/callback?code=#{code}&state=dev-done")
+    |> redirect(external: "http://localhost:4000/callback?code=#{code}&state=#{conn.request_path}")
   end
 
   def init_sso_auth(
@@ -112,5 +114,13 @@ defmodule EtsalaWeb.Plugs.SSO do
     {:ok, now} = DateTime.now("Etc/UTC")
 
     DateTime.add(now, expires_in)
+  end
+
+  defp get_state(conn) do
+    Application.get_env(:etsala, :env)
+    |> case do
+      :dev -> "dev"
+      _ -> conn.request_path
+    end
   end
 end

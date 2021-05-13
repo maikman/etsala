@@ -1,5 +1,7 @@
 defmodule EtsalaWeb.CalendarLive do
   use Phoenix.LiveView
+  use Timex
+
   alias EtsalaWeb.CalendarView
   alias WDI.ESI.Character
   alias WDI.ESI.Corporation
@@ -12,15 +14,19 @@ defmodule EtsalaWeb.CalendarLive do
 
   @impl true
   def mount(_params, session, socket) do
+    if connected?(socket), do: Process.send_after(self(), :update_eve_time, 60000)
     send(self(), {:sync_calendar, session})
 
+
     moon_timer = load_mining_events()
+    eve_time = get_current_eve_time()
 
     {:ok,
      assign(socket,
        synced: false,
        count: nil,
-       moon_timer: moon_timer
+       moon_timer: moon_timer,
+       eve_time: eve_time
      )}
   end
 
@@ -40,6 +46,17 @@ defmodule EtsalaWeb.CalendarLive do
        synced: true,
        count: count,
        moon_timer: moon_timer
+     )}
+  end
+
+  @impl true
+  def handle_info(:update_eve_time, socket) do
+    if connected?(socket), do: Process.send_after(self(), :update_eve_time, 60000)
+    eve_time = get_current_eve_time()
+
+    {:noreply,
+     assign(socket,
+       eve_time: eve_time
      )}
   end
 
@@ -70,6 +87,7 @@ defmodule EtsalaWeb.CalendarLive do
     corp_link = "/corporation/#{Tools.Formatter.encode_name(corp_name)}-#{corp_id}"
 
     %{
+      status: get_status(calendar_event.event_date),
       event_date: calendar_event.event_date |> create_date_string(),
       structure: title |> List.last(),
       location: title |> List.first(),
@@ -79,25 +97,7 @@ defmodule EtsalaWeb.CalendarLive do
     }
   end
 
-  defp create_date_string(date) do
-    time =
-      date
-      |> DateTime.to_time()
-      |> Time.to_string()
-      |> String.split(":")
-      |> Enum.drop(-1)
-      |> Enum.join(":")
-
-    day =
-      date
-      |> DateTime.to_date()
-      |> Date.to_string()
-      |> String.split("-")
-      |> Enum.drop(1)
-      |> Enum.join("-")
-
-    "#{day} - #{time}"
-  end
+  defp create_date_string(date), do: date |> Timex.format!("%m-%d - %H:%M", :strftime)
 
   defp filter_moon_timer(events) when is_list(events) do
     events
@@ -117,5 +117,19 @@ defmodule EtsalaWeb.CalendarLive do
       event_source: character_id
     }
     |> Calendar.create_calendar()
+  end
+
+  defp get_status(event_date) do
+    diff = Timex.diff(event_date, DateTime.now!("Etc/UTC"), :hours)
+    cond do
+      diff > -3 && diff < 0 -> "auto-fracture"
+      diff < 0 -> "popped"
+      true -> ""
+    end
+  end
+
+  defp get_current_eve_time() do
+    DateTime.now!("Etc/UTC")
+    |> Timex.format!("%m-%d - %H:%M", :strftime)
   end
 end
