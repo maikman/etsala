@@ -10,6 +10,7 @@ defmodule Etsala.Eve.Calendar.Calendar do
     field :title, :string
     field :type, :string
     field :event_source, :string
+    field :description, :string
 
     timestamps()
   end
@@ -24,7 +25,8 @@ defmodule Etsala.Eve.Calendar.Calendar do
       :importance,
       :title,
       :type,
-      :event_source
+      :event_source,
+      :description
     ])
     |> validate_required([:event_date, :event_id, :title, :type, :event_source])
     |> unique_constraint(:event_id)

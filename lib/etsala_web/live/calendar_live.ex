@@ -4,6 +4,7 @@ defmodule EtsalaWeb.CalendarLive do
 
   alias EtsalaWeb.CalendarView
   alias WDI.ESI.Character
+  alias WDI.ESI.Calendar, as: Events
   alias WDI.ESI.Corporation
   alias Etsala.Eve.Calendar
 
@@ -14,9 +15,9 @@ defmodule EtsalaWeb.CalendarLive do
 
   @impl true
   def mount(_params, session, socket) do
+
     if connected?(socket), do: Process.send_after(self(), :update_eve_time, 60000)
     send(self(), {:sync_calendar, session})
-
 
     moon_timer = load_mining_events()
     eve_time = get_current_eve_time()
@@ -32,11 +33,15 @@ defmodule EtsalaWeb.CalendarLive do
 
   @impl true
   def handle_info({:sync_calendar, session}, socket) do
+    access_token = session["access_token"]
+    character_id = session["character_id"]
+
     count =
-      session["character_id"]
-      |> Character.get_calendar(session["access_token"])
+      character_id
+      |> Events.get_calendar(access_token)
       |> filter_moon_timer()
-      |> Enum.map(&write_to_db(&1, session["character_id"]))
+      |> Enum.map(&add_event_description(&1, character_id, access_token))
+      |> Enum.map(&write_to_db(&1, character_id))
       |> Enum.count(fn {inserted, _} -> inserted == :ok end)
 
     moon_timer = load_mining_events()
@@ -114,7 +119,8 @@ defmodule EtsalaWeb.CalendarLive do
       importance: moon_timer["importance"] == 1,
       title: moon_timer["title"],
       type: "moon_timer",
-      event_source: character_id
+      event_source: character_id,
+      description: moon_timer["description"]
     }
     |> Calendar.create_calendar()
   end
@@ -134,5 +140,14 @@ defmodule EtsalaWeb.CalendarLive do
 
     datetime
     |> Timex.format!("%m-%d - %H:%M", :strftime)
+  end
+
+  defp add_event_description(event, character_id, access_token) do
+    desc = event["event_id"]
+    |> Events.get_event_details(character_id, access_token)
+    |> Map.get("text")
+
+    event
+    |> Map.put("description", desc)
   end
 end
