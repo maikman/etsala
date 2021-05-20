@@ -548,7 +548,7 @@ h6 {
 .container {
   margin: 0 auto;
   max-width: 100rem;
-  padding: 0 2rem;
+  padding: 0 1rem;
   position: relative;
   width: 100%;
 }
