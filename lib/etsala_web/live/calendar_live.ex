@@ -15,7 +15,6 @@ defmodule EtsalaWeb.CalendarLive do
 
   @impl true
   def mount(_params, session, socket) do
-
     if connected?(socket), do: Process.send_after(self(), :update_eve_time, 60000)
     send(self(), {:sync_calendar, session})
 
@@ -74,13 +73,8 @@ defmodule EtsalaWeb.CalendarLive do
   end
 
   defp build_event(calendar_event) do
-    title =
-      calendar_event.title
-      |> String.replace_leading("Moon extraction for ", "")
-      |> String.replace_trailing(" a", "")
-      |> String.replace_trailing(" at", "")
-      |> String.replace_trailing(" at V", "")
-      |> String.split(" - ")
+    title = calendar_event |> get_structure_name()
+    IO.inspect(title)
 
     corp_id =
       calendar_event.event_source
@@ -128,6 +122,7 @@ defmodule EtsalaWeb.CalendarLive do
   defp get_status(event_date) do
     {:ok, datetime} = DateTime.now("Etc/UTC")
     diff = Timex.diff(event_date, datetime, :hours)
+
     cond do
       diff > -3 && diff < 0 -> "auto-fracture"
       diff < 0 -> "popped"
@@ -143,11 +138,32 @@ defmodule EtsalaWeb.CalendarLive do
   end
 
   defp add_event_description(event, character_id, access_token) do
-    desc = event["event_id"]
-    |> Events.get_event_details(character_id, access_token)
-    |> Map.get("text")
+    desc =
+      event["event_id"]
+      |> Events.get_event_details(character_id, access_token)
+      |> Map.get("text")
 
     event
     |> Map.put("description", desc)
   end
+
+  defp get_structure_name(%{description: nil, title: title}) do
+    title
+    |> String.replace_leading("Moon extraction for ", "")
+    |> String.replace_trailing(" a", "")
+    |> String.replace_trailing(" at", "")
+    |> String.replace_trailing(" at V", "")
+    |> String.split(" - ")
+  end
+
+  defp get_structure_name(%{description: desc}) when desc != "" do
+    desc
+    |> String.split(">")
+    |> Enum.fetch!(1)
+    |> String.split("<")
+    |> Enum.fetch!(0)
+    |> String.split(" - ")
+  end
+
+  defp get_structure_name(_), do: ["unknown", "unknown"]
 end

@@ -11,7 +11,7 @@
 <table>
   <thead>
     <tr>
-      <th style="padding-left: 20px">Event Date</th>
+      <th>Event Time</th>
       <th>Structure</th>
       <th>Location</th>
       <th style="text-align: center">Corporation</th>
@@ -20,7 +20,7 @@
   <tbody>
     <%= for timer <- @moon_timer do %>
       <tr class="<%= timer.status %>">
-        <td style="padding-left: 20px"><%= timer.event_date %></td>
+        <td><%= timer.event_date %></td>
         <td><%= timer.structure %></td>
         <td><%= timer.location %></td>
         <td style="text-align: center;"><a href="<%= timer.corp_link %>"><img style="height: 32px" src="<%= timer.corp_logo %>" alt="<%= timer.corp_name %>" title="<%= timer.corp_name %>" /></a></td>
