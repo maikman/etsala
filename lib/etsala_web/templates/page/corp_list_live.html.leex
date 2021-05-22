@@ -1,6 +1,7 @@
 <section class="row">
-  <article class="column corp_logo_list">
-    <h2>Corporations</h2>
+  <article>
+    <h2 style="text-align: center;">Corporations</h2>
+    <div class="corp_logo_list">
     <%= if @corps do %>
       <%= for corp <- @corps do %>
         <a href="/corporation/<%= Tools.Formatter.encode_name(corp.name) %>-<%= corp.corporation_id %>">
@@ -13,5 +14,6 @@
 <% else %>
   <span>loading ...</span>
 <% end %>
+</div>
 </article>
 </section>

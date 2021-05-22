@@ -138,11 +138,16 @@ option, optgroup {
 
 .corp_logo_list {
   margin-top: 2rem;
-  text-align: center;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
 
 .corp_logo_list div {
-  float: left;
+  text-align: center;
   min-width: 15.5rem;
   padding-top: 1rem;
 }
