@@ -29,6 +29,6 @@ defmodule Etsala.Eve.Calendar.Calendar do
       :description
     ])
     |> validate_required([:event_date, :event_id, :title, :type, :event_source])
-    |> unique_constraint(:event_id)
+    |> unique_constraint(:event_id, name: :calendar_event_id_index)
   end
 end

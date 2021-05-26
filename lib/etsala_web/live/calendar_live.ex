@@ -15,7 +15,7 @@ defmodule EtsalaWeb.CalendarLive do
 
   @impl true
   def mount(_params, session, socket) do
-    if connected?(socket), do: Process.send_after(self(), :update_eve_time, 60000)
+    Process.send_after(self(), :update_eve_time, 60000)
     send(self(), {:sync_calendar, session})
 
     moon_timer = load_mining_events()
@@ -74,7 +74,6 @@ defmodule EtsalaWeb.CalendarLive do
 
   defp build_event(calendar_event) do
     title = calendar_event |> get_structure_name()
-    IO.inspect(title)
 
     corp_id =
       calendar_event.event_source
@@ -124,7 +123,7 @@ defmodule EtsalaWeb.CalendarLive do
     diff = Timex.diff(event_date, datetime, :hours)
 
     cond do
-      diff > -3 && diff < 0 -> "auto-fracture"
+      diff > -3 && diff <= 0 -> "auto-fracture"
       diff < 0 -> "popped"
       true -> ""
     end
