@@ -40,5 +40,7 @@ timestamp() {
   date +"%Y-%m-%d:%H-%M-%S" # current time
 }
 
+source vars.sh
+
 cd /root/etsala
 $1
