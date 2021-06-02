@@ -48,7 +48,8 @@ defmodule Etsala.MixProject do
       {:phoenix_html_sanitizer, "~> 1.1.0"},
       {:phoenix_live_view, "~> 0.15.5"},
       {:floki, ">= 0.30.1", only: :test},
-      {:timex, "~> 3.0"}
+      {:timex, "~> 3.0"},
+      {:number, "~> 1.0.3"}
     ]
   end
 

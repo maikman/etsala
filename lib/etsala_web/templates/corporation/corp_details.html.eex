@@ -34,7 +34,7 @@
         </tr>
         <tr>
           <td>Tax Rate</td>
-          <td><%= @corp.tax_rate * 100 %>%</td>
+          <td><%= @tax_rate %></td>
         </tr>
       </tbody>
     </table>

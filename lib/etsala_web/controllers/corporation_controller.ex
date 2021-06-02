@@ -1,6 +1,9 @@
 defmodule EtsalaWeb.CorporationController do
   use EtsalaWeb, :controller
+
   require Logger
+
+  import Number.Percentage
 
   alias EtsalaWeb.Objects.Corporation
 
@@ -23,8 +26,11 @@ defmodule EtsalaWeb.CorporationController do
       |> List.last()
       |> Corporation.get_corp(256)
 
+    tax_rate = (corp.tax_rate * 100) |> number_to_percentage(precision: 2)
+
     conn
     |> assign(:corp, corp)
+    |> assign(:tax_rate, tax_rate)
     |> assign(:page_title, corp.name)
     |> render("corp_details.html")
   end
