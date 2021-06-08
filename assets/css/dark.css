@@ -1,25 +1,37 @@
-
-
 html {
-  background: -webkit-linear-gradient(90deg, rgba(70,37,40,1) 0%,rgba(32,32,32,1) 15%, rgba(32,32,32,1) 85%, rgba(70,37,40,1) 100%);
-  background: linear-gradient(90deg, rgba(70,37,40,1) 0%,rgba(32,32,32,1) 15%, rgba(32,32,32,1) 85%, rgba(70,37,40,1) 100%);
-  background-attachment: fixed;
+  background: url("/images/background_4.jpeg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
-span, p, li, h1, h2, h3, h4, table, input, label, select, option {
+span,
+p,
+li,
+h1,
+h2,
+h3,
+h4,
+table,
+input,
+label,
+select,
+option {
   color: white;
 }
 
-select, option {
+select,
+option {
   background-color: #151515;
 }
 
 .button {
-  background-color: #E4B57B;
+  background-color: #e4b57b;
   border: 0;
   color: #181818;
   font-size: 1.5rem;
-  border-color: #E4B57B;
+  border-color: #e4b57b;
 }
 
 .active {
@@ -29,12 +41,13 @@ select, option {
   outline: 0;
 }
 
-td, th {
+td,
+th {
   border-color: #181818;
 }
 
 a {
-  color: #E4B57B
+  color: #e4b57b;
 }
 
 header {
@@ -50,16 +63,16 @@ header {
   margin-bottom: 3rem;
   font-weight: 200;
   font-size: 120%;
+  opacity: 0.75;
 }
 
-tr.own-order{
-  background-color: rgba(82,122,145,0.5);
+tr.own-order {
+  background-color: rgba(82, 122, 145, 0.5);
 }
 
 .help-text {
   background-color: #462528;
 }
-
 
 .corp_logo_list img:hover {
   box-shadow: -3px -3px 15px black;
@@ -74,18 +87,18 @@ tr.own-order{
 }
 
 span.eve-time {
-  font-size: 3rem; 
-  margin-left: 2.5rem; 
-  border: 5px solid #E4B57B;
+  font-size: 3rem;
+  margin-left: 2.5rem;
+  border: 5px solid #e4b57b;
   padding: 0.5rem 1.5rem;
   border-radius: 0.5rem;
   letter-spacing: 1px;
 }
 
 tr.popped {
-  background-color: rgba(82,122,145,0.5);
+  background-color: rgba(82, 122, 145, 0.5);
 }
 
 tr.auto-fracture {
-  background-color: rgba(82,122,145,0.25);
+  background-color: rgba(82, 122, 145, 0.25);
 }
