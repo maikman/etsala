@@ -1,6 +1,6 @@
 /* This file is for your main application css. */
 
-@import './phoenix.css';
+@import "./phoenix.css";
 
 html {
   background-color: #f7f7f7;
@@ -14,12 +14,26 @@ body {
   padding-bottom: 10rem;
 }
 
-span, a, p, li, h1, h2, h3, h4, table, button, label, select {
-  font-family: 'Oswald', sans-serif;
+span,
+a,
+p,
+li,
+h1,
+h2,
+h3,
+h4,
+table,
+button,
+label,
+select {
+  font-family: "Oswald", sans-serif;
   color: #333;
 }
 
-span, p, li, table {
+span,
+p,
+li,
+table {
   font-size: 2.2rem;
 }
 
@@ -41,7 +55,7 @@ ul {
 }
 
 li {
-  margin-left: 1rem
+  margin-left: 1rem;
 }
 
 .phx-hero {
@@ -68,7 +82,7 @@ header {
 }
 
 .header-text {
-  font-family: 'Abril Fatface';
+  font-family: "Abril Fatface";
   font-weight: bold;
   font-size: 3.5vmax;
   letter-spacing: 0.3rem;
@@ -98,22 +112,28 @@ footer li {
 
 .table-buttons {
   float: right;
+  margin-left: 10px;
 }
 
-td, th {
+td,
+th {
   padding: 1rem 1.5rem;
+  border: none;
 }
 
-th>.nowrap, td>.nowrap {
+th > .nowrap,
+td > .nowrap {
   white-space: nowrap;
 }
 
-td:first-child, th:first-child {
+td:first-child,
+th:first-child {
   padding-left: 0.8rem;
 }
 
-option, optgroup { 
-  -webkit-appearance: none; 
+option,
+optgroup {
+  -webkit-appearance: none;
 }
 
 .type_infos {
@@ -121,7 +141,7 @@ option, optgroup {
 }
 
 .help-text {
-  background-color: rgba(153,204,204,0.5);
+  background-color: rgba(153, 204, 204, 0.5);
   padding: 10px;
   border-radius: 3px;
   display: block;
@@ -158,7 +178,7 @@ option, optgroup {
 }
 
 .changelog {
-  margin-top: 3em
+  margin-top: 3em;
 }
 
 .changelog li {
@@ -195,7 +215,7 @@ option, optgroup {
 }
 
 .alliance_container {
-  width: 45vmax;
+  padding: 0 1rem;
   text-align: justify;
 }
 
@@ -204,11 +224,12 @@ option, optgroup {
   font-size: 4em;
 }
 
-.alliance_container p, .alliance_container li {
+.alliance_container p,
+.alliance_container li {
   font-size: 2em;
 }
 
-.material-prices{
+.material-prices {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -223,8 +244,9 @@ option, optgroup {
   white-space: nowrap;
 }
 
-.moon-mining td, th {
-  padding: 0 1.5rem
+.moon-mining td,
+th {
+  padding: 0 1.5rem;
 }
 
 .price-tag {
@@ -232,17 +254,24 @@ option, optgroup {
 }
 
 .reprocessed-materials span {
-font-size: 1.8rem;
-float: left;
-margin-right: 1rem;
+  font-size: 1.8rem;
+  float: left;
+  margin-right: 1rem;
+}
+
+td.reprocessed-materials span span:last-child {
+  margin-right: 3rem;
+  display: none;
 }
 
 .reprocessed-materials img {
   height: 32px;
   float: left;
-
 }
 
-
-
-
+@media screen and (min-width: 1100px) {
+  td.reprocessed-materials span span:last-child {
+    margin-right: 3rem;
+    display: block;
+  }
+}

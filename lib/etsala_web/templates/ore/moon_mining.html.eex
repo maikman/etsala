@@ -5,10 +5,14 @@
 </section>
 <section class="row">
   <article class="column">
-    <h2>Moon Ores</h2>
+    <h2><%= @type |> String.capitalize %> Moon Ores</h2>
   </article>
   <article class="column">
-    <%= link "Ubiquitous", to: "/moon-mining", class: "button table-buttons" %>
+    <%= link "Exceptional", to: "/moon-mining/exceptional", class: "button table-buttons #{if @type == "exceptional" do "active" end}" %>
+    <%= link "Rare", to: "/moon-mining/rare", class: "button table-buttons #{if @type == "rare" do "active" end}" %>
+    <%= link "Uncommon", to: "/moon-mining/uncommon", class: "button table-buttons #{if @type == "uncommon" do "active" end}" %>
+    <%= link "Common", to: "/moon-mining/common", class: "button table-buttons #{if @type == "common" do "active" end}" %>
+    <%= link "Ubiquitous", to: "/moon-mining/ubiquitous", class: "button table-buttons  #{if @type == "ubiquitous" do "active" end}" %>
   </article>
 </section>
-<%= live_render(@conn, EtsalaWeb.MoonMiningLive) %>
+<%= live_render(@conn, EtsalaWeb.MoonMiningLive, session: %{"ore_type" => @type}) %>

@@ -48,7 +48,7 @@ defmodule EtsalaWeb.Router do
     get "/corporation", CorporationController, :index
     get "/corporation/:id", CorporationController, :corp_detail
 
-    get "/moon-mining", OreController, :moon_mining
+    get "/moon-mining/:type", OreController, :moon_mining
 
     get "/calendar", CalendarController, :index
   end

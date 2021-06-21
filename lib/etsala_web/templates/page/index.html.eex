@@ -1,7 +1,7 @@
 <section class="phx-hero">
   <h1>Welcome Capsuleer!</h1>
-  <p><b><%= link "Etsala Legion", to: Routes.corporation_path(@conn, :index) %></b> is a very active, mid-sized alliance of a few hundred operating in the Forge Area in both high and low sec. 
-    We were founded a couple years ago as industrial, but have since developed a military, and the two support each other very closely. 
+  <p><b><%= link "Etsala Legion", to: Routes.corporation_path(@conn, :index) %></b> is a very active, mid-sized alliance of a few hundred operating in the Forge Area in both high and low sec.
+    We were founded a couple years ago as industrial, but have since developed a military, and the two support each other very closely.
     So it doesn't matter if you are industrial or combat focused, we have <%= link "a spot", to: Routes.recruitment_path(@conn, :index) %> and a direction for you. We are EU heavy and US medium zoned, with a smattering of players from Australia, the Middle East, and Asia.</p>
 </section>
 <section class="row menu">
@@ -20,7 +20,7 @@
     <h2>Tools</h2>
     <ul>
       <li>
-        <%= link "Moon Mining Helper", to: Routes.ore_path(@conn, :moon_mining) %>
+        <%= link "Moon Mining Helper", to: Routes.ore_path(@conn, :moon_mining, "ubiquitous") %>
       </li>
       <li>
         <%= link "Item Search", to: Routes.live_path(@conn, EtsalaWeb.TypeSearchLive) %>

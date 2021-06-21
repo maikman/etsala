@@ -4,7 +4,7 @@ defmodule EtsalaWeb.MoonMiningLive do
   alias Etsala.Eve.Market.Order
   alias WDI.ESI.Images
 
-  @ore_data Application.get_env(:etsala, :ore)[:ubiquitous]
+  @ore_data Application.get_env(:etsala, :ore)
 
   @impl true
   def render(assigns) do
@@ -12,8 +12,9 @@ defmodule EtsalaWeb.MoonMiningLive do
   end
 
   @impl true
-  def mount(_params, _session, socket) do
-    send(self(), :load_ore_data)
+  def mount(_params, session, socket) do
+    type = session |> Map.get("ore_type")
+    send(self(), {:load_ore_data, type})
 
     {:ok,
      assign(socket,
@@ -23,15 +24,18 @@ defmodule EtsalaWeb.MoonMiningLive do
   end
 
   @impl true
-  def handle_info(:load_ore_data, socket) do
+  def handle_info({:load_ore_data, type_name}, socket)
+      when type_name in ["ubiquitous", "common", "uncommon", "rare", "exceptional"] do
+    type = type_name |> String.to_atom()
+
     materials =
-      @ore_data.materials
+      @ore_data[type].materials
       |> Enum.map(&add_average_prices(&1))
       |> Enum.map(&add_image(&1))
       |> Enum.sort(&(&1.price >= &2.price))
 
     ore_list =
-      @ore_data.types
+      @ore_data[type].types
       |> Enum.map(&calculate_revenue(&1, materials))
       |> Enum.map(&add_image(&1))
       |> Enum.map(&add_reprocessing_infos(&1, materials))
@@ -42,6 +46,11 @@ defmodule EtsalaWeb.MoonMiningLive do
        materials: materials,
        ore_list: ore_list
      )}
+  end
+
+  @impl true
+  def handle_info({:load_ore_data, _type_name}, socket) do
+    handle_info({:load_ore_data, "ubiquitous"}, socket)
   end
 
   defp add_average_prices(material) do

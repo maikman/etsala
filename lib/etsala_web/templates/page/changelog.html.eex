@@ -1,6 +1,11 @@
 <h1>Changelog</h1>
 <section class="row changelog">
   <article class="column">
+  <span>2021-06-21</span>
+    <ul>
+      <li>moon mining helper visual update</li>
+      <li>all moon types added to the moon mining helper</li>
+    </ul>
   <span>2021-06-08</span>
     <ul>
       <li>background image</li>
